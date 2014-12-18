@@ -1,0 +1,153 @@
+ProgmentServerAPI
+version:     0.0.1
+最終更新日:  2014/12/18
+
+サーバ側のAPIみたいなものです。ajaxによるリクエストを想定しているものもあります。
+下記のURLに指定の引数の名前でデータをPOSTすることでサーバ側は引数を受け取り処理を行います。
+引数と返り値は全て文字列です。
+返り値はレスポンスにある<return>タグの属性値にあります(例:<return result="1" prgID="10232302">)。
+処理結果(result)については特に指定が無い限り、1が成功、0が失敗です（パターンが追加されるかも)。
+
+/login:
+        -返り値
+            ログイン画面のHTML
+        -説明
+            ログイン画面を表示するURL
+            Cookieが発行されていない状態で別のURLにアクセスしようとすると、
+            /loginへリダイレクトされる
+
+/collation:
+        -返り値
+            ログイン成功、失敗時のHTML(ログイン成功時、/menuへリダイレクトされる)
+        -説明
+            照合を行うのURL
+
+/menu:
+        -返り値
+            メニュー画面のHTML
+        -説明
+            メニュー画面を表示するURL
+
+/freeProg
+        -返り値
+            フリープログラミング画面のHTML
+        -説明
+            フリープログラミング画面を表示するURL
+
+/freeProg/prgDelete
+        -引数
+            prgId:          作業ID
+        -返り値
+            result:           処理結果
+        -説明
+            プログラムデータを削除するURL
+
+/freeProg/prgAppend
+        -引数
+            prgName:        名前
+            comment:        コメント
+            workSpaceData:  ワークスペースの内容
+        -返り値
+            result:         処理結果
+            prgId:          作業ID
+        -説明
+            プログラムデータを追加するURL
+
+/freeProg/prgUpdate
+        -引数
+            prgId:          作業ID
+            prgName:        名前
+            comment:        コメント
+            workSpaceData:  ワークスペースの内容
+        -返り値
+            result:         処理結果
+        -説明
+            プログラムデータを編集するURL
+
+/expProg
+        -説明
+            課題プログラミング画面を表示するURL
+
+/expEdit
+        -説明
+            課題エディット画面を表示するURL
+
+/expEdit/expAppend
+        -引数
+            masterUserId:   作成者(マスタユーザ)ID
+            expName:        課題名
+            comment:        コメント
+            helpMenu:       ヘルプメニュー
+            workSpaceData:  ワークスペースの内容
+            result:         実行結果
+            limitedBlocks:  個数情報
+        -返り値
+            result:         処理結果
+            expId:          課題ID
+        -説明
+            課題エディットデータを追加するURL
+
+/expEdit/expDelete
+        -引数
+            expId:          課題ID
+        -返り値
+            result:         処理結果
+        -説明
+            課題エディットデータを削除するURL
+
+/expEdit/expUpdate
+        -引数-
+            expId:          課題データのID
+            masterUserId:   作成者(マスタユーザ)ID
+            expName:        課題名
+            comment:        コメント
+            helpMenu:       ヘルプメニュー
+            workSpaceData:  ワークスペースの内容
+            result:         実行結果
+            limitedBlocks:  個数情報
+        -返り値
+            result:         処理結果
+        -説明
+            課題エディットデータを編集するURL
+
+/users
+        -説明
+            ユーザ管理画面を表示するURL
+
+/users/usrAppend
+        -引数
+            usrName:        ユーザ名
+            usrYear:        学年
+            usrClass:       クラス
+            usrNumber:      出席番号
+            masterUsrId:    マスタユーザID
+            group:          区分
+            usrPasswd:      パスワード
+        -返り値
+            result:         処理結果
+            usrId:          ユーザID
+        -説明
+            ユーザを追加するURL
+
+/users/usrDelete
+        -引数
+            usrId:          ユーザID
+        -返り値
+            result:         処理結果
+        -説明
+            ユーザを削除するURL
+
+/users/usrUpdate
+        -引数
+            usrId:          ユーザID
+            usrName:        ユーザ名
+            usrYear:        学年
+            usrClass:       クラス
+            usrNumber:      出席番号
+            masterUsrId:    マスタユーザID
+            group:          区分
+            usrPasswd:      パスワード
+        -返り値
+            result:         処理結果
+        -説明
+            ユーザを編集するURL

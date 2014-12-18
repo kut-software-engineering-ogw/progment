@@ -28,8 +28,8 @@
           <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cgi-bin/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.33936653" vertical-offset="0" max-vertical-offset="884">
-                  <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+                <state vertical-scroll-proportion="0.5656109" vertical-offset="0" max-vertical-offset="884">
+                  <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
                   <folding />
                 </state>
               </provider>
@@ -39,11 +39,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="url-memo.txt" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cgi-bin/url-memo.txt">
+          <file leaf-file-name="server-api.txt" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cgi-bin/server-api.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.0256411" vertical-offset="0" max-vertical-offset="1040">
-                  <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+                <state vertical-scroll-proportion="0.9954751" vertical-offset="0" max-vertical-offset="3160">
+                  <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -65,6 +65,8 @@
         <option value="$PROJECT_DIR$/cgi-bin/certify.py" />
         <option value="$PROJECT_DIR$/cgi-bin/main.py" />
         <option value="$PROJECT_DIR$/cgi-bin/url.txt" />
+        <option value="$PROJECT_DIR$/cgi-bin/url-memo.txt" />
+        <option value="$PROJECT_DIR$/cgi-bin/api.txt" />
       </list>
     </option>
   </component>
@@ -273,13 +275,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -322,18 +324,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cgi-bin/url-memo.txt">
+    <entry file="file://$PROJECT_DIR$/cgi-bin/server-api.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0256411" vertical-offset="0" max-vertical-offset="1040">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.9954751" vertical-offset="0" max-vertical-offset="3160">
+          <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cgi-bin/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33936653" vertical-offset="0" max-vertical-offset="884">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.5656109" vertical-offset="0" max-vertical-offset="884">
+          <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
           <folding />
         </state>
       </provider>
