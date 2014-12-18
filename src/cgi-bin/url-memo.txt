@@ -1,0 +1,47 @@
+/login:
+        ログイン画面を表示するURL
+
+/collation:
+        照合を行うのURL
+
+/menu:
+        メニュー画面を表示するURL
+
+/free_prog
+        フリープログラミング画面を表示するURL
+
+/delete_prog_data
+        プログラムデータを削除するURL
+
+/apend_prog_data
+        プログラムデータを追加するURL
+
+/edit_prog_data
+        プログラムデータを編集するURL
+
+/exer_prog
+        課題プログラミング画面を表示するURL
+
+/edit_exer
+        課題エディット画面を表示するURL
+
+/delete_exer_data
+        課題エディットデータを削除するURL
+
+/apend_exer_data
+        課題エディットデータを追加するURL
+
+/edit_exer_data
+        課題エディットデータを編集するURL
+
+/users
+        ユーザ管理画面を表示するURL
+
+/apend_user
+        ユーザを追加するURL
+
+/delete_user
+        ユーザを削除するURL
+
+/edit_user
+        ユーザを編集するURL
