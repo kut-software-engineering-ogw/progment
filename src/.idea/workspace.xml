@@ -25,7 +25,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cgi-bin/main.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.5656109" vertical-offset="0" max-vertical-offset="884">
@@ -39,11 +39,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="server-api.txt" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cgi-bin/server-api.txt">
+          <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cgi-bin/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.9954751" vertical-offset="0" max-vertical-offset="3160">
-                  <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+                <state vertical-scroll-proportion="0.5656109" vertical-offset="0" max-vertical-offset="884">
+                  <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
                   <folding />
                 </state>
               </provider>
@@ -320,14 +320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39766082" vertical-offset="660" max-vertical-offset="1720">
           <caret line="50" column="55" selection-start-line="50" selection-start-column="55" selection-end-line="50" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cgi-bin/server-api.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9954751" vertical-offset="0" max-vertical-offset="3160">
-          <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
           <folding />
         </state>
       </provider>
