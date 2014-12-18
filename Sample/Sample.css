@@ -1,0 +1,76 @@
+#head{
+	background-color: #F00;
+	height: 50px;
+}
+
+#blockListArea{
+	float: left;
+	background-color: #FF0;
+	width: 250px;
+	height: 700px
+}
+
+#workspace{
+	/*float: left;*/
+	margin-left: 250px;
+	background-color: #0FF;
+	min-width: 100px;
+	height: 700px;
+}
+
+#foot{
+	background-color: #0A0;
+	clear: both;
+	height: 100px;
+}
+
+#mainList{
+	background-color: red;
+	min-height: 80px;
+	min-width: 100px;
+}
+
+#main {
+	padding: 4px 0px 4px 0px;
+	background-color:blue; 
+	border-radius:4px;
+	min-height: 100px;
+	width: 200px;
+}
+
+.nestBlock{
+	background-color: green;
+	min-height: 50px;
+	width: 120px;
+}
+
+.nestArea{
+	background-color: blue;
+	min-height: 40px;
+	margin-bottom: 4px;
+}
+
+.mathBlock{
+	background-color: green;
+	width: 150px;
+	height: 50px;
+}
+
+.intArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.intBlock{
+	background-color: green;
+	width: 40px;
+	height: 30px;
+}
+
+.processBlock{
+	background-color: green;
+	width: 50px;
+	height: 30px;
+}

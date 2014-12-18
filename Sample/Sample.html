@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Sample</title>
+<!-- CDNのロード始 -->
+<!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css"> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+<!-- CDNのロード終 -->
+<!-- javascriptロード始 -->
+<script type="text/javascript" src="programmingInitializeModule.js"></script>
+
+<!-- javascriptロード終 -->
+<!-- CSSロード始 -->
+<link rel="stylesheet" type="text/css" href="Sample.css">
+<!-- CSSロード終 -->
+</head>
+
+<body>
+	<!-- 全体 -->
+	<div id="wrap">
+		<!-- ヘッダ -->
+		<div id="head">
+			head
+		</div>
+		<!-- ページ左側 -->
+		<div id="blockListArea">
+			<!-- ブロックリスト -->
+			<ul id="blockList">
+				<!-- ネスト構造のブロック -->
+				<li class="inList block nestBlock">
+					<input type="number" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
+					<ul class="nestArea">
+						
+					</ul>
+				</li>
+				<!-- 数式のデータブロック -->
+				<li class="block mathBlock inList">
+					<div class="intArea"></div>
+					<select name="fourOperations">
+						<option value="add">＋</option>
+						<option value="sub">－</option>
+						<option value="mul">×</option>
+						<option value="div">÷</option>
+					</select>
+					<div class="intArea"></div>
+				</li>
+				<!-- int型データブロック -->
+				<li class="intBlock block inList">
+					<input type="number" max="99" min="1" value="1" style="width:30px;"/>
+				</li>
+				<!-- 処理ブロック -->
+				<li class="block inList processBlock">
+					print
+				</li>
+			</ul>
+		</div>
+		<!-- ワークスペース -->
+		<div id="workspace">
+			<div id="main">
+				<ul id="mainList">
+				mainMethod<BR>
+				</ul>
+			</div>
+		</div>
+		<div id="foot"></div>
+	</div>
+</body>
