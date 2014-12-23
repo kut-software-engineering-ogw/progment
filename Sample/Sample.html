@@ -28,7 +28,8 @@
 		<!-- ページ左側 -->
 		<div id="blockListArea">
 			<!-- ブロックリスト -->
-			<ul id="blockList">
+			<h3>作業用サンプル</h3>
+			<ul id="tempBlockList">
 				<!-- ネスト構造のブロック -->
 				<li class="inList block nestBlock">
 					<input type="number" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
@@ -52,8 +53,72 @@
 					<input type="number" max="99" min="1" value="1" style="width:30px;"/>
 				</li>
 				<!-- 処理ブロック -->
-				<li class="block inList processBlock">
+				<li class="block inList processBlock print">
 					print
+					<div class="intArea"></div>
+				</li>
+			</ul>
+			<h3>実装サンプル</h3>
+			<ul id="blockList">
+				<!-- printブロック -->
+				<li class="inList block processBlock print">
+					print
+					<div class="dataArea"></div>
+				</li>
+				<!-- 四則演算ブロック -->
+				<li class="block mathBlock inList">
+					<div class="intArea"></div>
+					<select name="fourOperations">
+						<option value="add">＋</option>
+						<option value="sub">－</option>
+						<option value="mul">×</option>
+						<option value="div">÷</option>
+					</select>
+					<div class="intArea"></div>
+				</li>
+				<!-- 比較ブロック -->
+				<li class="block logicBlock inList">
+					<div class="dataArea"></div>
+					<select name="compOperations">
+						<option value="equal">＝</option>
+						<option value="not">≠</option>
+						<option value="notGreater">≦</option>
+						<option value="less">＜</option>
+						<option value="notLess">≧</option>
+						<option value="Greater">＞</option>
+					</select>
+					<div class="dataArea"></div>
+				</li>
+				<!-- 論理演算ブロック -->
+				<li class="block logicBlock inList">
+					<div class="boolArea"></div>
+					<select name="logicOperations">
+						<option value="and">∧</option>
+						<option value="or">∨</option>
+						<option value="not">￢</option>
+						<option value="xor">xor</option>
+					</select>
+					<div class="boolArea"></div>
+				</li>
+				<li class="inList block charBlock varBlock">
+					文字列<BR>変数
+					<BR>
+					<input type="text" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+				</li>
+				<li class="inList block intBlock varBlock">
+					整数型<BR>変数
+					<BR>
+					<input type="text" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+				</li>
+				<li class="inList block boolBlock varBlock">
+					論理型<BR>変数
+					<BR>
+					<input type="text" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+				</li>
+				<li class="inList block processBlock">
+					<div class="varArea"></div>
+					=
+					<div class="dataArea"></div>
 				</li>
 			</ul>
 		</div>
@@ -62,6 +127,11 @@
 			<div id="main">
 				<ul id="mainList">
 				mainMethod<BR>
+				</ul>
+			</div>
+			<div class="sub">
+				<ul class="subList">
+				subMethod<BR>
 				</ul>
 			</div>
 		</div>

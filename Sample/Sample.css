@@ -10,6 +10,14 @@
 	height: 700px
 }
 
+#blockListArea h3{
+	background-color: #00BFFF;
+}
+
+#blockList,#tempBlockList{
+	background-color: #98FB98;
+}
+
 #workspace{
 	/*float: left;*/
 	margin-left: 250px;
@@ -29,8 +37,19 @@
 	min-height: 80px;
 	min-width: 100px;
 }
-
+.subList{
+	background-color: red;
+	min-height: 80px;
+	min-width: 100px;
+}
 #main {
+	padding: 4px 0px 4px 0px;
+	background-color:blue; 
+	border-radius:4px;
+	min-height: 100px;
+	width: 200px;
+}
+.sub {
 	padding: 4px 0px 4px 0px;
 	background-color:blue; 
 	border-radius:4px;
@@ -52,7 +71,17 @@
 
 .mathBlock{
 	background-color: green;
-	width: 150px;
+	width: 155px;
+	height: 50px;
+}
+.strBlock{
+	background-color: green;
+	width: 155px;
+	height: 50px;
+}
+.logicBlock{
+	background-color: green;
+	width: 155px;
 	height: 50px;
 }
 
@@ -63,14 +92,54 @@
 	background-color: blue;
 }
 
+.charArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.varArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.dataArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.boolArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
 .intBlock{
 	background-color: green;
-	width: 40px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
+}
+
+.charBlock{
+	background-color: green;
+	width: 50px;
+	height: 50px;
+}
+
+.boolBlock{
+	background-color: green;
+	width: 50px;
+	height: 50px;
 }
 
 .processBlock{
 	background-color: green;
-	width: 50px;
-	height: 30px;
+	width: 180px;
+	height: 55px;
 }
