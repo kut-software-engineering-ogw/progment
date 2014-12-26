@@ -1,6 +1,6 @@
 ﻿ProgmentServerAPI
-version:     0.0.2
-最終更新日:  2014/12/18
+version:     0.0.3
+最終更新日:  2014/12/26
 
 サーバ側のAPIみたいなものです。ajaxによるリクエストを想定しているものもあります。
 下記のURLに指定の引数の名前でデータをPOSTすることでサーバ側は引数を受け取り処理を行います。
@@ -17,41 +17,53 @@ ajaxによるリクエストを想定しているものの返り値はレスポ�
             /loginへリダイレクトされる
 
 /collation:
+        -引数
+            cID:        ID
+            cPassword:  パスワード
         -返り値
             ログイン成功、失敗時のHTML(ログイン成功時、/menuへリダイレクトされる)
         -説明
             照合を行うURL
+            このURLへ引数をPOSTで送信すると
+            照合モジュールとログイン成功/失敗時のページ生成モジュールが実行される
 
 /menu:
         -返り値
             メニュー画面のHTML
         -説明
-            メニュー画面を表示するURL
+            このURLへGETを用いてリクエストを行うとメニュー画面のHTMLが返される。
+            cookieを持っていない場合は/loginへリダイレクトされる
 
 /freeProg
         -返り値
             フリープログラミング画面のHTML
         -説明
-            フリープログラミング画面を表示するURL
+            このURLへGETを用いてリクエストを行うとフリープログラミング画面のHTMLが返される
+            cookieを持っていない場合は(ry
+
 
 /freeProg/prgDelete
         -引数
             prgId:          作業ID
         -返り値
-            result:           処理結果
+            <return prgID=[作業ID] result="1">:    [作業ID]への処理が成功
+            <return prgID=[作業ID] result="0">:    [作業ID]への処理が失敗
         -説明
-            プログラムデータを削除するURL
+            このURLへ引数をPOSTすると、プログラムデータ削除モジュールが実行され、
+            返り値を含んだXMLデータが返却される
 
-/freeProg/prgAppend
+
+/freeProg/prgTableInsert
         -引数
             prgName:        名前
             comment:        コメント
             workSpaceData:  ワークスペースの内容
         -返り値
-            result:         処理結果
-            prgId:          作業ID
+            <return prgID=[作業ID] result="1">:    [作業ID]として追加成功
+            <return result="0">:                   処理が失敗
         -説明
-            プログラムデータを追加するURL
+            このURLへ引数をPOSTすると、プログラムデータ追加モジュールが実行され、
+            返り値を含んだXMLデータが返却される
 
 /freeProg/prgUpdate
         -引数
@@ -60,19 +72,23 @@ ajaxによるリクエストを想定しているものの返り値はレスポ�
             comment:        コメント
             workSpaceData:  ワークスペースの内容
         -返り値
-            result:         処理結果
+            <return prgID=[作業ID] result="1">:   [作業ID]の処理が成功
+            <return prgID=[作業ID] result="0">:   [作業ID]の処理が失敗
         -説明
             プログラムデータを編集するURL
 
 /expProg
         -説明
-            課題プログラミング画面を表示するURL
+            このURLへGETリクエストを行うと、課題プログラミングHTML生成モジュールが呼び出され、
+            課題プログラミング画面のHTMLが返却される
 
 /expEdit
         -説明
             課題エディット画面を表示するURL
+            このURLへGETリクエストを行うと、課題エディットHTML生成モジュールが呼び出され、
+            課題エディット画面のHTMLが返却される
 
-/expEdit/expAppend
+/expEdit/expTableInsert
         -引数
             masterUserId:   作成者(マスタユーザ)ID
             expName:        課題名
@@ -82,18 +98,22 @@ ajaxによるリクエストを想定しているものの返り値はレスポ�
             result:         実行結果
             limitedBlocks:  個数情報
         -返り値
-            result:         処理結果
-            expId:          課題ID
+            <return expId=[課題ID] result="1">:   処理が成功し、expIDが新規課題IDとなる
+            <return result="0">"              :   処理が失敗した
         -説明
             課題エディットデータを追加するURL
-
+            引数をPOSTによって送信することでexpTableInsertモジュールが呼び出されその結果が
+            XML形式で返却される
 /expEdit/expDelete
         -引数
             expId:          課題ID
         -返り値
-            result:         処理結果
+            <return result="1">:    処理が成功した
+            <return result="0">:    処理が失敗した
         -説明
             課題エディットデータを削除するURL
+            引数をPOSTによって送信することでexpDeleteモジュールが呼びだされその結果が
+            XML形式で返却される
 
 /expEdit/expUpdate
         -引数-
@@ -106,9 +126,12 @@ ajaxによるリクエストを想定しているものの返り値はレスポ�
             result:         実行結果
             limitedBlocks:  個数情報
         -返り値
-            result:         処理結果
+            <return result="1">:    処理が成功した
+            <return result="0">:    処理が失敗した
         -説明
             課題エディットデータを編集するURL
+            引数をPOSTによって送信することでexpUpdateモジュールが呼び出されその結果が
+            XML形式で返却される
 
 /users
         -説明
@@ -124,18 +147,21 @@ ajaxによるリクエストを想定しているものの返り値はレスポ�
             group:          区分
             usrPasswd:      パスワード
         -返り値
-            result:         処理結果
-            usrId:          ユーザID
+            <return usrId=[ユーザID] result="1">:     新規ユーザIDをusrIDとして処理が成功した
+            <return result="0">:     処理が失敗した
         -説明
             ユーザを追加するURL
+            (ry
 
 /users/usrDelete
         -引数
             usrId:          ユーザID
         -返り値
-            result:         処理結果
+            <return result="1">:    処理が成功した
+            <return result="0">:    処理が失敗した
         -説明
             ユーザを削除するURL
+            (ry
 
 /users/usrUpdate
         -引数
@@ -148,6 +174,8 @@ ajaxによるリクエストを想定しているものの返り値はレスポ�
             group:          区分
             usrPasswd:      パスワード
         -返り値
-            result:         処理結果
+            <return result="1">:     処理が成功した
+            <return result="0">:     処理が失敗した
         -説明
             ユーザを編集するURL
+            (ry
