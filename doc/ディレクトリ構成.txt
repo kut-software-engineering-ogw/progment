@@ -1,0 +1,22 @@
+ディレクトリ構成
+version:        0.0.1
+最終更新日:     2014/12/26
+
+Progment/doc
+    書類等を配置するためのディレクトリ
+
+Progment/src/
+    ソースコードを配置するディレクトリ
+
+Progment/src/javascript
+    javascriptを配置するディレクトリ
+
+Progment/src/css
+    cssファイルを配置するディレクトリ
+
+Progment/src/tmpl
+    htmlテンプレートファイルを配置するディレクトリ
+
+Progment/src/test
+    テストコードを配置するディレクトリ
+
