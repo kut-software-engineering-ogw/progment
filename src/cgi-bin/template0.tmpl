@@ -1,0 +1,13 @@
+<html>
+<body>
+Member of {{team}}
+<hr>
+<table border = "1">
+<tr><th>No</th><th>NAME</th><th>LAB</th>
+</tr>
+{% for member in MEMBER %}
+    <tr><td>{{loop.index}}</td><td>{{member.name}}</td><td>{{member.lab}}</td></tr>
+{% endfor %}
+</table>
+</body>
+</html>
