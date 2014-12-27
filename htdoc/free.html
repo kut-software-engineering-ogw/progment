@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sample</title>
+<title>フリープログラミング</title>
 <!-- CDNのロード始 -->
 <!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -23,8 +23,44 @@
 	<div id="wrap">
 		<!-- ヘッダ -->
 		<div id="head">
-			head
-		</div>
+			<div id="headTop">
+				<div id="headTopRight">
+				<div id="headTopRightContents">
+				<input type="submit" value="ログアウト">
+<!-- 				<a href="#">ログアウト</a> -->
+				</div><!-- headTopRightContents -->
+				</div><!-- headTopRight -->
+				<div id="headTopLeft">
+				<p>ユーザ情報の表示</p>
+				<input type="submit" value="保存">
+				<input type="submit" value="読み込み">
+<!-- 				<a href="#">保存</a>
+				<a href="#">読み込み</a> -->
+				</div><!-- headTopLeft -->
+			</div><!-- headTop -->
+			<div id="info">
+			<div id="infoContents">
+			<div id="infoName">
+			<p>プログラム名</p>
+			<INPUT type="text" size="20" value="" maxlength="20">
+			</div><!-- infoName -->
+			<div id="infoComment">
+			<p>コメント</p>
+			<textarea rows="2" cols="60"></textarea>
+			</div><!-- infoComent -->
+			</div><!-- infoContents -->
+			<div id="infoRun">
+			<div id="infoRunContents">
+			<SELECT>
+			<OPTION value="">実行モード</OPTION>
+			<OPTION value="">トレースモード</OPTION>
+			<OPTION value="">コード生成モード</OPTION>
+			</SELECT><br>
+			<input type="submit" value="実行">
+			</div><!-- infoRunContents -->
+			</div><!-- infoRun -->
+			</div><!-- info -->
+		</div><!-- head -->
 		<!-- ページ左側 -->
 		<div id="blockListArea">
 			<!-- ブロックリスト -->
