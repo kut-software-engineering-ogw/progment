@@ -1,101 +1,41 @@
-jQuery(function() {
-	//アコーディオン
-	$("#blockListArea").accordion({
-		active:false,
-		collapsible:true
-	});
+// jQuery(function() {
+	//ドロップ属性の付加処理を管理する関数
+	function annexController (obj) {
+		if(obj.children().hasClass("nestArea"))
+			annexSort(obj);
+		if(obj.children().hasClass("intArea"))
+			annexIntArea(obj);
+		if(obj.children().hasClass("charArea"))
+			annexCharArea(obj);
+		if(obj.children().hasClass("boolArea"))
+			annexBoolArea(obj);
+		if(obj.children().hasClass("varArea"))
+			annexVarArea(obj);
+		if(obj.children().hasClass('dataArea'))
+			annexDataArea(obj);
+	};
 
-
-	//ドラッグ属性
-	//メソッドレベル
-	$("#main, .sub").draggable({
-		cancel:"#mainList, .subList",
-		containment:"#workspace"
-	});
-	//ネスト構造のブロック
-	$(".nestBlock").draggable({
-		connectToSortable:"#mainList, .subList, .nestArea",
-		helper:"clone",
-		revert:true,
-		cancel:".nestArea"
-	});
-	//データ処理ブロック
-	$(".mathBlock").draggable({
-		//connectToSortable:"#mainList, .subList, nestArea",
-		helper:"clone",
-		zIndex:50,
-		revert:false 
-	});
-	$(".strBlock").draggable({
-		//connectToSortable:"#mainList, .subList, nestArea",
-		helper:"clone",
-		zIndex:50,
-		revert:false 
-	});
-	$(".logicBlock").draggable({
-		//connectToSortable:"#mainList, .subList, nestArea",
-		helper:"clone",
-		zIndex:50,
-		revert:false 
-	});
-	//データブロック
-	$(".intBlock").draggable({
-		helper:"clone",
-		revert:true,
-		zIndex:100
-	});
-	$(".charBlock").draggable({
-		helper:"clone",
-		revert:true,
-		zIndex:100
-	});
-	$(".boolBlock").draggable({
-		helper:"clone",
-		revert:true,
-		zIndex:100
-	});
-	//処理ブロック
-	$(".processBlock").draggable({
-		connectToSortable:"#mainList, .subList, .nestArea",
-		helper:"clone",
-		revert:true
-	});
-
-	//ソート属性
-	$("#mainList, .subList").sortable({
-		connectWith:"ul",
-		revert:true,
-		update:function  (event,ui) {
-			//ブロックリストから追加された場合の属性付加処理
-			if(ui.item.hasClass('inList')){
-				ui.item.removeClass('inList');
-				if(ui.item.hasClass("nestBlock"))
-					appendSort(ui.item);
-				else if(ui.item.children().hasClass("intArea"))
-					appendIntArea(ui.item);
-				else if(ui.item.children().hasClass("charArea"))
-					appendCharArea(ui.item);
-				else if(ui.item.children().hasClass('dataArea'))
-					appendDataArea(ui.item);
-			}
-		}
-	});
-	//ソート属性を付加する関数
-	function appendSort (obj) {
+//ソート属性を付加する関数
+	function annexSort (obj) {
 		obj.children(".nestArea").sortable({
 			connectWith:"ul",
 			revert:true,
 			update:function  (event,ui) {
 				if(ui.item.hasClass('inList')){
 					ui.item.removeClass('inList');
-					if(ui.item.hasClass("nestBlock"))
-						appendSort(ui.item);
-					else if(ui.item.children().hasClass("intArea"))
-						appendIntArea(ui.item);
-					else if(ui.item.children().hasClass("charArea"))
-						appendCharArea(ui.item);
-					else if(ui.item.children().hasClass('dataArea'))
-						appendDataArea(ui.item);
+					// if(ui.item.hasClass("nestBlock"))
+					// 	annexSort(ui.item);
+					// if(ui.item.children().hasClass("intArea"))
+					// 	annexIntArea(ui.item);
+					// if(ui.item.children().hasClass("charArea"))
+					// 	annexCharArea(ui.item);
+					// if(ui.item.children().hasClass("boolArea"))
+					// 	annexBoolArea(ui.item);
+					// if(ui.item.children().hasClass("varArea"))
+					// 	annexVarArea(ui.item);
+					// if(ui.item.children().hasClass('dataArea'))
+					// 	annexDataArea(ui.item);
+					annexController(ui.item);
 				}
 			}
 		});
@@ -104,7 +44,7 @@ jQuery(function() {
 	//ドロップ属性を付加する関数
 	//int型のデータブロック
 	//intBlock:定数or変数，mathBlock:数式
-	function appendIntArea (obj) {
+	function annexIntArea (obj) {
 		obj.children(".intArea").droppable({
 			//int型と数式のみをドロップ許可
 			accept: ".intBlock, .mathBlock",
@@ -118,8 +58,9 @@ jQuery(function() {
 				else if(ui.draggable.hasClass("inList")){
 					cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
-					if(ui.draggable.hasClass('mathBlock'))
-						appendIntArea(cloneObj);
+					// if(ui.draggable.hasClass('mathBlock'))
+					// 	annexIntArea(cloneObj);
+					annexController(cloneObj);
 					cloneObj.draggable({
 						revert:true,
 						zIndex:100
@@ -133,7 +74,7 @@ jQuery(function() {
 	};
 	//char型
 	//charBlock:文字列or変数,strBlock:文字列の処理(例:連結や分割)
-	function appendCharArea (obj) {
+	function annexCharArea (obj) {
 		obj.children(".charArea").droppable({
 			//文字列型と文字列の処理のみをドロップ許可
 			accept: ".charBlock, .strBlock",
@@ -147,8 +88,9 @@ jQuery(function() {
 				else if(ui.draggable.hasClass("inList")){
 					cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
-					if(ui.draggable.hasClass('strBlock'))
-						appendCharArea(cloneObj);
+					// if(ui.draggable.hasClass('strBlock'))
+					// 	annexCharArea(cloneObj);
+					annexController(cloneObj);
 					cloneObj.draggable({
 						revert:true,
 						zIndex:100
@@ -162,7 +104,7 @@ jQuery(function() {
 	};
 	//Boolean型
 	//boolBlock:論理値or論理変数,logicBlock:論理演算
-	function appendBoolArea (obj) {
+	function annexBoolArea (obj) {
 		obj.children(".boolArea").droppable({
 			//boolean型と論理演算のみをドロップ許可
 			accept: ".boolBlock, .logicBlock",
@@ -176,8 +118,9 @@ jQuery(function() {
 				else if(ui.draggable.hasClass("inList")){
 					cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
-					if(ui.draggable.hasClass('logicBlock'))
-						appendBoolArea(cloneObj);
+					// if(ui.draggable.hasClass('logicBlock'))
+					// 	annexBoolArea(cloneObj);
+					annexController(cloneObj);
 					cloneObj.draggable({
 						revert:true,
 						zIndex:100
@@ -190,7 +133,7 @@ jQuery(function() {
 		});
 	};
 	//変数型
-	function appendVarArea (obj) {
+	function annexVarArea (obj) {
 		obj.children(".varArea").droppable({
 			//boolean型と論理演算のみをドロップ許可
 			accept: ".varBlock",
@@ -205,7 +148,8 @@ jQuery(function() {
 					cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('logicBlock'))
-					// 	appendBoolArea(cloneObj);
+					// 	annexBoolArea(cloneObj);
+					annexController(cloneObj);
 					cloneObj.draggable({
 						revert:true,
 						zIndex:100
@@ -219,7 +163,7 @@ jQuery(function() {
 	};
 
 	//data型
-	function appendDataArea (obj) {
+	function annexDataArea (obj) {
 		//alert(obj.children().hasClass('dataArea'));
 		obj.children(".dataArea").droppable({
 			//データ型のみをドロップ許可
@@ -234,10 +178,11 @@ jQuery(function() {
 				else if(ui.draggable.hasClass("inList")){
 					cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
-					if(ui.draggable.hasClass('mathBlock'))
-						appendIntArea(cloneObj);
-					else if(ui.draggable.hasClass('str'))
-						appendCharArea(cloneObj);
+					// if(ui.draggable.hasClass('mathBlock'))
+					// 	annexIntArea(cloneObj);
+					// else if(ui.draggable.hasClass('str'))
+					// 	annexCharArea(cloneObj);
+					annexController(cloneObj);
 					cloneObj.draggable({
 						revert:true,
 						zIndex:100
@@ -249,4 +194,4 @@ jQuery(function() {
 			}
 		});
 	};
-});
+// });
