@@ -1,0 +1,33 @@
+pythonが2.6系で動作している状況を改善。
+
+標準のmod_wsgiをアンインストール
+    # yum remove mod_wsgi
+
+Python3.4.2の再インストール
+    # cd /usr/local/src/python-3.4.2
+    # ./configure --prefix=/usr/local/python --with-zlib=/usr/include --enable-shared
+    # make
+    # make altinstall
+    # echo "/usr/local/python/lib" >> /etc/ld.so.conf
+    # ldconfig
+
+Python動作テスト
+    # /usr/local/python/bin/python3.4 -V
+
+mod_wsgiのインストール
+    # yum install http-devel
+    # wget https://github.com/GrahamDumpleton/mod_wsgi/archive/4.2.8.tar.gz -O mod_wsgi-4.2.8.tar.gz
+    # tar xzf mod_wsgi-4.2.8.tar.gz
+    # cd mod_wsgi-4.2.8
+    # ./configure --with-python=/usr/local/python/bin/python3.4
+    # make
+    # make install
+
+Apacheの設定ディレクトリに設定を書き込む
+    # vim /etc/httpd/conf.d/wsgi.conf
+    LoadModule wsgi_module modules/mod_wsgi.so
+    WSGIScriptAlias / /var/www/cgi-bin/main.py
+    WSGIPythonPath /usr/local/python/bin/python3.4
+
+参考
+    http://a-records.info/2014/10/25/34/
