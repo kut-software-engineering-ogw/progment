@@ -1,0 +1,10 @@
+about database
+
+[progment]
+   L[prgData]---work_data_id, work_data_name, work_data, saved_time, user_id
+   L[mUsrData]--master_user_id, master_user_name, valid_term
+   L[usrData]---user_id, grouping, password
+   L[stdData]---user_id, user_name, grade, class, student_number, master_user_id
+   L[exeData]---exercise_id, author_user_id, exe_data, update_time, exercise_name
+   L[loginHistory]
+	           ---log_id, user_id, login_time, logout_time
