@@ -56,7 +56,7 @@
 					return;
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
-					cloneObj=ui.draggable.clone();
+					var cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('mathBlock'))
 					// 	annexIntArea(cloneObj);
@@ -86,7 +86,7 @@
 					return;
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
-					cloneObj=ui.draggable.clone();
+					var cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('strBlock'))
 					// 	annexCharArea(cloneObj);
@@ -116,7 +116,7 @@
 					return;
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
-					cloneObj=ui.draggable.clone();
+					var cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('logicBlock'))
 					// 	annexBoolArea(cloneObj);
@@ -145,7 +145,7 @@
 					return;
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
-					cloneObj=ui.draggable.clone();
+					var cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('logicBlock'))
 					// 	annexBoolArea(cloneObj);
@@ -176,7 +176,7 @@
 					return;
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
-					cloneObj=ui.draggable.clone();
+					var cloneObj=ui.draggable.clone();
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('mathBlock'))
 					// 	annexIntArea(cloneObj);
