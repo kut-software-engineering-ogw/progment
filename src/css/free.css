@@ -1,0 +1,338 @@
+@charset "utf-8";
+
+body,
+h1,h2,h3,h4,h5,h6,
+p,ul,ol,dl,dt,dd,li,
+table,th,td,
+form,select,option,input
+address,pre,strong,em,iframe,img{
+	margin:0;
+	padding:0;
+	font-size:100%;
+	border:0;
+}
+
+body{
+	color:#000;
+	font-family:sans-serif;
+	font-size:13px;
+	*font-size:small;
+	line-height:1.4;
+}
+
+
+/* デフォルトリンク色の設定 */
+a{
+	color:#4169e1;
+	text-decoration: none;
+}
+
+a:hover{
+	color:#b8860b;
+}
+
+
+/*ヘッダー部分(左固定＋右可変)*/
+#head{
+	border-top:2px solid #000;
+}
+
+#headTop{
+	background-color: #808080;
+	color:#fff;
+	width:100%;
+/*	height:20px;
+	border-bottom:2px solid #fff;*/
+}
+
+#headTopRight{
+	width:100%;
+	height:18px;
+	background-color: #808080;
+	float:right;
+	border-bottom:2px solid #fff;
+}
+
+#headTopRightContents{
+	margin-left:412px;
+	background-color: #808080;
+}
+
+#headTop p{
+	text-align:center;
+	width:200px;
+	float:left;
+	border-right:10px solid #fff;
+}
+
+#headTopLeft{
+	width:412px;
+	height:18px;
+	margin-right: -412px;
+	background-color: #808080;
+	float:left;
+}
+
+#headTopLeft input{
+	color:#fff;
+	display:block;
+	width:100px;
+	height:18px;
+	text-align:center;
+	float:left;
+	background-color: #808080;
+	border-style:none;
+	border-right: 1px solid #fff;
+
+}
+#headTopLeft input:hover{
+	color:#fff;
+	background-color: #a9a9a9;
+	border-bottom:2px solid #000;
+}
+
+#headTopRightContents input{
+	color:#fff;
+	display:block;
+	width:117px;
+	height:18px;
+	text-align:center;
+	float:right;
+	margin-right:5px;
+	background-color: #808080;
+	border-style:none;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+}
+#headTopRightContents input:hover{
+	color:#fff;
+	background-color: #a9a9a9;
+	border-bottom:2px solid #000;
+}
+
+/*プログラム名とコメント部分*/
+#info{
+	clear:both;
+	color:#fff;
+	width:100%;
+	height:50px;
+	background-color:#808080;
+	border-bottom:2px solid #fff;
+}
+#info p{
+	font-weight: bold;
+	font-size:16px;
+}
+
+#infoRun {
+	width:100%;
+	float:right;
+}
+
+#infoRunContents{
+	margin-left:686px;
+	margin-right:5px;
+	float:right;
+	border-right:1px solid #fff;
+	border-left:1px solid #fff;
+}
+
+
+#infoContents{
+	width:686px;
+	height:50px;
+	margin-right:-686px;
+	float:left;
+}
+
+#infoRunContents select{
+
+	border-bottom:1px solid #fff;
+	color:#fff;
+	background-color: #808080;
+}
+
+#infoRunContents select:hover {
+	background-color: #696969;
+}
+
+#infoRunContents input{
+	width:115px;
+	height:32px;
+	color:#fff;
+	background-color: #808080;
+	border-style:none;
+}
+
+#infoRunContents input:hover{
+	color:#fff;
+	background-color: #a9a9a9;
+/*	border-bottom:2px solid #000;*/
+}
+
+
+#infoName{
+	line-height:1.5;
+/*	text-align: center;*/
+	width:188px;
+	height:50px;
+	border-right:10px solid #fff;
+	float:left;
+	margin-left: 12px;
+/*	margin-top:2px;*/
+}
+#infoComment{
+	line-height:1;
+/*	text-align:center;*/
+	width:464px;
+	height:50px;
+	float:left;
+	margin-left:12px;
+}
+#infoComment textarea{
+	resize:none;
+}
+
+
+
+
+#blockListArea{
+	float: left;
+	background-color: #FF0;
+	width: 250px;
+	height: 700px
+}
+
+#blockListArea h3{
+	background-color: #00BFFF;
+}
+
+#blockList,#tempBlockList{
+	background-color: #98FB98;
+}
+
+#workspace{
+	/*float: left;*/
+	margin-left: 250px;
+	background-color: #0FF;
+	min-width: 100px;
+	height: 700px;
+}
+
+#foot{
+	background-color: #0A0;
+	clear: both;
+	height: 100px;
+}
+
+#mainList{
+	background-color: red;
+	min-height: 80px;
+	min-width: 100px;
+}
+.subList{
+	background-color: red;
+	min-height: 80px;
+	min-width: 100px;
+}
+#main {
+	padding: 4px 0px 4px 0px;
+	background-color:blue; 
+	border-radius:4px;
+	min-height: 100px;
+	width: 200px;
+}
+.sub {
+	padding: 4px 0px 4px 0px;
+	background-color:blue; 
+	border-radius:4px;
+	min-height: 100px;
+	width: 200px;
+}
+
+.nestBlock{
+	background-color: green;
+	min-height: 50px;
+	width: 120px;
+}
+
+.nestArea{
+	background-color: blue;
+	min-height: 40px;
+	margin-bottom: 4px;
+}
+
+.mathBlock{
+	background-color: green;
+	width: 155px;
+	height: 50px;
+}
+.strBlock{
+	background-color: green;
+	width: 155px;
+	height: 50px;
+}
+.logicBlock{
+	background-color: green;
+	width: 155px;
+	height: 50px;
+}
+
+.intArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.charArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.varArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.dataArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.boolArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.intBlock{
+	background-color: green;
+	width: 50px;
+	height: 50px;
+}
+
+.charBlock{
+	background-color: green;
+	width: 50px;
+	height: 50px;
+}
+
+.boolBlock{
+	background-color: green;
+	width: 50px;
+	height: 50px;
+}
+
+.processBlock{
+	background-color: green;
+	width: 180px;
+	height: 55px;
+}

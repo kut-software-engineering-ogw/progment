@@ -5,17 +5,10 @@
 """
 
 import sys
-import Cookie
-import datetime
-
-import mysql.connector
 
 sys.path.append('/usr/local/python/lib/python3.4/site-packages')
 sys.path.append('/var/www/cgi-bin')
 from session_db import SessionDB
-
-default_domain = 'localhost'
-default_path = '/'
 
 def get_session_info(cookie):
     """
@@ -31,20 +24,32 @@ def get_session_info(cookie):
     else:
         print ('[cookie-error]: not exist session-cookie')
         return None
-
-def create_cookie(user_id, domain=default_domain, path=default_path):
+def session_disconnect(cookie):
     """
-    クッキー生成メソッド
-    :param user_id:
-    :return: 生成されたクッキー
+    セッション終了メソッド
+    :param cookie:
+    :return: 処理が成功した場合 Ture, 失敗した場合Falseを返す
     """
     session = SessionDB()
-    expiration = datetime.datetime.utcnow() + datetime.timedelta(days=30)
-    cookie = Cookie.SimpleCookie()
-    cookie["session"] = session.sign_in(user_id=user_id)
-    cookie["session"]["domain"] = domain
-    cookie["session"]["path"] = path
-    cookie["session"]["expires"] = expiration.strftime("%a, %d-%b-%Y %H:%M:%S GMT")
-    session.close()
+    result = session.sign_out(cookie['session'].value)
+    return result
 
-    return cookie
+def check_session(session_id, user_id):
+    """
+    セッションチェックメソッド
+    :param session_id: 検査するセッションID
+    :param user_id: 検査するユーザID
+    :return: 正当なセッションならTrue, 不正なセッションならFalseを返す
+    """
+    session = SessionDB()
+    session_info = session.get_session_info(session_id)
+    if session_info is None:
+        print ("[wrong-session]:", session_id)
+        return False
+    else:
+        if user_id == session_info['user_id']:
+            print ("[approval]:", session_id)
+            return True
+        else:
+            print ("[wrong-user_id]:", session_id, user_id)
+            return False
