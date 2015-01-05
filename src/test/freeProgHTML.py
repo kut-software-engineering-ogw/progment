@@ -31,11 +31,13 @@ def freeProgHTML(environ, userId):
     form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
     prgId = form.getfirst('value', '0')     # valueに関連付けられた値を取得。なければ0を返す
 
-
-
     # ユーザの保存しているデータの一覧を取得
-    savedDataList = prgNameGet(userId)
+    #savedDataList = prgNameGet(userId)
 
+    if prgId is 0:
+        html = tpl.render({'userId':userId,'savedDataList':'','prgName':'','comment':'','prgData':''}).encode('utf-8')
+        return html
+    '''
     # ユーザの保存しているデータ本体を取得
     prgDataStr = prgDataGet(prgId)
     # 改行コードをCR+LFに変換
@@ -52,7 +54,7 @@ def freeProgHTML(environ, userId):
     startIndex = index + 10  # インデックスに10を足して、データの先頭を指すように
     endIndex = bufStr.index('#ProgramEND#')
     prgData = bufStr[startIndex:endIndex-1]
-
+    '''
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData}).encode('utf-8')
 
     return html
