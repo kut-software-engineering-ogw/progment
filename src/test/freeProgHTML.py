@@ -4,8 +4,7 @@ import sys
 sys.path.append('/usr/local/python/lib/python3.4/site-packages')
 from jinja2 import Environment, FileSystemLoader
 import http.cookies
-import cgi, cgitb
-egitb.enable()
+import cgi
 
 
 # テンプレのあるディレクトリとエンコードを指定
@@ -17,15 +16,15 @@ def __getStr(bufStr, split):
 
     return bufStr[startIndex:endIndex]
 
-def freeProgHTML(environ, start_response):
+def freeProgHTML(environ, userId):
 
     # テンプレートファイルの指定
     tpl = env.get_template('free.tmpl')
 
     # CookieからユーザIDを取得
-    cookie = http.cookies.SimpleCookie()
-    cookie.load(environ['HTTP_COOKIE'])
-    userId = cookie['user_id'].value
+    #cookie = http.cookies.SimpleCookie()
+    #cookie.load(environ['HTTP_COOKIE'])
+    #userId = cookie['user_id'].value
 
     # 入力値（作業ID）を取得
     form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
