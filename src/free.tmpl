@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>フリープログラミング</title>
+<!-- CDNのロード始 -->
+<!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css"> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+<!-- CDNのロード終 -->
+<!-- javascriptロード始 -->
+<script type="text/javascript" src="js/programmingInitializeModule.js"></script>
+<script type="text/javascript" src="js/blockControllerModule.jss"></script>
+
+
+<!-- javascriptロード終 -->
+<!-- CSSロード始 -->
+<link rel="stylesheet" type="text/css" href="css/free.css">
+<!-- CSSロード終 -->
+</head>
+
+<body>
+	<!-- 全体 -->
+	<div id="wrap">
+		<!-- ヘッダ -->
+		<div id="head">
+			<div id="headTop">
+				<div id="headTopRight">
+				<div id="headTopRightContents">
+				<input type="submit" value="ログアウト">
+<!-- 				<a href="#">ログアウト</a> -->
+				</div><!-- headTopRightContents -->
+				</div><!-- headTopRight -->
+				<div id="headTopLeft">
+				<p>ユーザID : {{userId}}</p>
+				<input type="submit" value="保存">
+				<input type="submit" value="読み込み">
+<!-- 				<a href="#">保存</a>
+				<a href="#">読み込み</a> -->
+				</div><!-- headTopLeft -->
+			</div><!-- headTop -->
+			<div id="info">
+			<div id="infoContents">
+			<div id="infoName">
+			<p>プログラム名</p>
+			<INPUT type="text" size="20" value="{{prgName}}" maxlength="20">
+			</div><!-- infoName -->
+			<div id="infoComment">
+			<p>コメント</p>
+			<textarea rows="2" cols="60">{{comment}}</textarea>
+			</div><!-- infoComent -->
+			</div><!-- infoContents -->
+			<div id="infoRun">
+			<div id="infoRunContents">
+			<SELECT>
+			<OPTION value="">実行モード</OPTION>
+			<OPTION value="">トレースモード</OPTION>
+			<OPTION value="">コード生成モード</OPTION>
+			</SELECT><br>
+			<input type="submit" value="実行">
+			</div><!-- infoRunContents -->
+			</div><!-- infoRun -->
+			</div><!-- info -->
+		</div><!-- head -->
+		<!-- ページ左側 -->
+		<div id="blockListArea">
+			<!-- ブロックリスト -->
+			<h3>作業用サンプル</h3>
+			<ul id="tempBlockList">
+				<!-- ネスト構造のブロック -->
+				<li class="inList block nestBlock">
+					<input type="number" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
+					<ul class="nestArea">
+						
+					</ul>
+				</li>
+				<!-- 数式のデータブロック -->
+				<li class="block mathBlock inList">
+					<div class="intArea"></div>
+					<select name="fourOperations">
+						<option value="add">＋</option>
+						<option value="sub">－</option>
+						<option value="mul">×</option>
+						<option value="div">÷</option>
+					</select>
+					<div class="intArea"></div>
+				</li>
+				<!-- int型データブロック -->
+				<li class="intBlock block inList">
+					<input type="number" max="99" min="1" value="1" style="width:30px;"/>
+				</li>
+				<!-- 処理ブロック -->
+				<li class="block inList processBlock print">
+					print
+					<div class="intArea"></div>
+				</li>
+			</ul>
+			<h3>実装サンプル</h3>
+			<ul id="blockList">
+				<!-- printブロック -->
+				<li class="inList block processBlock print">
+					print
+					<div class="dataArea"></div>
+				</li>
+				<!-- 四則演算ブロック -->
+				<li class="block mathBlock inList">
+					<div class="intArea"></div>
+					<select name="fourOperations">
+						<option value="add">＋</option>
+						<option value="sub">－</option>
+						<option value="mul">×</option>
+						<option value="div">÷</option>
+					</select>
+					<div class="intArea"></div>
+				</li>
+				<!-- 比較ブロック -->
+				<li class="block logicBlock inList">
+					<div class="dataArea"></div>
+					<select name="compOperations">
+						<option value="equal">＝</option>
+						<option value="not">≠</option>
+						<option value="notGreater">≦</option>
+						<option value="less">＜</option>
+						<option value="notLess">≧</option>
+						<option value="Greater">＞</option>
+					</select>
+					<div class="dataArea"></div>
+				</li>
+				<!-- 論理演算ブロック -->
+				<li class="block logicBlock inList">
+					<div class="boolArea"></div>
+					<select name="logicOperations">
+						<option value="and">∧</option>
+						<option value="or">∨</option>
+						<option value="not">￢</option>
+						<option value="xor">xor</option>
+					</select>
+					<div class="boolArea"></div>
+				</li>
+				<li class="inList block charBlock varBlock">
+					文字列<BR>変数
+					<BR>
+					<input type="text" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+				</li>
+				<li class="inList block intBlock varBlock">
+					整数型<BR>変数
+					<BR>
+					<input type="text" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+				</li>
+				<li class="inList block boolBlock varBlock">
+					論理型<BR>変数
+					<BR>
+					<input type="text" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+				</li>
+				<li class="inList block processBlock">
+					<div class="varArea"></div>
+					=
+					<div class="dataArea"></div>
+				</li>
+			</ul>
+		</div>
+		<!-- ワークスペース -->
+		<div id="workspace">
+      {{progData}}
+		<div id="foot"></div>
+	</div>
+</body>
