@@ -13,7 +13,34 @@ def freeProgHTML_app(environ, start_response, cookie):
     form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
     prgId = form.getfirst('prgId', None)
 
-    output = freeProgHTML(prgId, cookie['user_id'])
+    output = freeProgHTML(prgId, cookie['user_id'].value)
+    status = "200 OK"
+    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+    start_response(status, headers)
+    return output
+
+def expProgHTML_app(environ, start_response, cookie):
+    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
+    prgId = form.getfirst('prgId', None)
+
+    output = expProgHTML(prgId, cookie['user_id'].value)
+    status = "200 OK"
+    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+    start_response(status, headers)
+    return output
+
+def editProgHTML_app(environ, start_response, cookie):
+    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
+    prgId = form.getfirst('prgId', None)
+
+    output = editProgHTML(prgId, cookie['user_id'].value)
+    status = "200 OK"
+    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+    start_response(status, headers)
+    return output
+
+def userApp_app(environ, start_response, cookie):
+    output = userApp(cookie['user_id'].value)
     status = "200 OK"
     headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
     start_response(status, headers)
@@ -31,18 +58,14 @@ def freeProgHTML(prgId, userId):
     # テンプレートファイルの指定
     tpl = env.get_template('tmpl/free.tmpl')
 
-    # CookieからユーザIDを取得
-    #cookie = http.cookies.SimpleCookie()
-    #cookie.load(environ['HTTP_COOKIE'])
-    #userId = cookie['user_id'].value
-
     # ユーザの保存しているデータの一覧を取得
-    #savedDataList = prgNameGet(userId)
+    savedDataList = prgNameGet(userId)
 
+    # prgIdがNoneの時は、保存データを読まずにレンダリング
     if prgId is None:
         html = tpl.render({'userId':userId,'savedDataList':'','prgName':'','comment':'','prgData':''}).encode('utf-8')
         return html
-    '''
+    
     # ユーザの保存しているデータ本体を取得
     prgDataStr = prgDataGet(prgId)
     # 改行コードをCR+LFに変換
@@ -59,8 +82,8 @@ def freeProgHTML(prgId, userId):
     startIndex = index + 10  # インデックスに10を足して、データの先頭を指すように
     endIndex = bufStr.index('#ProgramEND#')
     prgData = bufStr[startIndex:endIndex-1]
-    '''
-    #html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData}).encode('utf-8')
+    
+    html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData}).encode('utf-8')
     html = "test".encode()
     return html
 
@@ -69,17 +92,6 @@ def expProgHTML(environ, userId):
 
     # テンプレートファイルの指定
     tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
-
-    # CookieからユーザIDを取得
-    #cookie = http.cookies.SimpleCookie()
-    #cookie.load(environ['HTTP_COOKIE'])
-    #userId = cookie['user_id'].value
-
-    # 入力値（作業ID）を取得
-    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
-    prgId = form.getfirst('value', '0')     # valueに関連付けられた値を取得。なければ0を返す
-
-
 
     # ユーザの保存しているデータの一覧を取得
     savedDataList = prgNameGet(userId)
@@ -116,17 +128,6 @@ def editProgHTML(environ, userId):
 
     # テンプレートファイルの指定
     tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
-
-    # CookieからユーザIDを取得
-    #cookie = http.cookies.SimpleCookie()
-    #cookie.load(environ['HTTP_COOKIE'])
-    #userId = cookie['user_id'].value
-
-    # 入力値（作業ID）を取得
-    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
-    prgId = form.getfirst('value', '0')     # valueに関連付けられた値を取得。なければ0を返す
-
-
 
     # ユーザの保存しているデータの一覧を取得
     savedDataList = prgNameGet(userId)
