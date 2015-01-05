@@ -1,11 +1,11 @@
 ﻿#!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
+# 作成者　別役速斗　作成日 2015/1/5
 import sys
 sys.path.append('/usr/local/python/lib/python3.4/site-packages')
 from jinja2 import Environment, FileSystemLoader
 import http.cookies
 import cgi
-
 
 # テンプレのあるディレクトリとエンコードを指定
 env = Environment(loader=FileSystemLoader('/var/www/cgi-bin', encoding=('utf8')))
@@ -16,6 +16,7 @@ def __getStr(bufStr, split):
 
     return bufStr[startIndex:endIndex]
 
+# freeプログラム画面を生成する関数。
 def freeProgHTML(environ, userId):
 
     # テンプレートファイルの指定
@@ -56,15 +57,16 @@ def freeProgHTML(environ, userId):
 
     return html
 
-def expProgHTML(environ):
+# 課題プログラム画面を生成する関数。
+def expProgHTML(environ, userId):
 
     # テンプレートファイルの指定
     tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
 
     # CookieからユーザIDを取得
-    cookie = http.cookies.SimpleCookie()
-    cookie.load(environ['HTTP_COOKIE'])
-    userId = cookie['user_id'].value
+    #cookie = http.cookies.SimpleCookie()
+    #cookie.load(environ['HTTP_COOKIE'])
+    #userId = cookie['user_id'].value
 
     # 入力値（作業ID）を取得
     form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
@@ -102,15 +104,16 @@ def expProgHTML(environ):
 
     return html
 
-def editProgHTML(environ):
+# 課題エディット画面を生成する関数。
+def editProgHTML(environ, userId):
 
     # テンプレートファイルの指定
     tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
 
     # CookieからユーザIDを取得
-    cookie = http.cookies.SimpleCookie()
-    cookie.load(environ['HTTP_COOKIE'])
-    userId = cookie['user_id'].value
+    #cookie = http.cookies.SimpleCookie()
+    #cookie.load(environ['HTTP_COOKIE'])
+    #userId = cookie['user_id'].value
 
     # 入力値（作業ID）を取得
     form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
@@ -146,4 +149,14 @@ def editProgHTML(environ):
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
                        'help':help,'result':result,'limitedBlocks':LimitedBlocks}).encode('utf-8')
 
+    return html
+
+# ユーザ管理画面を生成する関数。
+def userApp(mstUsrId):
+
+    tpl = env.get_template('')
+    
+    userList = usrDataGet(mstUsrId)
+
+    html = tpl.render({'userList':userList,'mstUsrId':mstUsrId}).encode('utf-8')
     return html
