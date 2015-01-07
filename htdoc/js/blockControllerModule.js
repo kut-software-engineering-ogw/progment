@@ -13,9 +13,25 @@
 			annexVarArea(obj);
 		if(obj.children().hasClass('dataArea'))
 			annexDataArea(obj);
+		if(obj.children().hasClass('subList'))
+			annexSubList(obj);
 	};
 
 //ソート属性を付加する関数
+	function annexSubList(obj){
+		obj.children('.subList').sortable({
+			connectWith:"ul",
+			revert:true,
+			update:function  (event,ui) {
+				//ブロックリストから追加された場合の属性付加処理
+				if(ui.item.hasClass('inList')){
+					ui.item.removeClass('inList');
+					annexController(ui.item);
+				}
+			}
+		});
+	}
+
 	function annexSort (obj) {
 		obj.children(".nestArea").sortable({
 			connectWith:"ul",
@@ -23,18 +39,6 @@
 			update:function  (event,ui) {
 				if(ui.item.hasClass('inList')){
 					ui.item.removeClass('inList');
-					// if(ui.item.hasClass("nestBlock"))
-					// 	annexSort(ui.item);
-					// if(ui.item.children().hasClass("intArea"))
-					// 	annexIntArea(ui.item);
-					// if(ui.item.children().hasClass("charArea"))
-					// 	annexCharArea(ui.item);
-					// if(ui.item.children().hasClass("boolArea"))
-					// 	annexBoolArea(ui.item);
-					// if(ui.item.children().hasClass("varArea"))
-					// 	annexVarArea(ui.item);
-					// if(ui.item.children().hasClass('dataArea'))
-					// 	annexDataArea(ui.item);
 					annexController(ui.item);
 				}
 			}
