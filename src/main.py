@@ -6,7 +6,7 @@ sys.path.append('/var/www/cgi-bin')
 from collation import collation_app
 from cookie import get_cookie
 from link_response import javascript, css
-from freeProgHTML import freeProgHTML_app
+from freeProgHTML import freeProgHTML_app, expProgHTML_app, editProgHTML_app
 from prgInsert import prg_insert_app
 from prgDelete import prg_delete_app
 from prgUpdate import prg_update_app
@@ -56,17 +56,17 @@ def application(environ, start_response):
 
         elif path == "/expProg":    # 課題プログラム生成モジュール
             print ("[call-app]: expProg-application")
-            return [test_app(environ, start_response, "expProg")]
-            #return [expProgHTML(environ, start_response)]
+            #return [test_app(environ, start_response, "expProg")]
+            return [expProgHTML_app(environ, start_response, cookie)]
 
         elif path == "/expEdit":    # 課題エディット画面生成モジュール
             print ("[call-app]: expEdit-application")
-            return [test_app(environ, start_response, "expEdit")]
-            #return [editProgHTML(environ, start_response)]
+            #return [test_app(environ, start_response, "expEdit")]
+            return [editProgHTML_app(environ, start_response, cookie)]
 
         elif path == "/expEdit/expTableInsert":    # 課題エディットデータ追加モジュール
             print ("[call-app]: expEdit-insert-application")
-            return [exp_insert_app(environ, start_response, cookie['user_id'])]
+            return [exp_insert_app(environ, start_response, cookie)]
 
         elif path == "/expEdit/expDelete":    # 課題エディットデータ削除モジュール
             print ("[call-app]: expEdit-application")
@@ -86,7 +86,7 @@ def application(environ, start_response):
             status = '302 Found'
             response_headers = [('Location', '/menu')] # menuページヘのリダイレクト
             start_response(status, response_headers)
-            return [""]
+            return []
 
         elif path == "/signout":
             print ("[call-app]: sign-out")

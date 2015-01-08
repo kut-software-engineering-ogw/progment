@@ -23,6 +23,10 @@ testProgram
 			<div id="main">
 				<ul id="mainList">
 				mainMethod<BR>
+				<li class="block processBlock print ui-draggable ui-draggable-handle" style="width: 180px; height: 55px;">
+					print
+					<div class="intArea ui-droppable"></div>
+				</li>
 				</ul>
 			</div>
 			<div class="sub">
@@ -44,10 +48,6 @@ tPrgDataStr_exp = '''ID
 			<div id="main">
 				<ul id="mainList">
 				mainMethod<BR>
-                <li class="block processBlock print ui-draggable ui-draggable-handle" style="width: 180px; height: 55px;">
-				print
-				<div class="intArea ui-droppable"></div>
-                </li>
 				</ul>
 			</div>
 			<div class="sub">
@@ -136,7 +136,6 @@ def freeProgHTML(prgId, userId):
     #startIndex = index + 10  # インデックスに10を足して、データの先頭を指すように
     #endIndex = bufStr.index('#ProgramEND#')
     prgData = __getStr(bufStr, 'Program')
-
     print(savedDataList)
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData}).encode('utf-8')
     #html = "test".encode()
@@ -146,7 +145,7 @@ def freeProgHTML(prgId, userId):
 def expProgHTML(environ, userId):
 
     # テンプレートファイルの指定
-    tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
+    tpl = env.get_template('tmpl/exp.tmpl')     # ファイル名はまだわからん
 
     # ユーザの保存しているデータの一覧を取得
     #savedDataList = prgNameGet(userId)
@@ -177,7 +176,7 @@ def expProgHTML(environ, userId):
     limitedBlocks = bufStr.split(',')
 
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
-                       'help':help,'result':result,'limitedBlocks':LimitedBlocks}).encode('utf-8')
+                       'help':help,'result':result,'limitedBlocks':limitedBlocks}).encode('utf-8')
 
     return html
 
@@ -185,7 +184,7 @@ def expProgHTML(environ, userId):
 def editProgHTML(environ, userId):
 
     # テンプレートファイルの指定
-    tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
+    tpl = env.get_template('tmpl/free.tmpl')     # ファイル名はまだわからん
 
     # ユーザの保存しているデータの一覧を取得
     savedDataList = prgNameGet(userId)
@@ -213,7 +212,7 @@ def editProgHTML(environ, userId):
     limitedBlocks = bufStr.split(',')
 
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
-                       'help':help,'result':result,'limitedBlocks':LimitedBlocks}).encode('utf-8')
+                       'help':help,'result':result,'limitedBlocks':limitedBlocks}).encode('utf-8')
 
     return html
 

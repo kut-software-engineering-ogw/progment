@@ -91,7 +91,7 @@ def freeProgHTML(prgId, userId):
 def expProgHTML(environ, userId):
 
     # テンプレートファイルの指定
-    tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
+    tpl = env.get_template('tmpl/exp.tmpl')     # ファイル名はまだわからん
 
     # ユーザの保存しているデータの一覧を取得
     savedDataList = prgNameGet(userId)
@@ -119,7 +119,7 @@ def expProgHTML(environ, userId):
     limitedBlocks = bufStr.split(',')
 
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
-                       'help':help,'result':result,'limitedBlocks':LimitedBlocks}).encode('utf-8')
+                       'help':help,'result':result,'limitedBlocks':limitedBlocks}).encode('utf-8')
 
     return html
 
@@ -127,7 +127,7 @@ def expProgHTML(environ, userId):
 def editProgHTML(environ, userId):
 
     # テンプレートファイルの指定
-    tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
+    tpl = env.get_template('tmpl/edit.tmpl')     # ファイル名はまだわからん
 
     # ユーザの保存しているデータの一覧を取得
     savedDataList = prgNameGet(userId)
@@ -155,7 +155,7 @@ def editProgHTML(environ, userId):
     limitedBlocks = bufStr.split(',')
 
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
-                       'help':help,'result':result,'limitedBlocks':LimitedBlocks}).encode('utf-8')
+                       'help':help,'result':result,'limitedBlocks':limitedBlocks}).encode('utf-8')
 
     return html
 
