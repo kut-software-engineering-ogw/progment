@@ -86,7 +86,7 @@ def application(environ, start_response):
             status = '302 Found'
             response_headers = [('Location', '/menu')] # menuページヘのリダイレクト
             start_response(status, response_headers)
-            return [""]
+            return []
 
         elif path == "/signout":
             print ("[call-app]: sign-out")
@@ -96,7 +96,7 @@ def application(environ, start_response):
         else:
             print ("[error-404]:", path)
             start_response('404 NOT FOUND', [('Content-Type', 'text/plain')])
-            return ['Not Found']
+            return ['Not Found'.encode()]
 
     elif path == '/collation':   # 照合へのリクエストの場合
         return [collation_app(environ, start_response)]
@@ -104,6 +104,7 @@ def application(environ, start_response):
     elif path == '/login':  # ログイン画面生成モジュール
         return [test_login_app(environ, start_response)]
         #return [login_app(environ, start_response)]
+
     else:   # cookieが無くurlが"/login"以外の場合
         print ("[redirect]: /login path=", path)
         status = '302 Found'
