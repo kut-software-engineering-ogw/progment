@@ -84,7 +84,7 @@ def freeProgHTML(prgId, userId):
     prgData = bufStr[startIndex:endIndex-1]
     
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData}).encode('utf-8')
-    html = "test".encode()
+    #html = "test".encode()
     return html
 
 # 課題プログラム画面を生成する関数。
