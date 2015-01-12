@@ -6,22 +6,15 @@ jQuery(function() {
 	});
 	//ドラッグ属性
 	//メソッドレベル
-	$("#main").draggable({
+	$("#main, .sub").draggable({
 		cancel:"#mainList, .subList",
 		containment:"#workspace"
-	});
-	$(".sub").draggable({
-		cancel:".subList, .functionName",
-		containment:"#workspace",
-		helper:"clone",
-		zIndex:40,
-		revert:false
 	});
 	//ネスト構造のブロック
 	$(".nestBlock").draggable({
 		connectToSortable:"#mainList, .subList, .nestArea",
 		helper:"clone",
-		revert:false,
+		revert:true,
 		cancel:".nestArea"
 	});
 	//データ処理ブロック
@@ -63,11 +56,11 @@ jQuery(function() {
 	$(".processBlock").draggable({
 		connectToSortable:"#mainList, .subList, .nestArea",
 		helper:"clone",
-		revert:false
+		revert:true
 	});
 
 	//ソート属性
-	$("#mainList").sortable({
+	$("#mainList, .subList").sortable({
 		connectWith:"ul",
 		revert:true,
 		update:function  (event,ui) {
@@ -92,7 +85,7 @@ jQuery(function() {
 	});
 
 	$("#workspace").droppable({
-		accept: ".block, .sub",
+		accept: ".block",
 		greedy:true,
 		drop: function(event, ui){
 			if(ui.draggable.hasClass('inList')){
@@ -100,35 +93,29 @@ jQuery(function() {
 				var dropped = ui.draggable.clone().draggable({
 					containment:"#workspace",
 				});
-				dropped.css('position', 'absolute');
 				if(dropped.hasClass('processBlock')||dropped.hasClass('nestBlock'))
 					dropped.draggable("option","connectToSortable","#mainList, .subList, .nestArea");
-				else if(dropped.hasClass('sub'))
-					dropped.draggable("option","cancel",".subList, .functionName");
 				dropped.removeClass('inList');
-				dropped.css('left', (ui.position.left+'px'));
-				dropped.css('top', (ui.position.top+'px'));
+				dropped.css('left', (ui.position.left  - parentOffset.left) +'px');
+				dropped.css('top', (ui.position.top - parentOffset.top) +'px');
 				annexController(dropped);
 				$(this).append(dropped);
-			}else if(!(ui.draggable.parent().attr('id')=="workspace")){
+			}else{
 				var parentOffset = $("#workspace").offset();
 				var dropped = ui.draggable.draggable({
 					containment:"#workspace",
 				});
-				dropped.css('position', 'absolute');
 				if(dropped.hasClass('processBlock')||dropped.hasClass('nestBlock'))
 					dropped.draggable("option","connectToSortable","#mainList, .subList, .nestArea");
-				dropped.removeClass('inList');
-				dropped.css('left', (ui.position.left+'px'));
-				dropped.css('top', (ui.position.top+'px'));
-				annexController(dropped);
+				dropped.css('left', (ui.position.left  - parentOffset.left) +'px');
+				dropped.css('top', (ui.position.top - parentOffset.top) +'px');
 				$(this).append(dropped);
 			}
 		}
 	})
 
 	$("#dustbin").droppable({
-		accept: "#workspace .block, #workspace .sub",
+		accept: "#workspace .block",
 		greedy: true,
 		drop: function(event, ui){
 			if(ui.draggable.hasClass('inList'))

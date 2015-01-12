@@ -4,11 +4,99 @@
 import sys
 sys.path.append('/usr/local/python/lib/python3.4/site-packages')
 from jinja2 import Environment, FileSystemLoader
-import http.cookies
 import cgi
 
 # テンプレのあるディレクトリとエンコードを指定
-env = Environment(loader=FileSystemLoader('/var/www/cgi-bin', encoding=('utf8')))
+env = Environment(loader=FileSystemLoader('/var/www/cgi-bin/', encoding=('utf8')))
+
+# test用定数
+tPrgId = 12345678901
+tSavedDataList = [{'name':'test1','prgid':'00000000000'}]
+tSavedDataList.append({'name':'test1','prgid':'00000000001'})
+tSavedDataList.append({'name':'test1','prgid':'00000000002'})
+
+tPrgDataStr_free = '''userID
+testProgram
+ここからコメント
+ここもコメント
+#Program#
+			<div id="main">
+				<ul id="mainList">
+				mainMethod<BR>
+				<li class="block processBlock print ui-draggable ui-draggable-handle" style="width: 180px; height: 55px;">
+					print
+					<div class="intArea ui-droppable"></div>
+				</li>
+				</ul>
+			</div>
+			<div class="sub">
+				<ul class="subList">
+				subMethod<BR>
+				</ul>
+			</div>
+#ProgramEND#'''
+
+tPrgDataStr_exp = '''ID
+プログラム名
+#Comment#
+コメント
+#CommentEND#
+#Help#
+ヘルプメニュー
+#HelpEND#
+#Program#
+			<div id="main">
+				<ul id="mainList">
+				mainMethod<BR>
+				</ul>
+			</div>
+			<div class="sub">
+				<ul class="subList">
+				subMethod<BR>
+				</ul>
+			</div>
+#ProgramEND#
+#Result#
+実行結果
+#ResultEND#
+10,121,1,2,3,4,5'''
+
+def freeProgHTML_app(environ, start_response, cookie):
+    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
+    prgId = form.getfirst('prgId', None)
+    prgId = tPrgId
+    output = freeProgHTML(prgId, cookie['user_id'].value)
+    status = "200 OK"
+    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+    start_response(status, headers)
+    return output
+
+def expProgHTML_app(environ, start_response, cookie):
+    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
+    prgId = form.getfirst('prgId', None)
+
+    output = expProgHTML(prgId, cookie['user_id'].value)
+    status = "200 OK"
+    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+    start_response(status, headers)
+    return output
+
+def editProgHTML_app(environ, start_response, cookie):
+    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
+    prgId = form.getfirst('prgId', None)
+
+    output = editProgHTML(prgId, cookie['user_id'].value)
+    status = "200 OK"
+    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+    start_response(status, headers)
+    return output
+
+def userApp_app(environ, start_response, cookie):
+    output = userApp(cookie['user_id'].value)
+    status = "200 OK"
+    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+    start_response(status, headers)
+    return output
 
 def __getStr(bufStr, split):
     startIndex = bufStr.index('#'+split+'#') + len(split) + 3
@@ -17,29 +105,23 @@ def __getStr(bufStr, split):
     return bufStr[startIndex:endIndex]
 
 # freeプログラム画面を生成する関数。
-def freeProgHTML(environ, userId):
+def freeProgHTML(prgId, userId):
 
     # テンプレートファイルの指定
-    tpl = env.get_template('free.tmpl')
-
-    # CookieからユーザIDを取得
-    #cookie = http.cookies.SimpleCookie()
-    #cookie.load(environ['HTTP_COOKIE'])
-    #userId = cookie['user_id'].value
-
-    # 入力値（作業ID）を取得
-    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
-    prgId = form.getfirst('value', '0')     # valueに関連付けられた値を取得。なければ0を返す
+    tpl = env.get_template('tmpl/free.tmpl')
 
     # ユーザの保存しているデータの一覧を取得
     #savedDataList = prgNameGet(userId)
-
-    if prgId is 0:
+    savedDataList = tSavedDataList
+    # prgIdがNoneの時は、保存データを読まずにレンダリング
+    if prgId is None:
         html = tpl.render({'userId':userId,'savedDataList':'','prgName':'','comment':'','prgData':''}).encode('utf-8')
         return html
-    '''
+    
     # ユーザの保存しているデータ本体を取得
-    prgDataStr = prgDataGet(prgId)
+    #prgDataStr = prgDataGet(prgId)
+    prgDataStr = tPrgDataStr_free
+
     # 改行コードをCR+LFに変換
     #prgDataStr.replace(('\r'or'\n'), '\r\n')
 
@@ -51,36 +133,28 @@ def freeProgHTML(environ, userId):
     index = bufStr.index('#Program#')    # プログラムデータの始まりを探し、indexを取得
     comment = bufStr[:index-1]    # コメントを取得
     # プログラムデータを取得
-    startIndex = index + 10  # インデックスに10を足して、データの先頭を指すように
-    endIndex = bufStr.index('#ProgramEND#')
-    prgData = bufStr[startIndex:endIndex-1]
-    '''
+    #startIndex = index + 10  # インデックスに10を足して、データの先頭を指すように
+    #endIndex = bufStr.index('#ProgramEND#')
+    prgData = __getStr(bufStr, 'Program')
+    print(savedDataList)
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData}).encode('utf-8')
-
+    #html = "test".encode()
     return html
 
 # 課題プログラム画面を生成する関数。
 def expProgHTML(environ, userId):
 
     # テンプレートファイルの指定
-    tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
-
-    # CookieからユーザIDを取得
-    #cookie = http.cookies.SimpleCookie()
-    #cookie.load(environ['HTTP_COOKIE'])
-    #userId = cookie['user_id'].value
-
-    # 入力値（作業ID）を取得
-    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
-    prgId = form.getfirst('value', '0')     # valueに関連付けられた値を取得。なければ0を返す
-
-
+    tpl = env.get_template('tmpl/exp.tmpl')     # ファイル名はまだわからん
 
     # ユーザの保存しているデータの一覧を取得
-    savedDataList = prgNameGet(userId)
+    #savedDataList = prgNameGet(userId)
+    savedDataList = tSavedDataList
 
     # ユーザの保存しているデータ本体を取得
-    prgDataStr = prgDataGet(prgId)
+    #prgDataStr = prgDataGet(prgId)
+    prgDataStr = tPrgDataStr_exp
+
     # 改行コードをCR+LFに変換
     #prgDataStr.replace(('\r'or'\n'), '\r\n')
 
@@ -102,7 +176,7 @@ def expProgHTML(environ, userId):
     limitedBlocks = bufStr.split(',')
 
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
-                       'help':help,'result':result,'limitedBlocks':LimitedBlocks}).encode('utf-8')
+                       'help':help,'result':result,'limitedBlocks':limitedBlocks}).encode('utf-8')
 
     return html
 
@@ -110,18 +184,7 @@ def expProgHTML(environ, userId):
 def editProgHTML(environ, userId):
 
     # テンプレートファイルの指定
-    tpl = env.get_template('free.tmpl')     # ファイル名はまだわからん
-
-    # CookieからユーザIDを取得
-    #cookie = http.cookies.SimpleCookie()
-    #cookie.load(environ['HTTP_COOKIE'])
-    #userId = cookie['user_id'].value
-
-    # 入力値（作業ID）を取得
-    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
-    prgId = form.getfirst('value', '0')     # valueに関連付けられた値を取得。なければ0を返す
-
-
+    tpl = env.get_template('tmpl/free.tmpl')     # ファイル名はまだわからん
 
     # ユーザの保存しているデータの一覧を取得
     savedDataList = prgNameGet(userId)
@@ -149,7 +212,7 @@ def editProgHTML(environ, userId):
     limitedBlocks = bufStr.split(',')
 
     html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
-                       'help':help,'result':result,'limitedBlocks':LimitedBlocks}).encode('utf-8')
+                       'help':help,'result':result,'limitedBlocks':limitedBlocks}).encode('utf-8')
 
     return html
 

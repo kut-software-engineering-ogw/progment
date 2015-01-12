@@ -8,10 +8,13 @@ import sys
 
 import mysql.connector
 
+sys.path.append('/usr/local/python/lib/python3.4/site-packages')
+sys.path.append('/var/www/cgi-bin')
+
 default_login_user='root'
-default_login_password='root00'
+default_login_password='yokolab'
 default_login_host='127.0.0.1'
-default_login_database='session'
+default_login_database='progment'
 
 class SessionDB:
     """
@@ -30,7 +33,7 @@ class SessionDB:
         """
         session_id = str(random.randint(1, 100000000)) + user_id
         stmt = (
-            'INSERT INTO session (session_id, user_id)'
+            'INSERT INTO session (session_id, user_id) '
             'VALUES (%s, %s)'
         )
         data = (session_id, user_id)
@@ -41,13 +44,18 @@ class SessionDB:
         """
         入力されたセッションIDのセッション情報を削除する
         :param session_id:
-        :return:
+        :return: 処理が成功した場合ture，失敗した場合false
         """
         stmt = (
-            'DELETE FROM session'
+            'DELETE FROM session '
             'WHERE session_id=%s'
         )
-        self.cur.execute(stmt, session_id)
+        try:
+            self.cur.execute(stmt, (session_id,))
+        except Exception as e:
+            return False
+        return True
+
 
     def get_session_info(self, session_id):
         """
@@ -56,10 +64,10 @@ class SessionDB:
         :return: セッション情報のディクショナリ
         """
         stmt = (
-            'SELECT * FROM session'
+            'SELECT session_id, user_id FROM session '
             'WHERE session_id=%s'
         )
-        self.cur.execute(stmt, session_id)
+        self.cur.execute(stmt, (session_id,))
         return self.cur.fetchone()
 
     def commit(self):
