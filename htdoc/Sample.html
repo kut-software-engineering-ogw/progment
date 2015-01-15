@@ -3,17 +3,17 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sample</title>
+<title>SampleDiv</title>
 <!-- CDNのロード始 -->
 <!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <!-- CDNのロード終 -->
 <!-- javascriptロード始 -->
 <script type="text/javascript" src="js/blockControllerModule.js"></script>
 <script type="text/javascript" src="js/programmingInitializeModule.js"></script>
 <script type="text/javascript" src="js/executionModule.js"></script>
-
 
 <!-- javascriptロード終 -->
 <!-- CSSロード始 -->
@@ -27,46 +27,23 @@
 		<!-- ヘッダ -->
 		<div id="head">
 			head
+			<input type="hidden" name="programmingMode" id="programmingMode" value="free">
+			<input type="hidden" name="limitList" id="limitList" value=".intBlock.constBlock:3,.print:2,.fourOp:2">
+			<input type="hidden" name="Answer" id="answer" value="5
+5
+">
 			<p>
 				<input type="button" value="通常実行" id="exeButton">
+				<input type="button" value="保存" id="saveButton">
+				<input type="button" value="テスト" id="Test">
 			</p>
 		</div>
 		<!-- ページ左側 -->
 		<div id="blockListArea">
 			<!-- ブロックリスト -->
-			<h3>作業用サンプル</h3>
-			<ul id="tempBlockList">
-				<!-- ネスト構造のブロック -->
-				<li class="inList block nestBlock">
-					<input type="number" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
-					<ul class="nestArea">
-						
-					</ul>
-				</li>
-				<!-- 数式のデータブロック -->
-				<li class="block mathBlock inList">
-					<div class="intArea"></div>
-					<select name="fourOperations">
-						<option value="add">＋</option>
-						<option value="sub">－</option>
-						<option value="mul">×</option>
-						<option value="div">÷</option>
-					</select>
-					<div class="intArea"></div>
-				</li>
-				<!-- int型データブロック -->
-				<li class="block inList intBlock">
-					<input type="number" max="99" min="1" value="1" style="width:30px;"/>
-				</li>
-				<!-- 処理ブロック -->
-				<li class="block inList processBlock print">
-					print
-					<div class="intArea"></div>
-				</li>
-			</ul>
 			<h3>サブルーチン</h3>
 			<div>
-				<div class="sub inList">
+				<div class="inList sub">
 					<input type="text" maxlength="5" class="functionName" name="functionName" size="10" value="" style="width:100px;height: 10px;"/>
 					<ul class="subList">
 					subMethod<BR>
@@ -80,12 +57,12 @@
 			<h3>実装サンプル</h3>
 			<ul id="blockList">
 				<!-- printブロック -->
-				<li class="inList block processBlock print">
+				<div class="inList block processBlock print">
 					print
 					<div class="dataArea"></div>
-				</li>
+				</div>
 				<!-- 四則演算ブロック -->
-				<li class="inList block mathBlock fourOp">
+				<div class="inList block mathBlock fourOp">
 					<div class="intArea op1"></div>
 					<select name="fourOperations" class="op">
 						<option value="+">＋</option>
@@ -94,19 +71,19 @@
 						<option value="/">÷</option>
 					</select>
 					<div class="intArea op2"></div>
-				</li>
+				</div>
 				<!-- かっこブロック -->
-				<li class="inList block mathBlock brackets">
+				<div class="inList block mathBlock brackets">
 					(<div class="intArea"></div>)
-				</li>
+				</div>
 				<!-- 文字列連結ブロック -->
-				<li class="inList block strBlock concatOp">
+				<div class="inList block strBlock concatOp">
 					<div class="dataArea op1"></div>
 					+
 					<div class="dataArea op2"></div>
-				</li>
+				</div>
 				<!-- 比較ブロック -->
-				<li class="inList block logicBlock compOp">
+				<div class="inList block logicBlock compOp">
 					<div class="dataArea op1"></div>
 					<select name="compOperations" class="op">
 						<option value="===">＝</option>
@@ -117,9 +94,9 @@
 						<option value="<">＞</option>
 					</select>
 					<div class="dataArea op2"></div>
-				</li>
+				</div>
 				<!-- 論理演算ブロック -->
-				<li class="inList block logicBlock logicOp">
+				<div class="inList block logicBlock logicOp">
 					<div class="boolArea op1"></div>
 					<select name="logicOperations" class="op">
 						<option value="and">∧</option>
@@ -128,69 +105,69 @@
 						<option value="xor">xor</option>
 					</select>
 					<div class="boolArea op2"></div>
-				</li>
+				</div>
 				<!-- 定数ブロック -->
-				<li class="inList block intBlock">
+				<div class="inList block intBlock constBlock">
 					<input type="number" class="constData" value="0" style="width:45px;"/>
-				</li>
-				<li class="inList block charBlock">
+				</div>
+				<div class="inList block charBlock constBlock">
 					<input type="text" class="constData" size=5 value="" style="width:45px;"/>
-				</li>
-				<li class="inList block boolBlock">
+				</div>
+				<div class="inList block boolBlock constBlock">
 					<select name="booldata" class="constData">
 						<option value="true">true</option>
 						<option value="false">false</option>
 					</select>
-				</li>
+				</div>
 				<!-- 変数ブロック -->
-				<li class="inList block charBlock varBlock">
+				<div class="inList block charBlock varBlock">
 					文字列<BR>変数
 					<BR>
 					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
-				</li>
-				<li class="inList block intBlock varBlock">
+				</div>
+				<div class="inList block intBlock varBlock">
 					整数型<BR>変数
 					<BR>
 					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
-				</li>
-				<li class="inList block boolBlock varBlock">
+				</div>
+				<div class="inList block boolBlock varBlock">
 					論理型<BR>変数
 					<BR>
 					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
-				</li>
+				</div>
 				<!-- 代入ブロック -->
-				<li class="inList block processBlock assign">
+				<div class="inList block processBlock assign">
 					<div class="varArea"></div>
 					=
 					<div class="dataArea"></div>
-				</li>
+				</div>
 				<!-- 回数指定ループ -->
-				<li class="inList block nestBlock for">
+				<div class="inList block nestBlock for">
 					<input type="number" class="times" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
 					<ul class="nestArea">
 						
 					</ul>
-				</li>
+				</div>
 				<!-- 条件指定ループ -->
-				<li class="inList block nestBlock while">
+				<div class="inList block nestBlock while">
 					<div class="boolArea">
 						
 					</div>が成り立つ間繰り返す<BR>
 					<ul class="nestArea">
 						
 					</ul>
-				</li>
+				</div>
 				<!-- if -->
-				<li class="inList block nestBlock if">
+				<div class="inList block nestBlock if">
 					<div class="boolArea">
 						
 					</div>が成り立つならば<BR>
 					<ul class="nestArea">
 						
 					</ul>
-				</li>
+				</div>
 				<!-- ifelse -->
-				<li class="inList block nestBlock ifelse">
+				<div class="inList block nestBlock ifelse">
 					<div class="boolArea">
 						
 					</div>が成り立つならば<BR>
@@ -201,7 +178,7 @@
 					<ul class="nestArea iffalse">
 						
 					</ul>
-				</li>
+				</div>
 			</ul>
 		</div>
 		<!-- ワークスペース -->
@@ -218,3 +195,11 @@
 		</div>
 	</div>
 </body>
+
+<!-- 			<div id="main">
+				<ul id="mainList">
+				mainMethod<BR>
+				</ul>
+			</div>
+			<div id="dustbin">ゴミ箱</div>
+ -->
