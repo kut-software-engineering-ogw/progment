@@ -275,7 +275,7 @@ function assignCodeGenerate (obj) {
 	var varName="";
 	var op1="";
 	var assignCode="";
-	varName=obj.children('.varArea').children('.varBlock').children('.varName').val();
+	varName=getVarName(obj.children('.varArea').children('.varBlock'));
 	op1=dataBlockInterpret(obj.children('.dataArea').children('.block'));
 	assignCode=varName+"="+op1+";";
 	// alert(assignCode);
