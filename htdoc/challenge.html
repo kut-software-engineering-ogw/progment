@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>課題プログラミング</title>
+<!-- CDNのロード始 -->
+<!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css"> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!-- CDNのロード終 -->
+<!-- javascriptロード始 -->
+<script type="text/javascript" src="js/programmingInitializeModule.js"></script>
+<script type="text/javascript" src="js/blockControllerModule.js"></script>
+<script type="text/javascript" src="js/executionModule.js"></script>
+<!-- javascriptロード終 -->
+<!-- CSSロード始 -->
+<link rel="stylesheet" type="text/css" href="css/free.css">
+<!-- CSSロード終 -->
+</head>
+
+<body>
+	<!-- 全体 -->
+	<div id="wrap">
+		<!-- ヘッダ -->
+		<div id="head">
+			<div id="headTop">
+				<div id="headTopRight">
+				<div id="headTopRightContents">
+				<input type="submit" value="ログアウト">
+				</div><!-- headTopRightContents -->
+				</div><!-- headTopRight -->
+				<div id="headTopLeft">
+				<p>ユーザ情報の表示</p>
+				<input type="submit" value="新規作成">
+				<select >
+				<option value="">読み込み</option>
+				</select>
+<!-- 				<input type="submit" value="読み込み"> -->
+				<input type="submit" value="保存">
+				<input type="submit" value="削除">
+				</div><!-- headTopLeft -->
+			</div><!-- headTop -->
+			<div id="info">
+			<div id="infoContents">
+			<div id="infoName">
+			<p>プログラム名</p>
+			<input type="text" size="20" value="" maxlength="20">
+			</div><!-- infoName -->
+			<div id="infoComment">
+			<p>コメント</p>
+			<textarea rows="2" cols="50"></textarea>
+			</div><!-- infoComent -->
+			</div><!-- infoContents -->
+			<div id="infoRun">
+			<div id="infoRunContents">
+			<select>
+			<option value="">実行モード</option>
+			<option value="">トレースモード</option>
+			<option value="">コード生成モード</option>
+			</select><br>
+			<input type="submit" value="実行" id="exeButton">
+			</div><!-- infoRunContents -->
+			</div><!-- infoRun -->
+			</div><!-- info -->
+		</div><!-- head -->
+
+		<!-- ページ左側 -->
+		<div id="blockListArea">
+			<!-- ブロックリスト -->
+			<p>サブルーチン</p>
+			<div>
+				<div class="inList sub">
+					<input type="text" maxlength="5" class="functionName" name="functionName" size="10" value="" style="width:100px;height: 10px;"/>
+					<ul class="subList">
+					subMethod<BR>
+					</ul>
+				</div>
+				<li class="inList block processBlock subroutine">
+					サブルーチン<br>
+					<input type="text" maxlength="5" class="functionName" name="functionName" size="10" value="" style="width:100px;height: 10px;"/>
+				</li>
+			</div>
+			<p>実装サンプル</p>
+			<ul id="blockList">
+				<!-- printブロック -->
+				<div class="inList block processBlock print">
+					print
+					<div class="dataArea"></div>
+				</div>
+				<!-- 四則演算ブロック -->
+				<div class="inList block mathBlock fourOp">
+					<div class="intArea op1"></div>
+					<select name="fourOperations" class="op">
+						<option value="+">＋</option>
+						<option value="-">－</option>
+						<option value="*">×</option>
+						<option value="/">÷</option>
+					</select>
+					<div class="intArea op2"></div>
+				</div>
+				<!-- かっこブロック -->
+				<div class="inList block mathBlock brackets">
+					(<div class="intArea"></div>)
+				</div>
+				<!-- 文字列連結ブロック -->
+				<div class="inList block strBlock concatOp">
+					<div class="dataArea op1"></div>
+					+
+					<div class="dataArea op2"></div>
+				</div>
+				<!-- 比較ブロック -->
+				<div class="inList block logicBlock compOp">
+					<div class="dataArea op1"></div>
+					<select name="compOperations" class="op">
+						<option value="===">＝</option>
+						<option value="!=">≠</option>
+						<option value="<=">≦</option>
+						<option value="<">＜</option>
+						<option value=">=">≧</option>
+						<option value="<">＞</option>
+					</select>
+					<div class="dataArea op2"></div>
+				</div>
+				<!-- 論理演算ブロック -->
+				<div class="inList block logicBlock logicOp">
+					<div class="boolArea op1"></div>
+					<select name="logicOperations" class="op">
+						<option value="and">∧</option>
+						<option value="or">∨</option>
+						<option value="not">￢</option>
+						<option value="xor">xor</option>
+					</select>
+					<div class="boolArea op2"></div>
+				</div>
+				<!-- 定数ブロック -->
+				<div class="inList block intBlock constBlock">
+					<input type="number" class="constData" value="0" style="width:45px;"/>
+				</div>
+				<div class="inList block charBlock constBlock">
+					<input type="text" class="constData" size=5 value="" style="width:45px;"/>
+				</div>
+				<div class="inList block boolBlock constBlock">
+					<select name="booldata" class="constData">
+						<option value="true">true</option>
+						<option value="false">false</option>
+					</select>
+				</div>
+				<!-- 変数ブロック -->
+				<div class="inList block charBlock varBlock">
+					文字列<BR>変数
+					<BR>
+					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+				</div>
+				<div class="inList block intBlock varBlock">
+					整数型<BR>変数
+					<BR>
+					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+				</div>
+				<div class="inList block boolBlock varBlock">
+					論理型<BR>変数
+					<BR>
+					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+				</div>
+				<!-- 代入ブロック -->
+				<div class="inList block processBlock assign">
+					<div class="varArea"></div>
+					=
+					<div class="dataArea"></div>
+				</div>
+				<!-- 回数指定ループ -->
+				<div class="inList block nestBlock for">
+					<input type="number" class="times" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
+					<ul class="nestArea">
+						
+					</ul>
+				</div>
+				<!-- 条件指定ループ -->
+				<div class="inList block nestBlock while">
+					<div class="boolArea">
+						
+					</div>が成り立つ間繰り返す<BR>
+					<ul class="nestArea">
+						
+					</ul>
+				</div>
+				<!-- if -->
+				<div class="inList block nestBlock if">
+					<div class="boolArea">
+						
+					</div>が成り立つならば<BR>
+					<ul class="nestArea">
+						
+					</ul>
+				</div>
+				<!-- ifelse -->
+				<div class="inList block nestBlock ifelse">
+					<div class="boolArea">
+						
+					</div>が成り立つならば<BR>
+					<ul class="nestArea iftrue">
+						
+					</ul>
+					成り立たなければ<BR>
+					<ul class="nestArea iffalse">
+						
+					</ul>
+				</div>
+			</ul>
+		</div>
+		<!-- ワークスペース -->
+		<div id="workspace">
+		<div id="main">
+				<ul id="mainList">
+				mainMethod<BR>
+				</ul>
+			</div>
+			<div id="dustbin">ゴミ箱</div>
+		</div>
+<!-- 		フッター -->
+		<div id="foot">
+		<div id="output">
+<!-- 		<div id="outputArea">
+		</div> --><!-- outputArea -->
+		<textarea id="outputArea" name="output"></textarea>
+		</div><!-- output -->
+		<div id="help">
+		<p>ボックスの説明</p>
+		</div>
+		</div>
+	</div>
+</body>
