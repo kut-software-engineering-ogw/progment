@@ -134,6 +134,7 @@ version:     0.0.4
             workSpaceData:  ワークスペースの内容
             result:         実行結果
             limitedBlocks:  個数情報
+
         -返り値
             <return result="1">:    処理が成功した
             <return result="0">:    処理が失敗した
@@ -145,46 +146,27 @@ version:     0.0.4
 /users
         -説明
             ユーザ管理画面を表示するURL
+            アクセス時にcookieのuser_idをマスターユーザとする学生情報の一覧を返します
 
-/users/usrAppend
-        -引数
-            usrName:        ユーザ名
-            usrYear:        学年
-            usrClass:       クラス
-            usrNumber:      出席番号
-            masterUsrId:    マスタユーザID
-            group:          区分
-            usrPasswd:      パスワード
-        -返り値
-            <return usrId=[ユーザID] result="1">:     新規ユーザIDをusrIDとして処理が成功した
-            <return result="0">:     処理が失敗した
-        -説明
-            ユーザを追加するURL
-            (ry
 
-/users/usrDelete
-        -引数
-            usrId:          ユーザID
-        -返り値
-            <return result="1">:    処理が成功した
-            <return result="0">:    処理が失敗した
+/users/update
         -説明
-            ユーザを削除するURL
-            (ry
+            ユーザ情報の更新を行います。
+            このURLに下記の情報をPOSTすることで、ユーザ情報の更新が行われます
 
-/users/usrUpdate
         -引数
-            usrId:          ユーザID
-            usrName:        ユーザ名
-            usrYear:        学年
-            usrClass:       クラス
-            usrNumber:      出席番号
-            masterUsrId:    マスタユーザID
-            group:          区分
-            usrPasswd:      パスワード
+            usrName_[列番号]:        ユーザ名
+            usrYear_[列番号]:        学年
+            usrClass_[列番号]:       クラス
+            usrNumber_[列番号]:      出席番号
+            masterUsrId_[列番号]:    マスタユーザID
+            group_[列番号]:          区分
+            usrPasswd_[列番号]:      パスワード
+            send_rows:              送信した列の番号(重複送信可、というか列ごとに送って重複させて下さい)
+
         -返り値
-            <return result="1">:     処理が成功した
-            <return result="0">:     処理が失敗した
-        -説明
-            ユーザを編集するURL
-            (ry
+            なし(自動的に/usersにリダイレクトされる)
+
+        -備考
+            送信されなかった情報は空文字列として取り扱います。
+            処理はsend_rowsで指定された列番号に対してのみ行われます

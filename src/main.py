@@ -37,7 +37,6 @@ def application(environ, start_response):
         if path == "/menu":   # メニュー画面のURL
             print ("[call-app]: menu-application")
             return [test_app(environ, start_response, "menu")]
-            #return [menu_app(environ, start_response, cookie)]
 
         elif path == "/freeProg":   # フリープログラミング画面のURL
             print ("[call-app]: freeProg-application", cookie['user_id'].value)
@@ -97,6 +96,13 @@ def application(environ, start_response):
         elif path == "/post_test":
             return [post_test(environ, start_response)]
 
+        elif path == "/":
+            print ("[redirect]: /menu path=", path)
+            status = '302 Found'
+            response_headers = [('Location', '/menu')]
+            start_response(status, response_headers)
+            return []
+
         else:
             print ("[error-404]:", path)
             start_response('404 NOT FOUND', [('Content-Type', 'text/plain')])
@@ -110,11 +116,12 @@ def application(environ, start_response):
         #return [login_app(environ, start_response)]
 
     else:   # cookieが無くurlが"/login"以外の場合
-        print ("[redirect]: /login path=", path)
+        print ("[redirect]: /menu path=", path)
         status = '302 Found'
-        response_headers = [('Location', '/login')]
+        response_headers = [('Location', '/menu')]
         start_response(status, response_headers)
         return []
+
 
 def test_app(environ, start_response, app_name):
     status = "200 OK"
