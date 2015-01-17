@@ -1,4 +1,5 @@
 limitList = new Object();
+programmingMode=$("#programmingMode").val();
 
 jQuery(function() {
 	//アコーディオン
@@ -83,12 +84,14 @@ jQuery(function() {
 		drop: function(event, ui){
 			if(ui.draggable.hasClass('inList'))
 				return;
+			else if(ui.draggable.attr('id')=="kadaiRoutine");
+				return;
 			blockDeleted(ui.draggable);
 			ui.draggable.remove()
 		}
 	});
 
-	if($("#programmingMode").val()=="kadai")
+	if(programmingMode=="kadai")
 		initializeKadaiMode();
 });
 

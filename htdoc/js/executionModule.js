@@ -12,28 +12,34 @@ blockNum=1;
 delayTime=0;
 funlib="";//"output=(function (str){oldtxt=$(\"#outputArea\").val();output=oldtxt+str+\"\\n\";$(\"#outputArea\").val(output);});";
 
+function getWorkspace () {
+	$("#workspace input").each(function  () {
+		//console.log("kore"+$(this).parent().html());
+		var temp=$(this).parent().html();
+		//temp="aaaa value konnichiwa";
+		console.log(temp);
+		// var start=temp.indexOf("value\"");
+		// var end=temp.indexOf("\"",start+6);
+		var re = new RegExp("value=\"(.*?)\"");
+		temp=temp.replace(re,"value=\""+$(this).val()+"\"");
+		console.log(temp);
+		$(this).parent().html(temp);
+	})
+	console.log("保存します");
+	console.log($("#workspace").html());
+	return $("#workspace").html();
+}
+
 jQuery(document).ready(function(){
 	$("#saveButton").click(function () {
-		$("#workspace input").each(function  () {
-			//console.log("kore"+$(this).parent().html());
-			var temp=$(this).parent().html();
-			//temp="aaaa value konnichiwa";
-			console.log(temp);
-			// var start=temp.indexOf("value\"");
-			// var end=temp.indexOf("\"",start+6);
-			var re = new RegExp("value=\"(.*?)\"");
-			temp=temp.replace(re,"value=\""+$(this).val()+"\"");
-			console.log(temp);
-			$(this).parent().html(temp);
-		})
-		console.log("保存します");
-		console.log($("#workspace").html());
+		result=getWorkspace();
 	});
 
 	//main関数
 	$("#exeButton").click(function () {
+		//exeMode=$("#exeMode").val();
 		executionMain();
-		if($("#programmingMode").val()=="kadai"){
+		if(((programmingMode=="kadai")&&(exeMode=="nomal"))){
 			result=$("#outputArea").val();
 			answer=$("#answer").val();
 			if(result==answer)
@@ -42,12 +48,12 @@ jQuery(document).ready(function(){
 				outputTextArea("不正解¡¡")
 		}
 	});
-
-	$("#Test").click(function () {
-		executionMain();
-		return $("#outputArea").val();
-	})
 });
+
+function getResult () {
+	executionMain();
+	return $("#outputArea").val();
+}
 
 function outputTextArea(Str){
 	oldtxt=$("#outputArea").val();
@@ -71,6 +77,8 @@ function executionMain () {
 		delete functionNameTable[key];
 	//サブルーチン解析
 	functionInterpret();
+	if(programmingMode=="kadai")
+		kadaiInterpret();
 	//初期化終わり
 	$("#mainList").children('.block').each(function () {
 		codeStr+=interpret($(this));
@@ -118,6 +126,41 @@ function functionInterpret () {
 		subroutine+=funStr;
 	})
 }
+
+//課題ルーチン解析メソッド
+function kadaiInterpret () {
+	// $("#kadaiRoutine").each(function () {
+		// var funName="kadaiRoutine";
+		//名前欄に名前がない場合の処理
+		// if(funName.length<=0){
+		// 	funName="fun"+funNum;
+		// 	$(this).children(".functionName").val(funName);
+		// 	funNum++;
+		// }
+		//関数名の登録とid付与
+		// if(!(funName in functionNameTable)){
+			functionNameTable[funName]=1;
+			// $(this).attr('id', funName);
+		// }else{
+			//関数名が重複していた場合の処理
+		// 	var num=2;
+		// 	while(((funName+num) in functionNameTable))
+		// 		num++;
+		// 	funName=funName+num;
+		// 	functionNameTable[funName]=1;
+		// 	$(this).attr('id', funName);
+		// 	$(this).children(".functionName").val(funName);
+		// }
+		//関数の解析処理
+		var funStr="";
+		$("#kadaiRoutine").children('.subList').children('.block').each(function (){
+			funStr+=interpret($(this));
+		});
+		funStr="kadaiRoutine"+"=(function (){"+funStr+"});";
+		subroutine+=funStr;
+	// });
+}
+
 
 //処理ブロックレベルの解析メソッド
 function interpret (obj) {
