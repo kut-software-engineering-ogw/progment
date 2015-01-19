@@ -11,8 +11,7 @@
 <!-- CDNのロード終 -->
 <!-- javascriptロード始 -->
 <script type="text/javascript" src="javascript/programmingInitializeModule.js"></script>
-<script type="text/javascript" src="javascript/blockControllerModule.js"></script>
-<script type="text/javascript" src="javascript/loadWorkData.js"></script>
+<script type="text/javascript" src="javascript/blockControllerModule.jss"></script>
 
 
 <!-- javascriptロード終 -->
@@ -164,6 +163,7 @@
 		<!-- ワークスペース -->
 		<div id="workspace">
       {{prgData}}
+      	</div>
 		<div id="foot"></div>
 	</div>
 </body>

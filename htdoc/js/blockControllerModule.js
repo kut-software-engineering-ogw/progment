@@ -1,6 +1,7 @@
 // jQuery(function() {
 	//ドロップ属性の付加処理を管理する関数
 	function annexController (obj) {
+		//console.log(obj.attr('class'));
 		if(obj.children().hasClass("nestArea"))
 			annexSort(obj);
 		if(obj.children().hasClass("intArea"))
@@ -26,6 +27,7 @@
 				//ブロックリストから追加された場合の属性付加処理
 				if(ui.item.hasClass('inList')){
 					ui.item.removeClass('inList');
+					blockGenerated(ui.draggable);
 					annexController(ui.item);
 				}
 			}
@@ -39,6 +41,7 @@
 			update:function  (event,ui) {
 				if(ui.item.hasClass('inList')){
 					ui.item.removeClass('inList');
+					blockGenerated(ui.draggable);
 					annexController(ui.item);
 				}
 			}
@@ -61,6 +64,7 @@
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
 					var cloneObj=ui.draggable.clone();
+					blockGenerated(ui.draggable);
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('mathBlock'))
 					// 	annexIntArea(cloneObj);
@@ -91,6 +95,7 @@
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
 					var cloneObj=ui.draggable.clone();
+					blockGenerated(ui.draggable);
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('strBlock'))
 					// 	annexCharArea(cloneObj);
@@ -121,6 +126,7 @@
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
 					var cloneObj=ui.draggable.clone();
+					blockGenerated(ui.draggable);
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('logicBlock'))
 					// 	annexBoolArea(cloneObj);
@@ -150,6 +156,7 @@
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
 					var cloneObj=ui.draggable.clone();
+					blockGenerated(ui.draggable);
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('logicBlock'))
 					// 	annexBoolArea(cloneObj);
@@ -181,6 +188,7 @@
 				//ブロックリストからドロップされた場合の処理
 				else if(ui.draggable.hasClass("inList")){
 					var cloneObj=ui.draggable.clone();
+					blockGenerated(ui.draggable);
 					cloneObj.removeClass('inList');
 					// if(ui.draggable.hasClass('mathBlock'))
 					// 	annexIntArea(cloneObj);

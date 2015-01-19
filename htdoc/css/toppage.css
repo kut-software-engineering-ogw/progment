@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+body,
+h1,h2,h3,h4,h5,h6,
+p,ul,ol,dl,dt,dd,li,
+table,th,td,
+form,select,option,input
+address,pre,strong,em,iframe,img{
+   margin:0;
+   padding:0;
+   font-size:100%;
+   border:0;
+}
+
+body{
+   color:#000;
+   font-family:sans-serif;
+   font-size:13px;
+   *font-size:small;
+   line-height:1.4;
+   border-top:20px solid #808080;
+}
+/*リストの・を消す*/
+li{
+   list-style-type: none;
+}
+
+/* デフォルトリンク色の設定 */
+a{
+   color:#4169e1;
+   text-decoration: none;
+}
+
+a:hover{
+   color:#b8860b;
+}
+
+#topContents {
+   width:690px;
+   margin:0 auto;
+}
+
+#formContainer {
+   height:50px;
+   width:690px;
+   border-radius: 5px;
+   background-color: #00a0e9;
+}
+
+
+.formContents {
+   display:block;
+   float:left;
+
+}
+
+.formTitleId {
+   color:#fff;
+   font-weight: bold;
+   font-size:16px;
+   margin:13px 15px 13px 30px;
+}
+
+.formTitlePass {
+   color:#fff;
+   font-weight: bold;
+   font-size:16px;
+   margin:13px 15px;
+}
+
+.formField {
+   border-radius: 5px;
+   margin:13px 10px;
+}
+
+.submitButton {
+   margin:0px 20px;
+   width:100px;
+   height:50px;
+   color:#fff;
+   font-size:16px;
+   background-color: #00a0e9;
+   border-style:none;
+   border-right:1px solid #00ffff;
+   border-left:1px solid #00ffff;
+}
+
+.submitButton:hover{
+   background-color: #4cbcf0;
+}
+
+

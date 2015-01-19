@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SampleDiv</title>
+<title>課題プログラミング</title>
 <!-- CDNのロード始 -->
 <!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -11,13 +11,12 @@
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <!-- CDNのロード終 -->
 <!-- javascriptロード始 -->
-<script type="text/javascript" src="js/blockControllerModule.js"></script>
 <script type="text/javascript" src="js/programmingInitializeModule.js"></script>
+<script type="text/javascript" src="js/blockControllerModule.js"></script>
 <script type="text/javascript" src="js/executionModule.js"></script>
-
 <!-- javascriptロード終 -->
 <!-- CSSロード始 -->
-<link rel="stylesheet" type="text/css" href="css/Sample.css">
+<link rel="stylesheet" type="text/css" href="css/free.css">
 <!-- CSSロード終 -->
 </head>
 
@@ -26,22 +25,51 @@
 	<div id="wrap">
 		<!-- ヘッダ -->
 		<div id="head">
-			head
-			<input type="hidden" name="programmingMode" id="programmingMode" value="free">
-			<input type="hidden" name="limitList" id="limitList" value=".intBlock.constBlock:3,.print:2,.fourOp:2">
-			<input type="hidden" name="Answer" id="answer" value="5
-5
-">
-			<p>
-				<input type="button" value="通常実行" id="exeButton">
-				<input type="button" value="保存" id="saveButton">
-				<input type="button" value="テスト" id="Test">
-			</p>
-		</div>
+			<div id="headTop">
+				<div id="headTopRight">
+				<div id="headTopRightContents">
+				<input type="submit" value="ログアウト">
+				</div><!-- headTopRightContents -->
+				</div><!-- headTopRight -->
+				<div id="headTopLeft">
+				<p>ユーザ情報の表示</p>
+				<input type="submit" value="新規作成">
+				<select >
+				<option value="">読み込み</option>
+				</select>
+<!-- 				<input type="submit" value="読み込み"> -->
+				<input type="submit" value="保存">
+				<input type="submit" value="削除">
+				</div><!-- headTopLeft -->
+			</div><!-- headTop -->
+			<div id="info">
+			<div id="infoContents">
+			<div id="infoName">
+			<p>プログラム名</p>
+			<input type="text" size="20" value="" maxlength="20">
+			</div><!-- infoName -->
+			<div id="infoComment">
+			<p>コメント</p>
+			<textarea rows="2" cols="50"></textarea>
+			</div><!-- infoComent -->
+			</div><!-- infoContents -->
+			<div id="infoRun">
+			<div id="infoRunContents">
+			<select>
+			<option value="">実行モード</option>
+			<option value="">トレースモード</option>
+			<option value="">コード生成モード</option>
+			</select><br>
+			<input type="submit" value="実行" id="exeButton">
+			</div><!-- infoRunContents -->
+			</div><!-- infoRun -->
+			</div><!-- info -->
+		</div><!-- head -->
+
 		<!-- ページ左側 -->
 		<div id="blockListArea">
 			<!-- ブロックリスト -->
-			<h3>サブルーチン</h3>
+			<p>サブルーチン</p>
 			<div>
 				<div class="inList sub">
 					<input type="text" maxlength="5" class="functionName" name="functionName" size="10" value="" style="width:100px;height: 10px;"/>
@@ -54,7 +82,7 @@
 					<input type="text" maxlength="5" class="functionName" name="functionName" size="10" value="" style="width:100px;height: 10px;"/>
 				</li>
 			</div>
-			<h3>実装サンプル</h3>
+			<p>実装サンプル</p>
 			<ul id="blockList">
 				<!-- printブロック -->
 				<div class="inList block processBlock print">
@@ -183,23 +211,23 @@
 		</div>
 		<!-- ワークスペース -->
 		<div id="workspace">
-			<div id="main">
+		<div id="main">
 				<ul id="mainList">
 				mainMethod<BR>
 				</ul>
 			</div>
 			<div id="dustbin">ゴミ箱</div>
 		</div>
+<!-- 		フッター -->
 		<div id="foot">
-			<textarea id="outputArea" name="output" rows="4" cols="40"></textarea>
+		<div id="output">
+<!-- 		<div id="outputArea">
+		</div> --><!-- outputArea -->
+		<textarea id="outputArea" name="output"></textarea>
+		</div><!-- output -->
+		<div id="help">
+		<p>ボックスの説明</p>
+		</div>
 		</div>
 	</div>
 </body>
-
-<!-- 			<div id="main">
-				<ul id="mainList">
-				mainMethod<BR>
-				</ul>
-			</div>
-			<div id="dustbin">ゴミ箱</div>
- -->

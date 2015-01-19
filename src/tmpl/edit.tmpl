@@ -12,9 +12,6 @@
 <!-- javascriptロード始 -->
 <script type="text/javascript" src="javascript/programmingInitializeModule.js"></script>
 <script type="text/javascript" src="javascript/blockControllerModule.js"></script>
-<script type="text/javascript" src="javascript/loadWorkData.js"></script>
-
-
 <!-- javascriptロード終 -->
 <!-- CSSロード始 -->
 <link rel="stylesheet" type="text/css" href="css/free.css">
@@ -30,26 +27,23 @@
 				<div id="headTopRight">
 				<div id="headTopRightContents">
 				<input type="submit" value="ログアウト">
-<!-- 				<a href="#">ログアウト</a> -->
 				</div><!-- headTopRightContents -->
 				</div><!-- headTopRight -->
 				<div id="headTopLeft">
 				<p>ユーザID : {{userId}}</p>
 				<input type="submit" value="保存">
 				<input type="submit" value="読み込み">
-<!-- 				<a href="#">保存</a>
-				<a href="#">読み込み</a> -->
 				</div><!-- headTopLeft -->
 			</div><!-- headTop -->
 			<div id="info">
 			<div id="infoContents">
 			<div id="infoName">
 			<p>プログラム名</p>
-			<INPUT type="text" size="20" value="{{prgName}}" maxlength="20">
+			<input type="text" size="20" value="{{prgName}}" maxlength="20">
 			</div><!-- infoName -->
 			<div id="infoComment">
 			<p>コメント</p>
-			<textarea rows="2" cols="60">{{comment}}</textarea>
+			<textarea rows="2" cols="50">{{comment}}</textarea>
 			</div><!-- infoComent -->
 			</div><!-- infoContents -->
 			<div id="infoRun">
@@ -64,16 +58,16 @@
 			</div><!-- infoRun -->
 			</div><!-- info -->
 		</div><!-- head -->
+
 		<!-- ページ左側 -->
 		<div id="blockListArea">
 			<!-- ブロックリスト -->
-			<h3>作業用サンプル</h3>
+			<p>作業用サンプル</p>
 			<ul id="tempBlockList">
 				<!-- ネスト構造のブロック -->
 				<li class="inList block nestBlock">
 					<input type="number" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
 					<ul class="nestArea">
-						
 					</ul>
 				</li>
 				<!-- 数式のデータブロック -->
@@ -97,7 +91,7 @@
 					<div class="intArea"></div>
 				</li>
 			</ul>
-			<h3>実装サンプル</h3>
+			<p>実装サンプル</p>
 			<ul id="blockList">
 				<!-- printブロック -->
 				<li class="inList block processBlock print">
@@ -161,9 +155,20 @@
 				</li>
 			</ul>
 		</div>
+
+
 		<!-- ワークスペース -->
 		<div id="workspace">
-      {{prgData}}
-		<div id="foot"></div>
+			{{prgData}}
+		</div>
+<!-- 		フッター -->
+		<div id="foot">
+		<div id="help">
+		<p>ボックスの説明</p>
+		</div>
+		<div id="output">
+		<p></p>
+		</div>
+		</div>
 	</div>
 </body>
