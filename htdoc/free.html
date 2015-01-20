@@ -34,29 +34,23 @@
 				<div id="headTopLeft">
 				<p>ユーザ情報の表示</p>
 				<input type="submit" value="新規作成">
-				<select >
+				<select id="load">
 				<option value="">読み込み</option>
 				</select>
 <!-- 				<input type="submit" value="読み込み"> -->
-				<input type="submit" value="保存">
-<<<<<<< HEAD
-				<input type="submit" value="読み込み">
-<!--				<a href="#">保存</a>
-				<a href="#">読み込み</a> -->
-=======
+				<input type="submit" value="保存" id="save">
 				<input type="submit" value="削除">
->>>>>>> 22acf625c83406d08bffe10e514b6b1d901a7e45
 				</div><!-- headTopLeft -->
 			</div><!-- headTop -->
 			<div id="info">
 			<div id="infoContents">
 			<div id="infoName">
 			<p>プログラム名</p>
-			<input type="text" size="20" value="" maxlength="20">
+			<input type="text" size="20" value="" maxlength="20" id="programName">
 			</div><!-- infoName -->
 			<div id="infoComment">
 			<p>コメント</p>
-			<textarea rows="2" cols="50"></textarea>
+			<textarea rows="2" cols="50" id="comment"></textarea>
 			</div><!-- infoComent -->
 			</div><!-- infoContents -->
 			<div id="infoRun">
@@ -104,7 +98,7 @@
 						<option value="*">×</option>
 						<option value="/">÷</option>
 					</select>
-					<div class="paste sticky intArea op2"></div>
+					<div class="paste intArea op2"></div>
 				</div>
 				<!-- かっこブロック -->
 				<div class="sticky inList block mathBlock brackets">
@@ -226,18 +220,19 @@
 		<!-- ワークスペース -->
 		<div id="workspace">
 		<div id="main">
+			<div class="noteTop"><p>メイン</p><div class="noteRing"></div></div>
 				<ul id="mainList">
-				mainMethod<BR>
-				</ul>
-			</div>
+				</ul><!-- mainList -->
+		</div><!-- main -->
 			<div id="dustbin">ゴミ箱</div>
 		</div>
 <!-- 		フッター -->
 		<div id="foot">
 		<div id="output">
-<!-- 		<div id="outputArea">
-		</div> --><!-- outputArea -->
-		<textarea id="outputArea" name="output"></textarea>
+		<div id="outputArea">
+		</div><!-- outputArea -->
+		<!-- <textarea id="outputArea" name="output"></textarea> -->
+
 		</div><!-- output -->
 		<div id="help">
 		<p>ボックスの説明</p>
@@ -245,3 +240,4 @@
 		</div>
 	</div>
 </body>
+</html>
