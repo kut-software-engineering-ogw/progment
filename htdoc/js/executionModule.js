@@ -11,6 +11,10 @@ hogeNum=0;
 blockNum=1;
 delayTime=0;
 funlib="";//"output=(function (str){oldtxt=$(\"#outputArea\").val();output=oldtxt+str+\"\\n\";$(\"#outputArea\").val(output);});";
+stackNum=0;
+generator=[];
+result=undefined;
+OutText="";
 
 function getWorkspace () {
 	$("#workspace input").each(function  () {
@@ -35,7 +39,7 @@ jQuery(document).ready(function(){
 		result=getWorkspace();
 	});
 
-	//main関数
+	//実行ボタンクリック時の動作
 	$("#exeButton").click(function () {
 		//exeMode=$("#exeMode").val();
 		executionMain();
@@ -46,6 +50,23 @@ jQuery(document).ready(function(){
 				outputTextArea("正解!!");
 			else
 				outputTextArea("不正解¡¡")
+		}
+	});
+
+	//nextボタンクリック時の動作
+	$("#next").click(function(){
+		if(typeof result==="undefined"&&exeMode=="trace")
+			console.log("トレース開始");
+		else if(!(exeMode=="trace")||result.done==true)
+			return;
+		result=generator[stackNum].next();
+		if(result.done==false){
+			outputTextArea(result.value);
+			return;
+		}
+		outputTextArea("ステップ実行を完了しました");
+		for(var i=0;i<blockNum;i++){
+			$("#blockNumber"+i).attr('id', '');
 		}
 	});
 });
@@ -61,6 +82,14 @@ function outputTextArea(Str){
 	$("#outputArea").val(output);
 }
 
+var traceOutputTextArea = function* () {
+	oldtxt=$("#outputArea").val();
+	output=oldtxt+Sarg+"\n";
+	$("#outputArea").val(output);
+	stackNum--;
+	yield "『"+Sarg+"』を出力しました";
+}
+
 function executionMain () {
 	//初期化
 	$("#outputArea").val("");
@@ -70,26 +99,47 @@ function executionMain () {
 	varNum=0;
 	funNum=0;
 	blockNum=0;
-	delayTime=0;
+	exeMode=$("#exeMode").val();
+	//delayTime=0;
 	for(var key in varNameTable)
 		delete varNameTable[key];
 	for(var key in functionNameTable)
 		delete functionNameTable[key];
 	//サブルーチン解析
 	functionInterpret();
+	//課題ルーチン解析
 	if(programmingMode=="kadai")
 		kadaiInterpret();
 	//初期化終わり
 	$("#mainList").children('.block').each(function () {
 		codeStr+=interpret($(this));
 	});
-	codeStr="(function (){"+preamble+subroutine+codeStr+"})";
+	//通常実行の場合の実行コード
+	console.log(exeMode);
+	if(exeMode=="nomal")
+		codeStr="(function (){"+preamble+subroutine+codeStr+"})";
+	//トレース実行の場合の実行コード
+	else if(exeMode=="trace")
+		codeStr="(function(){mainLine = function* (){"+preamble+subroutine+codeStr+"};})";
+	else if(exeMode=="generate"){
+		codeStr="function main(){\n"+preamble+codeStr+"}\n"+subroutine+"main();";
+	}
 	// oldtxt=$("#outputArea").val();
 	// output=oldtxt+"出力";
 	// $("#outputArea").val(output);
 	console.log(codeStr);
 	// debug.check(eval(codeStr+"()"));
-	eval(codeStr+"()");
+	if(exeMode=="generate")
+		outputTextArea(codeStr);
+	else
+		eval(codeStr+"()");
+	if(exeMode=="trace"){
+		result=undefined;
+		generator=[];
+		stackNum=0;
+		outputTextArea("ステップ実行を開始します");
+		generator[0]=mainLine();
+	}
 }
 
 //サブルーチン解析メソッド
@@ -106,7 +156,7 @@ function functionInterpret () {
 		if(!(funName in functionNameTable)){
 			functionNameTable[funName]=1;
 			$(this).attr('id', funName);
-			alert(3);
+			// alert(3);
 		}else{
 			//関数名が重複していた場合の処理
 			var num=2;
@@ -122,41 +172,33 @@ function functionInterpret () {
 		$("#"+funName).children('.subList').children('.block').each(function (){
 			funStr+=interpret($(this));
 		});
-		funStr=funName+"=(function (){"+funStr+"});";
+		if(exeMode=="nomal")
+			funStr=funName+"=(function (){"+funStr+"});";
+		else if(exeMode="trace"){
+			funStr=funName+" = (function* (){"+funStr+"stackNum--;yield \""+funName+"の処理を終了します\";});";
+			// console.log("ふｎ");
+		}
+		else if(exeMode="generate"){
+			funStr="function "+funName+"(){\n"+funStr+"}\n";
+		}
 		subroutine+=funStr;
 	})
 }
 
 //課題ルーチン解析メソッド
 function kadaiInterpret () {
-	// $("#kadaiRoutine").each(function () {
-		// var funName="kadaiRoutine";
-		//名前欄に名前がない場合の処理
-		// if(funName.length<=0){
-		// 	funName="fun"+funNum;
-		// 	$(this).children(".functionName").val(funName);
-		// 	funNum++;
-		// }
-		//関数名の登録とid付与
-		// if(!(funName in functionNameTable)){
-			functionNameTable[funName]=1;
-			// $(this).attr('id', funName);
-		// }else{
-			//関数名が重複していた場合の処理
-		// 	var num=2;
-		// 	while(((funName+num) in functionNameTable))
-		// 		num++;
-		// 	funName=funName+num;
-		// 	functionNameTable[funName]=1;
-		// 	$(this).attr('id', funName);
-		// 	$(this).children(".functionName").val(funName);
-		// }
-		//関数の解析処理
+		functionNameTable[funName]=1;
 		var funStr="";
 		$("#kadaiRoutine").children('.subList').children('.block').each(function (){
 			funStr+=interpret($(this));
 		});
-		funStr="kadaiRoutine"+"=(function (){"+funStr+"});";
+		if(exeMode=="nomal")
+			funStr="kadaiRoutine = (function (){"+funStr+"});";
+		else if(exeMode=="trace")
+			funStr="kadaiRoutine = (function* (){"+funStr+"stackNum--;yield \"課題ルーチンの処理を終了します\";});";
+		else if(exeMode=="generate"){
+			funStr="function kadaiRoutine(){\n"+funStr+"}\n";
+		}
 		subroutine+=funStr;
 	// });
 }
@@ -171,11 +213,11 @@ function interpret (obj) {
 	var optionAfter="";
 	if(exeMode=="trace"){
 		obj.attr("id","blockNumber"+blockNum);
-		// optionBefore="$(\"#blockNumber"+blockNum+"\").addClass('exeBlock');"
-		optionBefore="$(\"#blockNumber"+blockNum+"\").delay("+delayTime+").effect(\"highlight\",{ color: \"#ff5c5c\"},2500);";
-		// optionAfter+="$(\"#blockNumber"+blockNum+"\").removeClass('exeBlock');";
+		optionBefore="$(\"#blockNumber"+blockNum+"\").addClass('exeBlock',1000, 'easeOutBounce');"
+		//optionBefore="$(\"#blockNumber"+blockNum+"\").delay("+delayTime+").effect(\"highlight\",{ color: \"#ff5c5c\"},2500);";
+		optionAfter+="$(\"#blockNumber"+blockNum+"\").removeClass('exeBlock',1000, 'easeOutBounce');";
 		blockNum++;
-		delayTime+=2500;
+		//delayTime+=2500;
 	}
 	// alert(classList[classNum-3]);
 	switch(blockType){
@@ -199,7 +241,7 @@ function interpret (obj) {
 			return ifelseCodeGenerate(obj);
 			break;
 		case "subroutine":
-			return subroutineCodeGenerate(obj);
+			return optionBefore+subroutineCodeGenerate(obj)+optionAfter;
 			break;
 		default:
 			alert("default:"+blockType);
@@ -305,12 +347,18 @@ function boolBlockInterpret (obj) {
 //処理ブロックごとの解析メソッド群
 function printCodeGenerate (obj) {
 	var opstr=dataBlockInterpret(obj.children('.dataArea').children('.block'));
-	var printCode="outputTextArea("+opstr+");";
+	var printCode="";
 	// var printCode="";
 	// printCode+="oldtxt=$(\"#outputArea\").val();output=oldtxt+"+opstr+"+\"\\n\";";
 	// printCode+="$(\"#outputArea\").val(output);";
-		return printCode+"";
-	if(exeMode=="trace")
+	if(exeMode=="nomal")
+		printCode="outputTextArea("+opstr+");";
+	else if(exeMode=="trace"){
+		printCode="stackNum++;Sarg="+opstr+";generator[stackNum]=traceOutputTextArea();yield \"出力処理を行います\";"
+	}
+	else if(exeMode=="generate"){
+		printCode="alert("+opstr+");\n";
+	}
 	return printCode;
 }
 
@@ -318,9 +366,17 @@ function assignCodeGenerate (obj) {
 	var varName="";
 	var op1="";
 	var assignCode="";
-	varName=getVarName(obj.children('.varArea').children('.varBlock'));
-	op1=dataBlockInterpret(obj.children('.dataArea').children('.block'));
-	assignCode=varName+"="+op1+";";
+	if(exeMode!="generate"){
+		varName=getVarName(obj.children('.varArea').children('.varBlock'));
+		op1=dataBlockInterpret(obj.children('.dataArea').children('.block'));
+		assignCode=varName+"="+op1+";";
+		if(exeMode=="trace"){
+			assignCode+="yield \""+varName+"=\"+"+varName+";";
+		}
+	}
+	else if(exeMode=="generate"){
+		assignCode=varName+"="+op1+";\n";
+	}
 	// alert(assignCode);
 	return assignCode;
 }
@@ -378,8 +434,13 @@ function subroutineCodeGenerate (obj) {
 	var funStr="";
 	if(funName.length<=0||!(funName in functionNameTable))
 		funStr="oldtxt=$(\"#outputArea\").val();output=oldtxt+\"サブルーチン名『"+funName+"』の呼び出しに失敗しました．\"+\"\\n\";$(\"#outputArea\").val(output);";
-	else
+	else if(exeMode=="nomal")
 		funStr=funName+"();";
+	else if(exeMode=="trace")
+		funStr="stackNum++;generator[stackNum]="+funName+"();yield \"サブルーチン"+funName+"を呼び出します.\";"
+	else if(exeMode=="generate"){
+		funStr=funName+"();";
+	}
 	return funStr;
 }
 

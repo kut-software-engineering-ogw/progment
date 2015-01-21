@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SampleDiv</title>
+<title>Sample</title>
 <!-- CDNのロード始 -->
 <!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -33,9 +33,14 @@
 5
 ">
 			<p>
-				<input type="button" value="通常実行" id="exeButton">
+				<select name="exeMode" id="exeMode">
+						<option value="nomal">通常実行</option>
+						<option value="trace">トレース実行</option>
+						<option value="generate">コード生成</option>
+				</select>
+				<input type="button" value="実行" id="exeButton">
 				<input type="button" value="保存" id="saveButton">
-				<input type="button" value="テスト" id="Test">
+				<input type="button" value="Next" id="next">
 			</p>
 		</div>
 		<!-- ページ左側 -->
