@@ -338,6 +338,7 @@ a:hover{
 	padding: 0 0 1px 0;
 	position:relative;
 	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
+	background-color:#fff;
 	border-top: 1px solid white;
 	border-right: 1px solid #ccc;
 }
@@ -349,9 +350,11 @@ a:hover{
 	width: 25px;
 	height: 10px;
 	background: -webkit-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(.1,rgba(0, 0, 0, 0.2)));
+	/*background: -moz-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(.1,rgba(0, 0, 0, 0.2)));*/
 	border-left: 1px dashed rgba(0, 0, 0, 0.1);
 	border-right: 1px dashed rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
+/*	-moz-box-shadow: 0px 0px 12px rgba(0, 0, 0, 1);*/
 }
 
 /*.processBlock{
@@ -407,12 +410,12 @@ a:hover{
 	min-height: 50px;
 	padding: 0 0 1px 0;
 	position:relative;
-	background-color:#fff;
 	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
+	background-color:#fff;
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
-	-webkit-border-bottom-right-radius: 30px 30px;
-	-webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
+	border-bottom-right-radius: 30px 30px;
+	box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .sticky:before{
@@ -422,9 +425,13 @@ a:hover{
 	position: absolute;
 	bottom:0;
 	right:0;
-	-webkit-border-bottom-right-radius: 30px;
-	-webkit-box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+	border-bottom-right-radius: 30px;
+	box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
 	-webkit-transform:
+	rotate(0deg)
+	skew(-10deg,-15deg)
+	translate(-2px,-2px);
+	-moz-transform:
 	rotate(0deg)
 	skew(-10deg,-15deg)
 	translate(-2px,-2px);
@@ -459,8 +466,8 @@ a:hover{
 	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
-	-webkit-border-bottom-right-radius: 30px 30px;
-	-webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
+	border-bottom-right-radius: 30px 30px;
+	box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .largeSticky:before{
@@ -470,9 +477,13 @@ a:hover{
 	position: absolute;
 	bottom:0;
 	right:0;
-	-webkit-border-bottom-right-radius: 30px;
-	-webkit-box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+	border-bottom-right-radius: 30px;
+	box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
 	-webkit-transform:
+	rotate(0deg)
+	skew(-10deg,-15deg)
+	translate(-2px,-2px);
+	-moz-transform:
 	rotate(0deg)
 	skew(-10deg,-15deg)
 	translate(-2px,-2px);
@@ -487,8 +498,8 @@ a:hover{
 	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
-	-webkit-border-bottom-right-radius: 30px 30px;
-	-webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
+	border-bottom-right-radius: 30px 30px;
+	box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .mediumSticky:before{
@@ -498,13 +509,20 @@ a:hover{
 	position: absolute;
 	bottom:0;
 	right:0;
-	-webkit-border-bottom-right-radius: 30px;
-	-webkit-box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+	border-bottom-right-radius: 30px;
+	box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
 	-webkit-transform:
 	rotate(0deg)
 	skew(-10deg,-15deg)
 	translate(-2px,-2px);
+	-moz-transform:
+	rotate(0deg)
+	skew(-10deg,-15deg)
+	translate(-2px,-2px);
 }
+
+/*小*/
+
 .smallSticky {
 	width: 200px;
 	min-height: 50px;
@@ -514,8 +532,8 @@ a:hover{
 	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
-	-webkit-border-bottom-right-radius: 30px 30px;
-	-webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
+	border-bottom-right-radius: 30px 30px;
+	box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .smallSticky:before{
@@ -525,14 +543,18 @@ a:hover{
 	position: absolute;
 	bottom:0;
 	right:0;
-	-webkit-border-bottom-right-radius: 30px;
-	-webkit-box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+	border-bottom-right-radius: 30px;
+	box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
 	-webkit-transform:
 	rotate(0deg)
 	skew(-10deg,-15deg)
 	translate(-2px,-2px);
+	-moz-transform:
+	rotate(0deg)
+	skew(-10deg,-15deg)
+	translate(-2px,-2px);
 }
-/*小*/
+
 /*ワークスペース*/
 #workspace{
 	margin-left: 210px;
@@ -545,22 +567,67 @@ a:hover{
 }
 
 #mainList{
-	background-color: red;
-	min-height: 80px;
 	min-width: 100px;
+	min-height: 200px;
+	position: relative;
+	background-color: #ffffe7; 
+	background-image: 
+	linear-gradient(90deg, transparent 29px, #fcc 29px, #fcc 31px, transparent 31px),
+	linear-gradient(90deg, transparent 49px, #fcc 49px, #fcc 51px, transparent 51px),
+	linear-gradient(rgba(100,204,255,.3) .1em, transparent .1em);
+	background-size: 100% 1.5em;
 }
+
+#mainList:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0em;
+	background-color: #ffffe7; 
+	background-image: 
+	linear-gradient(90deg, transparent 29px, #fcc 29px, #fcc 31px, transparent 31px),
+	linear-gradient(90deg, transparent 49px, #fcc 49px, #fcc 51px, transparent 51px);
+}
+
 .subList{
 	background-color: red;
 	min-height: 80px;
 	min-width: 100px;
 }
+
 #main {
-	padding: 4px 0px 4px 0px;
-	background-color:blue; 
-	border-radius:4px;
+	padding: 16px 0px 0px 0px;
+/*	background-color:blue; */
+	/*border-radius:4px;*/
 	min-height: 100px;
 	width: 200px;
 }
+
+.noteTop {
+	width:200px;
+	height:40px;
+	background-color: #ffffe7;
+	position: relative;
+}
+
+.noteTop p{
+	position:absolute;
+	top:20px;
+	left:20px;
+}
+
+.noteRing{
+	width:200px;
+	min-height: 100px;
+	background:url("../img/note.png") repeat-x;
+	position:absolute;
+	top:-13px;
+	left:0px;
+}
+
+
 .sub {
 	padding: 4px 0px 4px 0px;
 	background-color:blue; 
@@ -574,8 +641,8 @@ a:hover{
 	height:60px;
 	background-color: #6e3c0c;
 	position: fixed;
-	margin-top:510px;
-	left:680px;
+	top:600px;
+	left:600px;
 }
 
 /*フッター*/
@@ -589,8 +656,10 @@ a:hover{
 	width:100%;
 	float:right;
 }
+
 #outputArea {
 	margin-left:450px;
+	min-width:100px;
 	padding:10px;
 	height:130px;
 	border:4px solid #00a0e9;
