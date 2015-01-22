@@ -72,8 +72,8 @@ function getWorkspace () {
 	console.log("保存します");
 	console.log($("#workspace").html());
 	temp=$("#workspace").html();
-	temp=temp.replace("\"","\\\"");
-	return $("#workspace").html();
+	temp=temp.replace(/\"/g,"\\\"");
+	return temp;
 }
 
 function getResult () {
