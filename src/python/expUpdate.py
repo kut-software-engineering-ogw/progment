@@ -36,7 +36,7 @@ def expUpdate(exerciseId, exerciseData, com, hel, res, lim):
     helpStmt = hel
     result = res
     limitedBlocks = lim
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor()
     stmt = ("update exp_data " "set workspace = %s, comment = %s, help_menu = %s, result = %s, limit_num = %s " "where exp_id = %s")
     data = (expData, comment, helpStmt, result, limitedBlocks, expId)

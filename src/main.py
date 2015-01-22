@@ -115,19 +115,30 @@ def application(environ, start_response):
         return [test_login_app(environ, start_response)]
         #return [login_app(environ, start_response)]
 
-    else:   # cookieが無くurlが"/login"以外の場合
-        print ("[redirect]: /menu path=", path)
+    elif path == '/':
+        print ("[redirect]: /login path=", path)
         status = '302 Found'
-        response_headers = [('Location', '/menu')]
-        start_response(status, response_headers)
+        response_headers = [('Location', '/login')]
+        start_response(status, response_headers)        
         return []
 
+    else:   # cookieが無くurlが"/login"以外の場合
+        print ("[error-403]:", path)
+        start_response('403 Forbidden', [('Content-Type', 'text/plain')])
+        return ['403 forbidden'.encode()]
 
 def test_app(environ, start_response, app_name):
+    output = """
+        <form action="/menu" method="POST">
+        <a href="../freeProg">フリープログラミング</a><br>
+        </form>
+    """
     status = "200 OK"
-    header = [('Content-Type', 'text/plain')]
-    start_response(status, header)
-    return app_name.encode()
+    #header = [('Content-Type', 'text/plain')]
+    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+    #start_response(status, header)
+    start_response(status, headers)
+    return output.encode()
 
 def test_login_app(envrion, start_response):
     output = """

@@ -6,7 +6,7 @@ import mysql.connector
 
 def prgDataGet(prgramId):
     prgId = prgramId
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor()
     stmt = (
         "select workspace, data_id, data_name, comment from work_data "

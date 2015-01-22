@@ -14,18 +14,9 @@
 <script type="text/javascript" src="javascript/programmingInitializeModule.js"></script>
 <script type="text/javascript" src="javascript/blockControllerModule.js"></script>
 <script type="text/javascript" src="javascript/executionModule.js"></script>
-<script type="text/javascript" src="javascript/loadWorkData.js"></script>
-<script type="text/javascript" src="javascript/saveWorkData.js"></script>
-<script type="text/javascript" src="javascript/sweet-alert.min.js"></script>
-<script type="text/javascript" src="javascript/jquery.cookie.js"></script>
-
-
-
-
 <!-- javascriptロード終 -->
 <!-- CSSロード始 -->
 <link rel="stylesheet" type="text/css" href="css/free.css">
-<link rel="stylesheet" type="text/css" href="css/sweet-alert.css">
 <!-- CSSロード終 -->
 </head>
 
@@ -43,25 +34,31 @@
 				<div id="headTopLeft">
 				<p>ユーザID : {{userId}}</p>
 				<input type="submit" value="新規作成">
-				<select id="load">
+				<select >
 				<option value="">読み込み</option>
-				{% for savedData in savedDataList %}
-				<option value = "{{ savedData.data_id }}" >{{ savedData.data_name }}</option>
+				<option value="" selected>    x   </option>
+				{% for savedDataList in savedDataLists %}
+					{% if savedDataList.prgId is selectedId %}
+					<option value = "{{ savedDataList.prgId }}" selected>{{ savedDataList.prgName }}</option>
+					{% else %}
+					<option value = "{{ savedDataList.prgId }}">{{ savedDataList.prgName }}</option>
+					{% endif %}
 				{% endfor %}
 				</select>
-				<input id="save" type="submit" value="保存">
-				<input id="delete" type="submit" value="削除">
+<!--				<input type="submit" value="読み込み"> -->
+				<input type="submit" value="保存">
+				<input type="submit" value="削除">
 				</div><!-- headTopLeft -->
 			</div><!-- headTop -->
 			<div id="info">
 			<div id="infoContents">
 			<div id="infoName">
 			<p>プログラム名</p>
-			<input id="programName" type="text" size="20" value="{{prgName}}" maxlength="20">
+			<input type="text" size="20" value="{{prgName}}" maxlength="20">
 			</div><!-- infoName -->
 			<div id="infoComment">
 			<p>コメント</p>
-			<textarea id="comment" rows="2" cols="50">{{comment}}</textarea>
+			<textarea rows="2" cols="50">{{comment}}</textarea>
 			</div><!-- infoComent -->
 			</div><!-- infoContents -->
 			<div id="infoRun">

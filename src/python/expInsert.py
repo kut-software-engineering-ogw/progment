@@ -37,7 +37,7 @@ def expInsert(masterUserId, exerciseName, exerciseData, com, hel, res, lim):
     result = res
     limitedBlockes = lim
     
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor()
 # make new expId
     cur.execute("select exp_id from exp_data where user_id = " + mstUsrId)

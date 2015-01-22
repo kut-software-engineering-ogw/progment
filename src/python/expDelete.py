@@ -24,7 +24,7 @@ def exp_delete_app(environ, start_response):
 
 def expDelete(exerciseId):
     expId = exerciseId
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor()
     stmt = ("delete from exp_data " "where exp_id = %s ")
     data = (expId,)

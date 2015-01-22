@@ -1,12 +1,12 @@
 jQuery(function() {
 	var dataStart = $("#workspace").html();
-
 	$("#load").change(function() {
-		//alert($("#workspace").html());
+		alert($("#workspace").html());
 		//workspaceが変更されているか判別
 		if(dataStart != $("#workspace").html()){
 //********************保存シークエンス開始*****************
 			// alert("workspace判別");
+
 			var workId = $("#load").val();			
 			if(workId == ''){
 //********************************************* 新規保存
@@ -115,31 +115,23 @@ jQuery(function() {
 
 	//作業データ読み込みメソッド
 	function loadWork(){
-	    var workIdLoad = $("#load").val();
+		var workIdLoad = $("#load").val();
 	    var cookie  = $.cookie('user_id');
-	    var loadSet = $("#load").html();
 	    var url = "freeProg?prgId="+workIdLoad;
 	    $.ajax({
 	    	url: url,
 	    	type: 'GET',
 	    	cache: false,
-	    	// data: {
-	     //       cookie: cookie,
-	     //       work_id: workIdLoad
-	    	// },
+			//data: {
+			// cookie: cookie,
+			// work_id: workIdLoad
+			//},
 	    	dataType: 'html',
 	    	}).done(function( data, textStatus, jqXHR ) {
 	        	alert("load ok");
+	        	// alert(workIdLoad);
 	        	// alert(data);
-	        	// $("#wrap").html(data);
-	        	$("#workspace").html($('#workspace', $(data)).html());
-	        	$("#comment").html($('#comment', $(data)).html());
-	        	$("#programName").val($('#programName', $(data)).val());
-	        	if(loadSet != $('#load', $(data)).html()) {
-	        		$('#load').html($('#load', $(data)).html());
-	        	}
-	        	// alert($("#programName").val())
-	        	alert($("workspace", $(data)).html());
+	        	$("#wrap").html(data);
 			}).fail(function( jqXHR, textStatus, errorThrown ) {
 	        	alert("load fail");
 		});
@@ -149,16 +141,16 @@ jQuery(function() {
     var name = $("#programName").val();
     var comment = $("#comment").val();
     var cookie  = $.cookie('user_id');
-    var work = $("#workspace").html();
-    alert($("#load").val());
+    var data = $("workspace").val();
     $.ajax({
-      url: 'freeProg',
+      url: '',
       type: 'POST',
+      cache: false,
       data: {
          data: work,
          name: name,
          comment: comment,
-         // cookie: cookie
+         cookie: cookie
       },
       dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
@@ -169,22 +161,20 @@ jQuery(function() {
   }
   //上書きメソッド
   function save(){
-    var work =$("#workspace").html();
     var workIdSave = $("#load").val();
     var comment = $("#comment").val();
     var cookie  = $.cookie('user_id');
-    var url = 'freeProg/prgUpdate?prgId='+workIdSave+'&comment='+comment+'&workSpaceData='+work;
-
     $.ajax({
-      url: url,
+      url: 'free6666.html',
       type: 'POST',
-		// data: {
-		// workSpaceData: work,
-		    //  comment: comment,
-		    // prgID: workIdSave,
-         // cookie: cookie
-		    //},
-		dataType: 'html',
+      cache: false,
+      data: {
+         data: work,
+         comment: comment,
+         workId: workIdSave,
+         cookie: cookie
+      },
+      dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
           alert("上書き保存ok");
     }).fail(function( jqXHR, textStatus, errorThrown ) {

@@ -5,7 +5,7 @@ import mysql.connector
 
 def expDataGet(exerciseId):
     expId = exerciseId
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor()
     stmt = ("select workspace, exp_id, exp_name, comment, help_menu, result, limit_num from exp_data " "where exp_id = %s")
     data = (expId,)

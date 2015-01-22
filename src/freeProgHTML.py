@@ -1,4 +1,4 @@
-﻿#!/usr/local/bin/python3
+#!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
 # 作成者　別役速斗　作成日 2015/1/5
 import sys
@@ -76,7 +76,7 @@ def freeProgHTML(prgId, userId):
 
     # prgIdがNoneの時は、保存データを読まずにレンダリング
     if prgId is None:
-        html = tpl.render({'userId':userId,'savedDataLists':savedDataList,'prgName':'','comment':'','prgData':'','selectedId':''}).encode('utf-8')
+        html = tpl.render({'userId':userId,'savedDataList': savedDataList,'prgName':'','comment':'','prgData':''}).encode('utf-8')
         return html
     
     # ユーザの保存しているデータ本体を取得
@@ -96,7 +96,7 @@ def freeProgHTML(prgId, userId):
     endIndex = bufStr.index('#ProgramEND#')
     prgData = bufStr[startIndex:endIndex-1]
     
-    html = tpl.render({'userId':userId,'savedDataLists':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,'selectedId':prgId}).encode('utf-8')
+    html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData}).encode('utf-8')
     #html = "test".encode()
     return html
 
@@ -111,7 +111,7 @@ def expProgHTML(prgId, userId):
 
     # prgIdがNoneの時は、保存データを読まずにレンダリング
     if prgId is None:
-        html = tpl.render({'userId':userId,'savedDataLists':savedDataList,'prgName':'','comment':'','prgData':'','savedDataLists':savedDataList,'selectedId':''}).encode('utf-8')
+        html = tpl.render({'userId':userId,'savedDataList':'','prgName':'','comment':'','prgData':''}).encode('utf-8')
         return html
 
     # ユーザの保存しているデータ本体を取得
@@ -136,8 +136,8 @@ def expProgHTML(prgId, userId):
     bufStr = bufList[1]
     limitedBlocks = bufStr.split(',')
 
-    html = tpl.render({'userId':userId,'savedDataLists':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
-                       'help':help,'result':result,'limitedBlocks':limitedBlocks,'selectedId':prgId}).encode('utf-8')
+    html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
+                       'help':help,'result':result,'limitedBlocks':limitedBlocks}).encode('utf-8')
 
     return html
 
@@ -151,7 +151,7 @@ def editProgHTML(prgId, userId):
     savedDataList = expNameGet(userId)
 
     if prgId is None:
-        html = tpl.render({'userId':userId,'savedDataLists':savedDataList,'prgName':'','comment':'','prgData':'','selectedId':''}).encode('utf-8')
+        html = tpl.render({'userId':userId,'savedDataList':'','prgName':'','comment':'','prgData':''}).encode('utf-8')
         return html
 
     # ユーザの保存しているデータ本体を取得
@@ -176,8 +176,8 @@ def editProgHTML(prgId, userId):
     bufStr = bufList[1]
     limitedBlocks = bufStr.split(',')
 
-    html = tpl.render({'userId':userId,'savedDataLists':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
-                       'help':help,'result':result,'limitedBlocks':limitedBlocks,'selectedId':prgId}).encode('utf-8')
+    html = tpl.render({'userId':userId,'savedDataList':savedDataList,'prgName':prgName,'comment':comment,'prgData':prgData,
+                       'help':help,'result':result,'limitedBlocks':limitedBlocks}).encode('utf-8')
 
     return html
 

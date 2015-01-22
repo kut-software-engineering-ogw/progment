@@ -4,7 +4,7 @@ import mysql.connector
 # in: usrId, out: prgNameList
 
 def expNameGet(usrId):
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor()
     cur.execute('select exp_name from exp_data where user_id = '+ usrId)
     expNames = cur.fetchall()

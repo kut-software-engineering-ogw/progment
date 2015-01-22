@@ -1,0 +1,163 @@
+#head{
+	background-color: #F00;
+	height: 50px;
+}
+
+#blockListArea{
+	float: left;
+	background-color: #FF0;
+	width: 250px;
+	height: 700px
+}
+
+#blockListArea h3{
+	background-color: #00BFFF;
+}
+
+#blockList,#tempBlockList{
+	background-color: #98FB98;
+}
+
+#workspace{
+	/*float: left;*/
+	margin-left: 250px;
+	background-color: #0FF;
+	min-width: 100px;
+	height: 700px;
+}
+
+#dustbin{
+	position:absolute;
+	bottom:0%; right:0%;
+	background-color: #AAA;
+	width: 200px;
+	height: 200px;
+}
+
+#outputArea{
+	position:absolute;
+	right: 0%;
+}
+
+#foot{
+	background-color: #0A0;
+	clear: both;
+	height: 100px;
+}
+
+#mainList{
+	background-color: red;
+	min-height: 80px;
+	min-width: 100px;
+}
+.subList{
+	background-color: red;
+	min-height: 80px;
+	min-width: 100px;
+}
+#main {
+	padding: 4px 0px 4px 0px;
+	background-color:blue; 
+	border-radius:4px;
+	min-height: 100px;
+	width: 200px;
+}
+.sub {
+	display: inline-block;
+	padding: 4px 0px 4px 0px;
+	background-color:blue; 
+	border-radius:4px;
+	height: 100px;
+	width: 200px;
+}
+
+.nestBlock{
+	background-color: green;
+	min-height: 50px;
+	width: 120px;
+}
+
+.nestArea{
+	background-color: blue;
+	min-height: 40px;
+	margin-bottom: 4px;
+}
+
+.mathBlock{
+	background-color: green;
+	width: 155px;
+	height: 50px;
+}
+.strBlock{
+	background-color: green;
+	width: 155px;
+	height: 50px;
+}
+.logicBlock{
+	background-color: green;
+	width: 155px;
+	height: 50px;
+}
+
+.intArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.charArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.varArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.dataArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.boolArea{
+	display: inline-block;
+	min-width: 50px;
+	min-height: 50px;
+	background-color: blue;
+}
+
+.intBlock{
+	background-color: green;
+	width: 50px;
+	height: 50px;
+}
+
+.charBlock{
+	background-color: green;
+	width: 50px;
+	height: 50px;
+}
+
+.boolBlock{
+	background-color: green;
+	width: 50px;
+	height: 50px;
+}
+
+.processBlock{
+	background-color: green;
+	width: 180px;
+	height: 55px;
+}
+
+.exeBlock{
+	border: medium solid yellow;
+}

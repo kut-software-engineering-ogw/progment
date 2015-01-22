@@ -9,10 +9,10 @@ import sys
 
 import mysql.connector
 
-from cookie import create_cookie
-
 sys.path.append('/usr/local/python/lib/python3.4/site-packages')
 sys.path.append('/var/www/cgi-bin')
+from cookie import create_cookie
+
 
 def collation_app(environ, start_response):
     """
@@ -26,12 +26,14 @@ def collation_app(environ, start_response):
     output = str(r_value) + "login-id: " + cId
     status = '302 Found'
     if r_value:     # ログイン成功時の処理
+        print ("login success")
         cookie = create_cookie(cId)
         response_headers = [('Location', '/menu'),
                             ('Set-Cookie', cookie["session"].OutputString()),
                             ('Set-Cookie', cookie["user_id"].OutputString())]
     else:           # ログイン失敗時の処理
-        response_headers = [('Location', '/menu')]
+        print ("login error")
+        response_headers = [('Location', '/login')]
     start_response(status, response_headers)
     return output.encode()
 
@@ -42,7 +44,7 @@ def collation(cId, cPassword):
     :param cPassword: ログインパスワード
     :return:ログインが成功した場合true, 失敗した場合false
     """
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor(dictionary=True)
     stmt = (
         'SELECT user_id, password FROM user '

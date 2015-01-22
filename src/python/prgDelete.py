@@ -24,7 +24,7 @@ def prg_delete_app(environ, start_response):
 
 def prgDelete(programId):
     prgId = programId
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor()
     stmt = ("delete from work_data " "where data_id = %s")
     data = (prgId,)

@@ -27,7 +27,7 @@ def prg_update_app(environ, start_response):
 
 
 def prgUpdate(prgId, prgData, comment):
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor()
     stmt = ("update work_data " "set workspace = %s, comment = %s " "where data_id = %s")
     data = (prgData, comment, prgId)

@@ -11,7 +11,7 @@ sys.path.append('/var/www/cgi-bin')
 from session_db import SessionDB
 from session import check_session
 
-default_domain = '172.21.34.106'
+default_domain = '192.168.192.130'
 default_path = '/'
 
 def create_cookie(user_id, domain=default_domain, path=default_path):
@@ -54,4 +54,5 @@ def get_cookie(environ):
         print ('[login-user]:', user_id)
         return cookie
     else:
+        print ("not exist cookie")
         return None

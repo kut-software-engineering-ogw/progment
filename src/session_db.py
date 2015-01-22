@@ -12,7 +12,7 @@ sys.path.append('/usr/local/python/lib/python3.4/site-packages')
 sys.path.append('/var/www/cgi-bin')
 
 default_login_user='root'
-default_login_password='yokolab'
+default_login_password='root00'
 default_login_host='127.0.0.1'
 default_login_database='progment'
 

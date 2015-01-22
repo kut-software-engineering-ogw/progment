@@ -30,7 +30,7 @@ def prgInsert(userId, programName, programData, com):
     prgName = programName
     prgData = programData
     comment = com
-    connect = mysql.connector.connect(user='root', password='yokolab', host='127.0.0.1', database='progment')
+    connect = mysql.connector.connect(user='root', password='root00', host='127.0.0.1', database='progment')
     cur = connect.cursor()
     cur.execute('select user_id from work_data')
     tmp = cur.fetchall()
