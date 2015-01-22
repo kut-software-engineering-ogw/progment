@@ -1,0 +1,14 @@
+デプロイ環境構築 windows
+
+1, 必要なパッケージをダウンロードしてインストール
+	virtualbox
+	vagrand
+	
+2, 
+	カレントディレクトリをprogmentへ
+	>vagrand box add progment [progment.boxのurl]
+	>vagrand up
+
+※progment.boxの置き場所
+	https://www.dropbox.com/sh/y45r835fk2c5jvb/AACg8b8rE5Bff6EwjXbk5xHHa?dl=0
+
