@@ -17,7 +17,7 @@ jQuery(function() {
   function newSave(){
     var name = $("#programName").val();
     var comment = $("#comment").val();
-    var work = $("#workspace").html();
+    var work = getWorkspace();
     var cookie = $.cookie('user_id');
     var url = 'freeProg/prgInsert?prgName='+name+'&comment='+comment+'&workSpaceData='+work;
     

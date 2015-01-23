@@ -36,6 +36,8 @@ jQuery(function() {
       }).done(function( data, textStatus, jqXHR ) {
           alert("ok");
           alert(data);
+          $("select[id='load']").val("");
+          $("#load option[value='"+workId+"']").remove();
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("fail");
     });
