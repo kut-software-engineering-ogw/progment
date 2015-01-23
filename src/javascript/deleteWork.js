@@ -1,5 +1,5 @@
 jQuery(function() {
-  $("#delete").change(function() {
+  $("#delete").on("click", function() {
     //削除をするかどうかを問うアラートの表示
     swal({
           title: "選択したデータの削除を行いますか?",
@@ -25,18 +25,16 @@ jQuery(function() {
   });
   //読み込んでいるデータの削除を行うメソッド
   function deleteWork(){
-    var workId  = $("#delete").val();
+    var workId  = $("#load").val();
     var cookie  = $.cookie('user_id');
+    var url ="freeProg/prgDelete?prgId="+workId;
     $.ajax({
-      url: 'free.html',
+      url: url,
       type: 'POST',
-      data: {
-          work_id: workId,
-          cookie: cookie
-      },
-      dataType: 'text'
+      dataType: 'html'
       }).done(function( data, textStatus, jqXHR ) {
           alert("ok");
+          alert(data);
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("fail");
     });
