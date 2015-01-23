@@ -28,6 +28,7 @@ jQuery(function() {
     var workId  = $("#load").val();
     var cookie  = $.cookie('user_id');
     var url ="freeProg/prgDelete?prgId="+workId;
+    alert(workId);
     $.ajax({
       url: url,
       type: 'POST',

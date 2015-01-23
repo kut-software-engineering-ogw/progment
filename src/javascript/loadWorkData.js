@@ -135,9 +135,9 @@ jQuery(function() {
 	        	$("#workspace").html($('#workspace', $(data)).html());
 	        	$("#comment").html($('#comment', $(data)).html());
 	        	$("#programName").val($('#programName', $(data)).val());
-	        	if(loadSet != $('#load', $(data)).html()) {
-	        		$('#load').html($('#load', $(data)).html());
-	        	}
+	        	// if(loadSet != $('#load', $(data)).html()) {
+	        	// 	$('#load').html($('#load', $(data)).html());
+	        	// }
 	        	// alert($("#programName").val())
 	        	alert($("workspace", $(data)).html());
 			}).fail(function( jqXHR, textStatus, errorThrown ) {
