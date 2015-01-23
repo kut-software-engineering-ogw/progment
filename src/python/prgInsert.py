@@ -54,7 +54,7 @@ def prgInsert(userId, programName, programData, com):
     else:
         prgId = "0".zfill(14)
         print ("not exist data", prgId)
-    stmt = ("insert into work_data (data_id, data_name, workspace, user_id, comment)" "values(%s, %s, %s, %s, %s)")
+    stmt = ("insert into work_data (data_id, data_name, workspace, user_id, comment)" "values(%s, %s, %s, %s, %s);")
     data = (prgId, prgName, prgData, usrId, comment)
     cur.execute(stmt, data)
     cur.close()
