@@ -99,7 +99,18 @@ def freeProgHTML(prgId, userId):
 
     # prgIdがNoneの時は、保存データを読まずにレンダリング
     if prgId is None:
-        html = tpl.render({'userId':userId,'savedDataList': savedDataList,'prgName':'','comment':'','prgData':''}).encode('utf-8')
+        prgData = (
+            '<div id="main">'
+			'<div class="noteTop"><p>メイン</p><div class="noteRing"></div></div>'
+			'<ul id="mainList">'
+			'</ul><!-- mainList -->'
+		    '</div><!-- main -->'
+            '<div id="dustbin">'
+		    '<img src="img/trashBox.png"/>'
+		    '</div><!-- dustbin -->'
+        )
+
+        html = tpl.render({'userId':userId,'savedDataList': savedDataList,'prgName':'','comment':'','prgData':prgData}).encode('utf-8')
         return html
     
     # ユーザの保存しているデータ本体を取得
