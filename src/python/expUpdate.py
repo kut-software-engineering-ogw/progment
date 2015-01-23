@@ -1,32 +1,43 @@
 #!/usr/local/python/bin/python3
 # -coding:utf-8
 import cgi
-import mysql.connector
-# in: usrId, out: prgNameList
+import sys
 
-def exp_update_app(environ, start_response):
+import mysql.connector
+
+sys.path.append('/var/www/cgi-bin')
+from cookie import get_cookie
+from http_client_error import forbidden
+
+def exp_update_handler(environ, start_response):
     """
     呼び出しメソッド
     """
-    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
-    exp_id = form.getfirst('expId')
-    exp_data = form.getfirst('workSpaceData')
-    comment = form.getfirst('comment')
-    help_menu = form.getfirst('helpMenu')
-    result = form.getfirst('result')
-    limit_blocks = form.getfirst('limitedBlocks')
+    cookie = get_cookie(environ)
+    if cookie is None:
+        """ セッションを確立していない場合 """
+        return forbidden(environ, start_response)
+    else:
+        """ セッションを確立している場合 """
+        form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
+        exp_id = form.getfirst('expId')
+        exp_data = form.getfirst('workSpaceData')
+        comment = form.getfirst('comment')
+        help_menu = form.getfirst('helpMenu')
+        result = form.getfirst('result')
+        limit_blocks = form.getfirst('limitedBlocks')
 
-    ret = expUpdate(exp_id, exp_data, comment, help_menu, result, limit_blocks)
+        ret = expUpdate(exp_id, exp_data, comment, help_menu, result, limit_blocks)
 
-    output = '<return result="0">'
-    if ret is not None:
-        output = '<return result="1">'
+        output = '<return result="0">'
+        if ret is not None:
+            output = '<return result="1">'
 
-    status = '200 OK'
-    response_headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
-    start_response(status, response_headers)
+        status = '200 OK'
+        response_headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+        start_response(status, response_headers)
 
-    return output.encode()
+        return [output.encode()]
 
 
 def expUpdate(exerciseId, exerciseData, com, hel, res, lim):

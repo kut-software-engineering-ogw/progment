@@ -19,7 +19,7 @@ jQuery(function() {
     var comment = $("#comment").val();
     var work = $("#workspace").html();
     var cookie = $.cookie('user_id');
-    var url = 'freeProg/prgInsert?prgName='+name+'&comment='+comment+'&workSpaceData=ueda';
+    var url = 'freeProg/prgInsert?prgName='+name+'&comment='+comment+'&workSpaceData='+work;
     
     $.ajax({
       url: url,

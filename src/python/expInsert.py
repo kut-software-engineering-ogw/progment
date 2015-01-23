@@ -1,32 +1,44 @@
 #!/usr/local/python/bin/python3
 # coding:utf-8
 import cgi
-import mysql.connector
-# in: usrId, out: prgNameList
+import sys
 
-def exp_insert_app(environ, start_response, master_user_id):
+import mysql.connector
+
+sys.path.append('/var/www/cgi-bin')
+from http_client_error import forbidden
+from cookie import get_cookie
+
+def exp_insert_handler(environ, start_response):
     """
     呼び出しメソッド
     """
-    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
-    exp_name = form.getfirst('expName')
-    exp_data = form.getfirst('workSpaceData')
-    comment = form.getfirst('comment')
-    help_menu = form.getfirst('helpMenu')
-    result = form.getfirst('result')
-    limit_blocks = form.getfirst('limitedBlocks')
+    cookie = get_cookie(environ)
+    if cookie is None:
+        """ セッションを確立していない場合 """
+        return forbidden(environ, start_response)
+    else:
+        """ セッションを確立している場合 """
+        master_user_id = cookie['user_id'].value
+        form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
+        exp_name = form.getfirst('expName')
+        exp_data = form.getfirst('workSpaceData')
+        comment = form.getfirst('comment')
+        help_menu = form.getfirst('helpMenu')
+        result = form.getfirst('result')
+        limit_blocks = form.getfirst('limitedBlocks')
 
-    expId = expInsert(master_user_id, exp_name, exp_data, comment, help_menu, result, limit_blocks)
+        expId = expInsert(master_user_id, exp_name, exp_data, comment, help_menu, result, limit_blocks)
 
-    output = '<return result="0">'
-    if expId is not None:
-        output = '<return prgId="{expId}" result="1">'.format(expId=expId)
+        output = '<return result="0">'
+        if expId is not None:
+            output = '<return prgId="{expId}" result="1">'.format(expId=expId)
 
-    status = '200 OK'
-    response_headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
-    start_response(status, response_headers)
+        status = '200 OK'
+        response_headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+        start_response(status, response_headers)
 
-    return output.encode()
+        return [output.encode()]
 
 def expInsert(masterUserId, exerciseName, exerciseData, com, hel, res, lim):
     expName = exerciseName
