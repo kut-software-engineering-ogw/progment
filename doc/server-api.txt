@@ -17,7 +17,7 @@ version:     0.0.4
         -説明
             cssを要求するURLです
 
-/login:
+/login(GETメソッド時):
         -返り値
             ログイン画面のHTML
         -説明
@@ -25,7 +25,7 @@ version:     0.0.4
             Cookieが発行されていない状態で別のURLにアクセスしようとすると、
             /loginへリダイレクトされる
 
-/collation:
+/login(POSTメソッド時):
         -引数
             cID:        ID
             cPassword:  パスワード
@@ -35,6 +35,10 @@ version:     0.0.4
             照合を行うURL
             このURLへ引数をPOSTで送信すると
             照合モジュールとログイン成功/失敗時のページ生成モジュールが実行される
+
+/logout(GETメソッドのみ):
+        -説明
+            このURLへリクエストを飛ばすとログアウトされる
 
 /menu:
         -返り値
