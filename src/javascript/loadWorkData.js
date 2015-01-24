@@ -136,7 +136,7 @@ jQuery(function() {
 	        	alert(work);
 	        	var data = work.replace(/上田は32/g, ";");
 	        	$("#workspace").html($('#workspace', $(data)).html());
-	        	$("#comment").html($('#comment', $(data)).html());
+	        	$("#comment").val($('#comment', $(data)).val());
 	        	$("#programName").val($('#programName', $(data)).val());
 	        	// $.getScript("javascript/blockControllerModule.js");
 	        	// $.getScript("javascript/executionModule.js");

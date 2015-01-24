@@ -28,7 +28,7 @@ jQuery(function() {
   function deleteWork(){
     var workId  = $("#load").val();
     var cookie  = $.cookie('user_id');
-    var url ="freeProg/prgDelete?prgId="+workId;
+    var url ="freeProg/prgDelete?prgID="+workId;
     alert(workId);
     $.ajax({
       url: url,
@@ -37,10 +37,10 @@ jQuery(function() {
       }).done(function( data, textStatus, jqXHR ) {
           alert("ok");
           alert(data);
-          $("select[id='load']").val("start");
+          $("select[id='load']").val("");
           $("#load option[value='"+workId+"']").remove();
           $("#workspace").html(dataStart);
-          $("#comment").html("");
+          $("#comment").val("");
           $("#programName").val("");
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("fail");
