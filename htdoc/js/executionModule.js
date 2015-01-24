@@ -16,24 +16,6 @@ generator=[];
 result=undefined;
 OutText="";
 
-function getWorkspace () {
-	$("#workspace input").each(function  () {
-		//console.log("kore"+$(this).parent().html());
-		var temp=$(this).parent().html();
-		//temp="aaaa value konnichiwa";
-		console.log(temp);
-		// var start=temp.indexOf("value\"");
-		// var end=temp.indexOf("\"",start+6);
-		var re = new RegExp("value=\"(.*?)\"");
-		temp=temp.replace(re,"value=\""+$(this).val()+"\"");
-		console.log(temp);
-		$(this).parent().html(temp);
-	})
-	console.log("保存します");
-	console.log($("#workspace").html());
-	return $("#workspace").html();
-}
-
 jQuery(document).ready(function(){
 	$("#saveButton").click(function () {
 		result=getWorkspace();
@@ -43,6 +25,10 @@ jQuery(document).ready(function(){
 	$("#exeButton").click(function () {
 		//exeMode=$("#exeMode").val();
 		executionMain();
+		if(exeMode=="trace"){
+			$("#next").show();
+			$("#exeButton").hide();
+		}
 		if(((programmingMode=="kadai")&&(exeMode=="nomal"))){
 			result=$("#outputArea").val();
 			answer=$("#answer").val();
@@ -68,8 +54,30 @@ jQuery(document).ready(function(){
 		for(var i=0;i<blockNum;i++){
 			$("#blockNumber"+i).attr('id', '');
 		}
+		$("#next").hide();
+		$("#exeButton").show();
 	});
 });
+
+function getWorkspace () {
+	$("#workspace input").each(function  () {
+		//console.log("kore"+$(this).parent().html());
+		var temp=$(this).parent().html();
+		//temp="aaaa value konnichiwa";
+		console.log(temp);
+		// var start=temp.indexOf("value\"");
+		// var end=temp.indexOf("\"",start+6);
+		var re = new RegExp("value=\"(.*?)\"");
+		temp=temp.replace(re,"value=\""+$(this).val()+"\"");
+		console.log(temp);
+		$(this).parent().html(temp);
+	})
+	console.log("保存します");
+	console.log($("#workspace").html());
+	temp=$("#workspace").html();
+	temp=temp.replace(/;/g,"上田は32");
+	return temp;
+}
 
 function getResult () {
 	executionMain();

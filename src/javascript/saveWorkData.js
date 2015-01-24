@@ -17,9 +17,9 @@ jQuery(function() {
   function newSave(){
     var name = $("#programName").val();
     var comment = $("#comment").val();
-    var work = $("#workspace").html();
+    var work = getWorkspace();
     var cookie = $.cookie('user_id');
-    var url = 'freeProg/prgInsert?prgName='+name+'&comment='+comment+'&workSpaceData=ueda';
+    var url = 'freeProg/prgInsert?prgName='+name+'&comment='+comment+'&workSpaceData='+work;
     
     $.ajax({
       url: url,
@@ -27,6 +27,8 @@ jQuery(function() {
       dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
           alert("新規保存ok");
+          $("#load").append($("<option>").val("999").text(name));
+          $("select[id='load']").val("999");
 	  alert(data);
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("新規保存fail");

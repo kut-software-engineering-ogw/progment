@@ -5,59 +5,82 @@ import sys
 sys.path.append('/usr/local/python/lib/python3.4/site-packages')
 sys.path.append('/var/www/cgi-bin/python')
 
+from http_client_error import forbidden
+from cookie import get_cookie
 from jinja2 import Environment, FileSystemLoader
 from prgNameGet import prgNameGet
 from prgDataGet import prgDataGet
 from expNameGet import expNameGet
 from expDataGet import expDataGet
-import cgi
 import urllib.parse
 
 
 # テンプレのあるディレクトリとエンコードを指定
 env = Environment(loader=FileSystemLoader('/var/www/cgi-bin', encoding=('utf8')))
 
-def freeProgHTML_app(environ, start_response, cookie):
-    query = dict(urllib.parse.parse_qsl(environ.get('QUERY_STRING')))
-    prgId = None
-    if 'prgId' in query:
-        prgId = query['prgId']
-    output = freeProgHTML(prgId, cookie['user_id'].value)
-    status = "200 OK"
-    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
-    start_response(status, headers)
-    return output
+def freeProgHTML_handler(environ, start_response):
+    cookie = get_cookie(environ)
+    if cookie is None:
+        """ セッションを確立していない場合 """
+        return forbidden(environ, start_response)
+    else:
+        """ セッションを確立している場合 """
+        query = dict(urllib.parse.parse_qsl(environ.get('QUERY_STRING')))
+        prgId = None
+        if 'prgId' in query:
+            prgId = query['prgId']
+        output = freeProgHTML(prgId, cookie['user_id'].value)
+        status = "200 OK"
+        headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+        start_response(status, headers)
+        return [output]
 
-def expProgHTML_app(environ, start_response, cookie):
-    query = dict(urllib.parse.parse_qsl(environ.get('QUERY_STRING')))
-    expId = None
-    if 'expId' in query:
-        expId = query['expId']
+def expProgHTML_handler(environ, start_response):
+    cookie = get_cookie(environ)
+    if cookie is None:
+        """ セッションを確立していない場合 """
+        return forbidden(environ, start_response)
+    else:
+        """ セッションを確立している場合 """
+        query = dict(urllib.parse.parse_qsl(environ.get('QUERY_STRING')))
+        expId = None
+        if 'expId' in query:
+            expId = query['expId']
+        output = expProgHTML(expId, cookie['user_id'].value)
+        status = "200 OK"
+        headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+        start_response(status, headers)
+        return [output]
 
-    output = expProgHTML(expId, cookie['user_id'].value)
-    status = "200 OK"
-    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
-    start_response(status, headers)
-    return output
+def editProgHTML_handler(environ, start_response):
+    cookie = get_cookie(environ)
+    if cookie is None:
+        """ セッションを確立していない場合 """
+        return forbidden(environ, start_response)
+    else:
+        """ セッションを確立している場合 """
+        query = dict(urllib.parse.parse_qsl(environ.get('QUERY_STRING')))
+        expId = None
+        if 'expId' in query:
+            expId = query['expId']
 
-def editProgHTML_app(environ, start_response, cookie):
-    query = dict(urllib.parse.parse_qsl(environ.get('QUERY_STRING')))
-    expId = None
-    if 'expId' in query:
-        expId = query['expId']
+        output = editProgHTML(expId, cookie['user_id'].value)
+        status = "200 OK"
+        headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+        start_response(status, headers)
+        return [output]
 
-    output = editProgHTML(expId, cookie['user_id'].value)
-    status = "200 OK"
-    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
-    start_response(status, headers)
-    return output
-
-def userApp_app(environ, start_response, cookie):
-    output = userApp(cookie['user_id'].value)
-    status = "200 OK"
-    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
-    start_response(status, headers)
-    return output
+def userApp_handler(environ, start_response):
+    cookie = get_cookie(environ)
+    if cookie is None:
+        """ セッションを確立していない場合 """
+        return forbidden(environ, start_response)
+    else:
+        output = userApp(cookie['user_id'].value)
+        status = "200 OK"
+        headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
+        start_response(status, headers)
+        return [output]
 
 def __getStr(bufStr, split):
     startIndex = bufStr.index('#'+split+'#') + len(split) + 3
@@ -76,7 +99,15 @@ def freeProgHTML(prgId, userId):
 
     # prgIdがNoneの時は、保存データを読まずにレンダリング
     if prgId is None:
-        html = tpl.render({'userId':userId,'savedDataList': savedDataList,'prgName':'','comment':'','prgData':''}).encode('utf-8')
+        prgData = (
+            '<div id="main">'
+			'<div class="noteTop"><p>メイン</p><div class="noteRing"></div></div>'
+			'<ul id="mainList">'
+			'</ul><!-- mainList -->'
+		    '</div><!-- main -->'
+        )
+
+        html = tpl.render({'userId':userId,'savedDataList': savedDataList,'prgName':'','comment':'','prgData':prgData}).encode('utf-8')
         return html
     
     # ユーザの保存しているデータ本体を取得
@@ -111,7 +142,14 @@ def expProgHTML(prgId, userId):
 
     # prgIdがNoneの時は、保存データを読まずにレンダリング
     if prgId is None:
-        html = tpl.render({'userId':userId,'savedDataList':'','prgName':'','comment':'','prgData':''}).encode('utf-8')
+        prgData = (
+            '<div id="main">'
+            '<div class="noteTop"><p>メイン</p><div class="noteRing"></div></div>'
+            '<ul id="mainList">'
+            '</ul><!-- mainList -->'
+            '</div><!-- main -->'
+        )
+        html = tpl.render({'userId':userId,'savedDataList':'','prgName':'','comment':'','prgData':prgData}).encode('utf-8')
         return html
 
     # ユーザの保存しているデータ本体を取得
@@ -151,7 +189,14 @@ def editProgHTML(prgId, userId):
     savedDataList = expNameGet(userId)
 
     if prgId is None:
-        html = tpl.render({'userId':userId,'savedDataList':'','prgName':'','comment':'','prgData':''}).encode('utf-8')
+        prgData = (
+            '<div id="main">'
+            '<div class="noteTop"><p>メイン</p><div class="noteRing"></div></div>'
+            '<ul id="mainList">'
+            '</ul><!-- mainList -->'
+            '</div><!-- main -->'
+        )
+        html = tpl.render({'userId':userId,'savedDataList':'','prgName':'','comment':'','prgData':prgData}).encode('utf-8')
         return html
 
     # ユーザの保存しているデータ本体を取得

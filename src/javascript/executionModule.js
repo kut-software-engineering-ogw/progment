@@ -1,4 +1,4 @@
-//グローバル変数
+﻿//グローバル変数
 codeStr="";
 preamble="";
 subroutine="";
@@ -72,8 +72,10 @@ function getWorkspace () {
 	console.log("保存します");
 	console.log($("#workspace").html());
 	temp=$("#workspace").html();
+
 	temp=temp.replace("\"","\\\"");
 	return $("#workspace").html();
+
 }
 
 function getResult () {

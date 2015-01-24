@@ -48,14 +48,20 @@ jQuery(function() {
 		// tolerance:"intersect",
 		drop: function(event, ui){
 			//console.log(event.relatedTarget);
+			//dropArea|nestArea→workspace
 			if(!(ui.draggable.parent().attr('id')=="workspace")&&!(ui.draggable.hasClass('inList'))){
 				console.log("workspace外")
-				var parentOffset = $("#workspace").offset();
+				var workspaceOffset = $("#workspace").offset();
+				var parentOffset= ui.draggable.parent().offset();
 				var dropped = ui.draggable;
 				annexDraggable(dropped);
 				dropped.css('position', 'absolute');
-				dropped.css('left', (ui.position.left+'px'));
-				dropped.css('top', (ui.position.top+'px'));
+				dropped.css('backgroud-color', 'red');
+				console.log(1);
+				dropped.css('left', (ui.position.left-workspaceOffset.left+parentOffset.left+'px'));
+				dropped.css('top', (ui.position.top-workspaceOffset.top+parentOffset.top+'px'));
+				console.log("dropped:"+ui.position.left+"\n"+ui.position.top);
+				console.log("dropped:"+workspaceOffset.left+"\n"+workspaceOffset.top);
 				annexController(dropped);
 				$(this).append(dropped);
 			}else if(ui.draggable.hasClass('ui-draggable-dragging')){
@@ -63,13 +69,15 @@ jQuery(function() {
 			}else if(ui.draggable.hasClass('inList')){
 				console.log("リストからドロップ");
 				console.log(ui.draggable.attr('class'));
-				var parentOffset = $("#workspace").offset();
+				var workspaceOffset = $("#workspace").offset();
 				var dropped = ui.draggable.clone();
 				annexDraggable(dropped);
 				dropped.css('position', 'absolute');
 				dropped.removeClass('inList');
-				dropped.css('left', (ui.position.left+'px'));
-				dropped.css('top', (ui.position.top+'px'));
+				dropped.css('left', (ui.position.left-workspaceOffset.left+'px'));
+				dropped.css('top', (ui.position.top-workspaceOffset.top+'px'));
+				console.log("dropped:"+ui.position.left+"\n"+ui.position.top);
+				console.log("dropped:"+workspaceOffset.left+"\n"+workspaceOffset.top);				
 				annexController(dropped);
 				blockGenerated(dropped);
 				$(this).append(dropped);
@@ -82,14 +90,17 @@ jQuery(function() {
 		accept: "#workspace .block, #workspace .sub",
 		greedy: true,
 		drop: function(event, ui){
+			console.log(ui.draggable.attr('class'));
 			if(ui.draggable.hasClass('inList'))
 				return;
-			else if(ui.draggable.attr('id')=="kadaiRoutine");
+			else if(ui.draggable.attr('id')=="kadaiRoutine")
 				return;
 			blockDeleted(ui.draggable);
 			ui.draggable.remove()
 		}
 	});
+
+	$("#next").hide();
 
 	if(programmingMode=="kadai")
 		initializeKadaiMode();
@@ -108,6 +119,7 @@ function initializeBlockList () {
 	//ネスト構造のブロック
 	$(".inList.nestBlock").draggable({
 		connectToSortable:"#mainList, .subList, .nestArea",
+		containment:"#workspace",
 		helper:"clone",
 		revert:false,
 		cancel:".nestArea"
@@ -115,6 +127,7 @@ function initializeBlockList () {
 	//データ処理ブロック
 	$(".inList.mathBlock").draggable({
 		//connectToSortable:"#mainList, .subList, nestArea",
+		containment:"#workspace",
 		helper:"clone",
 		zIndex:50,
 		cancel:"",
@@ -122,18 +135,21 @@ function initializeBlockList () {
 	});
 	$(".inList.strBlock").draggable({
 		//connectToSortable:"#mainList, .subList, nestArea",
+		containment:"#workspace",
 		helper:"clone",
 		zIndex:50,
 		revert:false 
 	});
 	$(".inList.logicBlock").draggable({
 		//connectToSortable:"#mainList, .subList, nestArea",
+		containment:"#workspace",
 		helper:"clone",
 		zIndex:50,
 		revert:false 
 	});
 	//データブロック
 	$(".inList.constBlock,.inList.varBlock").draggable({
+		containment:"#workspace",
 		helper:"clone",
 		revert:true,
 		zIndex:100
@@ -141,8 +157,9 @@ function initializeBlockList () {
 	//処理ブロック
 	$(".inList.processBlock").draggable({
 		connectToSortable:"#mainList, .subList, .nestArea",
+		containment:"#workspace",
 		helper:"clone",
-		revert:true
+		revert:false
 	});
 }
 
@@ -215,6 +232,7 @@ function annexDraggable (obj) {
 		case "subroutine":
 			obj.draggable({
 				connectToSortable:"#mainList, .subList, .nestArea",
+				containment:"#workspace",
 				revert:false
 			});
 			break;
@@ -224,6 +242,7 @@ function annexDraggable (obj) {
 		case "ifelse":
 			obj.draggable({
 				connectToSortable:"#mainList, .subList, .nestArea",
+				containment:"#workspace",
 				revert:false,
 				cancel:".nestArea"
 			});
@@ -235,6 +254,7 @@ function annexDraggable (obj) {
 		case "logicOp":
 			obj.draggable({
 				zIndex:50,
+				containment:"#workspace",
 				revert:false 
 			});
 			break;
@@ -242,6 +262,7 @@ function annexDraggable (obj) {
 		case "varBlock":
 			obj.draggable({
 				zIndex:100,
+				containment:"#workspace",
 				revert:false 
 			});
 			break;

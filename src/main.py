@@ -4,128 +4,102 @@ import sys
 
 sys.path.append('/var/www/cgi-bin')
 sys.path.append('/var/www/cgi-bin/python')
-from collation import collation_app
-from cookie import get_cookie
-from link_response import javascript, css
-from freeProgHTML import freeProgHTML_app, expProgHTML_app, editProgHTML_app
-from prgInsert import prg_insert_app
-from prgDelete import prg_delete_app
-from prgUpdate import prg_update_app
-from expInsert import exp_insert_app
-from expDelete import exp_delete_app
-from expUpdate import exp_update_app
-from sign_out import sign_out_app
+from link_response import javascript, css, img
+from login import login_handler
+from freeProgHTML import freeProgHTML_handler, expProgHTML_handler, editProgHTML_handler
+from prgInsert import prg_insert_handler
+from prgDelete import prg_delete_handler
+from prgUpdate import prg_update_handler
+from expInsert import exp_insert_handler
+from expDelete import exp_delete_handler
+from expUpdate import exp_update_handler
+from logout import logout_handler
+
+document_root = '/var/www/cgi-bin'
 
 def application(environ, start_response):
     """
     クライアントからリクエストを受けた際に呼び出されるメソッド
     """
     print ("------------------------------------------------------")
+    environ.update({'DOCUMENT_ROOT': document_root})
     path = environ['PATH_INFO']
     print ("[request-path]:", path)
-    if "javascript/" in path:  # javascriptへの要求
-        print ("[return]: javascript-file", path)
+    if "javascript/" in path:
+        """ javascript """
         return javascript(environ, start_response, path)
-    elif "css/" in path: # cssへの要求
-        print ("[return]: css-file", path)
+
+    elif "css/" in path:
+        """ css """
         return css(environ, start_response, path)
 
-    cookie = get_cookie(environ)
+    elif "img/" in path:
+        """ 画像ファイル """
+        return img(environ, start_response, path)
 
-    if cookie is not None:  # セッションを持っている場合
-        print ("[login-user]:", cookie['user_id'])
-        if path == "/menu":   # メニュー画面のURL
-            print ("[call-app]: menu-application")
-            return [test_app(environ, start_response, "menu")]
+    elif path == '/login':
+        """ ログインハンドラモジュール """
+        return login_handler(environ, start_response)
 
-        elif path == "/freeProg":   # フリープログラミング画面のURL
-            print ("[call-app]: freeProg-application", cookie['user_id'].value)
-            return [freeProgHTML_app(environ, start_response, cookie)]
+    elif path == "/menu":
+        """ HTMLレスポンスモジュール呼び出し """
+        return test_app(environ, start_response, "menu")
 
-        elif path == "/freeProg/prgInsert":     # プログラムデータ追加モジュール
-            print ("[call-app]: freeProg-insert-application")
-            return [prg_insert_app(environ, start_response, cookie['user_id'].value)]
+    elif path == "/freeProg":
+        """ フリープログラミング画面生成モジュール呼び出し """
+        print ("[call-app]: freeProg-application")
+        return freeProgHTML_handler(environ, start_response)
 
-        elif path == "/freeProg/prgDelete":   # プログラムデータ削除モジュール
-            print ("[call-app]: freeProg-delete-application")
-            return [prg_delete_app(environ, start_response)]
+    elif path == "/freeProg/prgInsert":
+        """ プログラムデータ保存モジュール呼び出し """
+        return prg_insert_handler(environ, start_response)
 
-        elif path == "/freeProg/prgUpdate":   # プロウグラムデータ編集モジュール
-            print ("[call-app]: freeProg-update-application")
-            return [prg_update_app(environ, start_response)]
+    elif path == "/freeProg/prgDelete":
+        """ プログラムデータ削除モジュール """
+        return prg_delete_handler(environ, start_response)
 
-        elif path == "/expProg":    # 課題プログラム生成モジュール
-            print ("[call-app]: expProg-application")
-            #return [test_app(environ, start_response, "expProg")]
-            return [expProgHTML_app(environ, start_response, cookie)]
+    elif path == "/freeProg/prgUpdate":
+        """ プロウグラムデータ編集モジュール """
+        return prg_update_handler(environ, start_response)
 
-        elif path == "/expEdit":    # 課題エディット画面生成モジュール
-            print ("[call-app]: expEdit-application")
-            #return [test_app(environ, start_response, "expEdit")]
-            return [editProgHTML_app(environ, start_response, cookie)]
+    elif path == "/expProg":
+        """ 課題プログラム生成モジュール """
+        return expProgHTML_handler(environ, start_response)
 
-        elif path == "/expEdit/expTableInsert":    # 課題エディットデータ追加モジュール
-            print ("[call-app]: expEdit-insert-application")
-            return [exp_insert_app(environ, start_response, cookie['user_id'].value)]
+    elif path == "/expEdit":
+        """ 課題エディット画面生成モジュール """
+        return editProgHTML_handler(environ, start_response)
 
-        elif path == "/expEdit/expDelete":    # 課題エディットデータ削除モジュール
-            print ("[call-app]: expEdit-application")
-            return [exp_delete_app(environ, start_response)]
+    elif path == "/expEdit/expTableInsert":
+        """ 課題エディットデータ追加モジュール """
+        return exp_insert_handler(environ, start_response)
 
-        elif path == "/expEdit/expUpdate":    # 課題エディット編集モジュール
-            print ("[call-app]: expEdit-application")
-            return [exp_update_app(environ, start_response)]
+    elif path == "/expEdit/expDelete":    # 課題エディットデータ削除モジュール
+        return exp_delete_handler(environ, start_response)
 
-        elif path == "/users":   # ユーザ管理画面生成モジュール
-            print ("[call-app]: users-application")
-            return [test_app(environ, start_response, "users")]
-            #return [users_app(environ, start_response)]
+    elif path == "/expEdit/expUpdate":    # 課題エディット編集モジュール
+        return exp_update_handler(environ, start_response)
 
-        elif path == "/login":  # セッションありで/loginにアクセスしてきた場合
-            print ("[redirect]: /menu path=", path)
-            status = '302 Found'
-            response_headers = [('Location', '/menu')] # menuページヘのリダイレクト
-            start_response(status, response_headers)
-            return []
+    elif path == "/users":   # ユーザ管理画面生成モジュール
+        return test_app(environ, start_response, "users")
 
-        elif path == "/signout":
-            print ("[call-app]: sign-out")
-            sign_out_app(environ, start_response, cookie)
-            return []
+    elif path == "/logout":
+        return logout_handler(environ, start_response)
 
-        elif path == "/post_test":
-            return [post_test(environ, start_response)]
+    elif path == "/post_test":
+        return post_test(environ, start_response)
 
-        elif path == "/":
-            print ("[redirect]: /menu path=", path)
-            status = '302 Found'
-            response_headers = [('Location', '/menu')]
-            start_response(status, response_headers)
-            return []
-
-        else:
-            print ("[error-404]:", path)
-            start_response('404 NOT FOUND', [('Content-Type', 'text/plain')])
-            return ['Not Found'.encode()]
-
-    elif path == '/collation':   # 照合へのリクエストの場合
-        return [collation_app(environ, start_response)]
-
-    elif path == '/login':  # ログイン画面生成モジュール
-        return [test_login_app(environ, start_response)]
-        #return [login_app(environ, start_response)]
-
-    elif path == '/':
+    elif path == "/":
         print ("[redirect]: /login path=", path)
         status = '302 Found'
         response_headers = [('Location', '/login')]
-        start_response(status, response_headers)        
+        start_response(status, response_headers)
         return []
 
-    else:   # cookieが無くurlが"/login"以外の場合
-        print ("[error-403]:", path)
-        start_response('403 Forbidden', [('Content-Type', 'text/plain')])
-        return ['403 forbidden'.encode()]
+    else:
+        print ("[error-404]:", path)
+        start_response('404 NOT FOUND', [('Content-Type', 'text/plain')])
+        return ['Not Found'.encode()]
 
 def test_app(environ, start_response, app_name):
     output = """
@@ -138,7 +112,7 @@ def test_app(environ, start_response, app_name):
     headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
     #start_response(status, header)
     start_response(status, headers)
-    return output.encode()
+    return [output.encode()]
 
 def test_login_app(envrion, start_response):
     output = """
@@ -151,7 +125,7 @@ def test_login_app(envrion, start_response):
     status = '200 OK'
     headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
     start_response(status, headers)
-    return output.encode()
+    return [output.encode()]
 
 def post_test(environ, start_response):
     output = '''
@@ -163,4 +137,4 @@ def post_test(environ, start_response):
     status = '200 OK'
     headers = [('Content-type', 'text/html')]
     start_response(status, headers)
-    return output.encode()
+    return [output.encode()]

@@ -1,14 +1,15 @@
 jQuery(function() {
-	var dataStart = $("#workspace").html();
+	var dataStart = getWorkspace();
+	// $("#load option[value='']").val("start");
 
-	$("#load").change(function() {
+	$("#load").on('change', function() {
 		//alert($("#workspace").html());
 		//workspaceが変更されているか判別
-		if(dataStart != $("#workspace").html()){
+		if(dataStart != getWorkspace()){
 //********************保存シークエンス開始*****************
 			// alert("workspace判別");
 			var workId = $("#load").val();			
-			if(workId == ''){
+			if(workId == ""){
 //********************************************* 新規保存
 			//新規保存をするかどうかを問うアラート
 		    swal({
@@ -17,8 +18,8 @@ jQuery(function() {
 				  type: "warning",
 				  showCancelButton: true,
 				  confirmButtonColor: "#DD6B55",
-				  confirmButtonText: "Yes, delete it!",
-				  cancelButtonText: "No, cancel plx!",
+				  confirmButtonText: "はい",
+				  cancelButtonText: "いいえ",
 				  closeOnConfirm: false,
 				  closeOnCancel: false
 				},
@@ -36,8 +37,8 @@ jQuery(function() {
 						type: "warning",
 						showCancelButton: true,
 						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "Yes, delete it!",
-						cancelButtonText: "No, cancel plx!",
+						confirmButtonText: "はい",
+						cancelButtonText: "いいえ",
 						closeOnConfirm: false,
 						closeOnCancel: false
 						},
@@ -66,8 +67,8 @@ jQuery(function() {
 				  type: "warning",
 				  showCancelButton: true,
 				  confirmButtonColor: "#DD6B55",
-				  confirmButtonText: "Yes, delete it!",
-				  cancelButtonText: "No, cancel plx!",
+				  confirmButtonText: "はい",
+				  cancelButtonText: "いいえ",
 				  closeOnConfirm: false,
 				  closeOnCancel: false
 				},
@@ -85,8 +86,8 @@ jQuery(function() {
 						type: "warning",
 						showCancelButton: true,
 						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "Yes, delete it!",
-						cancelButtonText: "No, cancel plx!",
+						confirmButtonText: "はい",
+						cancelButtonText: "いいえ",
 						closeOnConfirm: false,
 						closeOnCancel: false
 						},
@@ -128,18 +129,23 @@ jQuery(function() {
 	     //       work_id: workIdLoad
 	    	// },
 	    	dataType: 'html',
-	    	}).done(function( data, textStatus, jqXHR ) {
+	    	}).done(function( work, textStatus, jqXHR ) {
 	        	alert("load ok");
 	        	// alert(data);
 	        	// $("#wrap").html(data);
+	        	alert(work);
+	        	var data = work.replace(/上田は32/g, ";");
 	        	$("#workspace").html($('#workspace', $(data)).html());
-	        	$("#comment").html($('#comment', $(data)).html());
+	        	$("#comment").val($('#comment', $(data)).val());
 	        	$("#programName").val($('#programName', $(data)).val());
-	        	if(loadSet != $('#load', $(data)).html()) {
-	        		$('#load').html($('#load', $(data)).html());
-	        	}
-	        	// alert($("#programName").val())
-	        	alert($("workspace", $(data)).html());
+	        	// $.getScript("javascript/blockControllerModule.js");
+	        	// $.getScript("javascript/executionModule.js");
+	        	// $.getScript("javascript/programmingInitializeModule.js");
+	        	// $.getScript("https://code.jquery.com/jquery-1.11.1.min.js");
+	        	// $.getScript("https://code.jquery.com/ui/1.11.2/jquery-ui.min.js");
+	        	// $.getScript("http://code.jquery.com/jquery-migrate-1.2.1.min.js");
+	        	alert($("#workspace", $(data)).html());
+	        	reInitialize();
 			}).fail(function( jqXHR, textStatus, errorThrown ) {
 	        	alert("load fail");
 		});
@@ -149,20 +155,17 @@ jQuery(function() {
     var name = $("#programName").val();
     var comment = $("#comment").val();
     var cookie  = $.cookie('user_id');
-    var work = $("#workspace").html();
+    var work = getWorkspace();
+    var url = "freeProg/prgTableInsert?prgName="+name+"&comment="+commnet+"&workSpaceData="+work;
     alert($("#load").val());
     $.ajax({
-      url: 'freeProg',
+      url: url,
       type: 'POST',
-      data: {
-         data: work,
-         name: name,
-         comment: comment,
-         // cookie: cookie
-      },
       dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
           alert("新規保存ok");
+          $("#load").append($("<option>").val("999").text(name));
+          $("select[id='load']").val("999");
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("新規保存fail");
     });
@@ -178,12 +181,6 @@ jQuery(function() {
     $.ajax({
       url: url,
       type: 'POST',
-		// data: {
-		// workSpaceData: work,
-		    //  comment: comment,
-		    // prgID: workIdSave,
-         // cookie: cookie
-		    //},
 		dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
           alert("上書き保存ok");

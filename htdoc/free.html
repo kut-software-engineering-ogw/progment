@@ -14,6 +14,7 @@
 <script type="text/javascript" src="js/programmingInitializeModule.js"></script>
 <script type="text/javascript" src="js/blockControllerModule.js"></script>
 <script type="text/javascript" src="js/executionModule.js"></script>
+<script type="text/javascript" src="js/help.js"></script>
 <!-- javascriptロード終 -->
 <!-- CSSロード始 -->
 <link rel="stylesheet" type="text/css" href="css/free.css">
@@ -70,20 +71,25 @@
 		<div id="blockListArea">
 			<!-- ブロックリスト -->
 			<p>サブルーチン</p>
-			<div>
+			<ul class="blockList">
 				<div class="inList sub">
-					<input type="text" maxlength="5" class="functionName" name="functionName" size="10" value="" style="width:100px;height: 10px;"/>
+					<div class="noteTop">
+					<div class="noteText">
+					サブルーチン
+					</div>
+					<div class="noteRing"></div>
+					</div>
+					<input type="text" maxlength="5" class="functionName" name="functionName" size="10" value="" />
 					<ul class="subList">
-					subMethod<BR>
 					</ul>
 				</div>
 				<li class="sticky inList block processBlock subroutine">
 					サブルーチン<br>
 					<input type="text" maxlength="5" class="functionName" name="functionName" size="10" value="" style="width:100px;height: 10px;"/>
 				</li>
-			</div>
-			<p>実装サンプル</p>
-			<ul id="blockList">
+			</ul>
+			<p>演算</p>
+			<ul class="blockList">
 				<!-- printブロック -->
 				<div class="sticky inList block processBlock print">
 					print
@@ -134,6 +140,53 @@
 					</select>
 					<div class="paste boolArea op2"></div>
 				</div>
+			</ul>
+			<p>条件文</p>
+			<div class="blockList">
+				<!-- if -->
+				<div class="mediumSticky inList block nestBlock if">
+					<div class="paste boolArea">
+						
+					</div>が成り立つならば<BR>
+					<ul class="paste nestArea">
+						
+					</ul>
+				</div>
+				<!-- ifelse -->
+				<div class="largeSticky inList block nestBlock ifelse">
+					<div class="paste boolArea">
+						
+					</div>が成り立つならば<BR>
+					<ul class="paste nestArea iftrue">
+						
+					</ul>
+					成り立たなければ<BR>
+					<ul class="paste nestArea iffalse">
+						
+					</ul>
+				</div>
+			</div>
+			<p>繰り返し</p>
+			<div class="blockList">
+				<!-- 回数指定ループ -->
+				<div class="smallSticky inList block nestBlock for">
+					<input type="number" class="times" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
+					<ul class="paste nestArea">
+						
+					</ul>
+				</div>
+				<!-- 条件指定ループ -->
+				<div class="mediumSticky inList block nestBlock while">
+					<div class="paste boolArea">
+						
+					</div>が成り立つ間繰り返す<BR>
+					<ul class="paste nestArea">
+						
+					</ul>
+				</div>
+			</div>
+			<p>変数</p>
+			<ul class="blockList">
 				<!-- 定数ブロック -->
 				<div class="poster inList block intBlock constBlock">
 					<input type="number" class="constData" value="0" style="width:45px;"/>
@@ -177,54 +230,16 @@
 					=
 					<div class="paste dataArea"></div>
 				</div>
-				<!-- 回数指定ループ -->
-				<div class="smallSticky inList block nestBlock for">
-					<input type="number" class="times" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
-					<ul class="paste nestArea">
-						
-					</ul>
-				</div>
-				<!-- 条件指定ループ -->
-				<div class="mediumSticky inList block nestBlock while">
-					<div class="paste boolArea">
-						
-					</div>が成り立つ間繰り返す<BR>
-					<ul class="paste nestArea">
-						
-					</ul>
-				</div>
-				<!-- if -->
-				<div class="mediumSticky inList block nestBlock if">
-					<div class="paste boolArea">
-						
-					</div>が成り立つならば<BR>
-					<ul class="paste nestArea">
-						
-					</ul>
-				</div>
-				<!-- ifelse -->
-				<div class="largeSticky inList block nestBlock ifelse">
-					<div class="paste boolArea">
-						
-					</div>が成り立つならば<BR>
-					<ul class="paste nestArea iftrue">
-						
-					</ul>
-					成り立たなければ<BR>
-					<ul class="paste nestArea iffalse">
-						
-					</ul>
-				</div>
+
 			</ul>
 		</div>
 		<!-- ワークスペース -->
 		<div id="workspace">
 		<div id="main">
-			<div class="noteTop"><p>メイン</p><div class="noteRing"></div></div>
-				<ul id="mainList">
-				</ul><!-- mainList -->
+			<div class="noteTop"><div class="noteText">メイン</div><div class="noteRing"></div></div>
+			<ul id="mainList">
+			</ul><!-- mainList -->
 		</div><!-- main -->
-<!-- 			<div id="dustbin">ゴミ箱</div> -->
 		</div><!-- workspace -->
 		<div id="dustbin">
 		<img src="img/trashBox.png"/>
@@ -232,11 +247,19 @@
 <!-- 		フッター -->
 		<div id="foot">
 		<div id="output">
-		<div id="outputArea">
-		</div><!-- outputArea -->
+		<div id="outputTextArea">
+		<textarea id="outputArea" name="output" disabled></textarea>
+		</div><!-- outputTextArea -->
+<!-- 		<div id="outputArea">
+		</div> -->
 		</div><!-- output -->
 		<div id="help">
-		<p>ボックスの説明</p>
+		<dl>
+		<dt></dt>
+		<dd>
+		左の付箋リストの付箋を右クリックすると、付箋の説明文を見ることができます。
+		</dd>
+		</dl>
 		</div><!-- help -->
 		</div><!-- foot -->
 	</div>
