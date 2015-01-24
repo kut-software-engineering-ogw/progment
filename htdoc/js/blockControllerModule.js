@@ -75,6 +75,12 @@
 					});
 					$(this).append(cloneObj);
 				}else{
+					var dropped=ui.draggable;
+					dropped.css({
+						position: 'relative',
+						left: '0px',
+						top: "0px", 
+					});
 					$(this).append(ui.draggable);
 				}
 			}
@@ -106,6 +112,12 @@
 					});
 					$(this).append(cloneObj);
 				}else{
+					var dropped=ui.draggable;
+					dropped.css({
+						position: 'relative',
+						left: '0px',
+						top: "0px", 
+					});
 					$(this).append(ui.draggable);
 				}
 			}
@@ -137,6 +149,12 @@
 					});
 					$(this).append(cloneObj);
 				}else{
+					var dropped=ui.draggable;
+					dropped.css({
+						position: 'relative',
+						left: '0px',
+						top: "0px", 
+					});
 					$(this).append(ui.draggable);
 				}
 			}
@@ -167,6 +185,12 @@
 					});
 					$(this).append(cloneObj);
 				}else{
+					var dropped=ui.draggable;
+					dropped.css({
+						position: 'relative',
+						left: '0px',
+						top: "0px", 
+					});
 					$(this).append(ui.draggable);
 				}
 			}
@@ -200,10 +224,40 @@
 						zIndex:100
 					});
 					$(this).append(cloneObj);
+					// var itemHeight=cloneObj.css('height');
+					// var itemWidth=cloneObj.css('width');
+					// $(this).css('height', itemHeight);
+					// $(this).css('width', itemWidth);
 				}else{
-					$(this).append(ui.draggable);
+					var dropped=ui.draggable;
+					dropped.css({
+						position: 'relative',
+						left: '0px',
+						top: "0px", 
+					});
+					$(this).append(dropped);
 				}
 			}
 		});
 	};
-// });
+
+	// function annexResize (obj) {
+	// 	obj.exResize({
+	// 		//api オブジェクトの返却を指定
+	// 		api : true,
+	// 		callback : function(){
+	// 			var hMax = 0;
+	// 			var wMax = 0;
+	// 			//最大の高さを取得
+	// 			api.each(function(){
+	// 				var h = this.getSize().height;
+	// 				hMax = h > hMax ? h : hMax;
+	// 				var w = this.getSize().width;
+	// 				wMax = w > wMax ? w : wMax;
+	// 			});
+	// 			//div.column-a,div.column-b を取得し、高さを一括指定
+	// 			api.getTargets().height(hmax);
+	// 			api.getTargets().width(wmax);
+	// 		};
+	// 	});
+	// };
