@@ -1,4 +1,4 @@
-﻿//グローバル変数
+//グローバル変数
 codeStr="";
 preamble="";
 subroutine="";
@@ -25,8 +25,10 @@ jQuery(document).ready(function(){
 	$("#exeButton").click(function () {
 		//exeMode=$("#exeMode").val();
 		executionMain();
-		if(exeMode=="trace")
+		if(exeMode=="trace"){
 			$("#next").show();
+			$("#exeButton").hide();
+		}
 		if(((programmingMode=="kadai")&&(exeMode=="nomal"))){
 			result=$("#outputArea").val();
 			answer=$("#answer").val();
@@ -53,6 +55,7 @@ jQuery(document).ready(function(){
 			$("#blockNumber"+i).attr('id', '');
 		}
 		$("#next").hide();
+		$("#exeButton").show();
 	});
 });
 
@@ -72,10 +75,8 @@ function getWorkspace () {
 	console.log("保存します");
 	console.log($("#workspace").html());
 	temp=$("#workspace").html();
-
-	temp=temp.replace("\"","\\\"");
-	return $("#workspace").html();
-
+	temp=temp.replace(/;/g,"上田は32");
+	return temp;
 }
 
 function getResult () {
