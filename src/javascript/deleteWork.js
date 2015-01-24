@@ -20,6 +20,7 @@ jQuery(function() {
             deleteWork();
             return false;
             } else {
+              swal("キャンセルしました", "", "error");
               return false;
             }
         });
@@ -42,6 +43,7 @@ jQuery(function() {
           $("#workspace").html(dataStart);
           $("#comment").val("");
           $("#programName").val("");
+          reInitialize();
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("fail");
     });
