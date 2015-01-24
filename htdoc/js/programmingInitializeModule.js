@@ -106,6 +106,101 @@ jQuery(function() {
 		initializeKadaiMode();
 });
 
+function reInitialize () {
+	//ソート属性
+	$("#mainList").sortable({
+		connectWith:"ul",
+		revert:true,
+		update:function  (event,ui) {
+			//ブロックリストから追加された場合の属性付加処理
+			if(ui.item.hasClass('inList')){
+				ui.item.removeClass('inList');
+				blockGenerated(ui.item);
+				annexController(ui.item);
+			}
+		}
+	});
+
+	//ドラッグ属性
+	//メソッドレベル
+	$("#main").draggable({
+		cancel:"#mainList",
+		containment:"#workspace"
+	});
+	$("#kadai").draggable({
+		cancel:"#kadaiList",
+		containment:"#workspace"
+	});
+	// $("#workspace .sub").draggable({
+	// 	cancel:".subList, .functionName",
+	// 	containment:"#workspace",
+	// 	zIndex:40,
+	// });
+	//workspaceの初期化
+	initializeWorkspace();
+	//workspaceのドロップ属性
+	$("#workspace").droppable({
+		accept: ".block, .sub",
+		greedy:true,
+		// tolerance:"intersect",
+		drop: function(event, ui){
+			//console.log(event.relatedTarget);
+			//dropArea|nestArea→workspace
+			if(!(ui.draggable.parent().attr('id')=="workspace")&&!(ui.draggable.hasClass('inList'))){
+				console.log("workspace外")
+				var workspaceOffset = $("#workspace").offset();
+				var parentOffset= ui.draggable.parent().offset();
+				var dropped = ui.draggable;
+				annexDraggable(dropped);
+				dropped.css('position', 'absolute');
+				dropped.css('backgroud-color', 'red');
+				console.log(1);
+				dropped.css('left', (ui.position.left-workspaceOffset.left+parentOffset.left+'px'));
+				dropped.css('top', (ui.position.top-workspaceOffset.top+parentOffset.top+'px'));
+				console.log("dropped:"+ui.position.left+"\n"+ui.position.top);
+				console.log("dropped:"+workspaceOffset.left+"\n"+workspaceOffset.top);
+				annexController(dropped);
+				$(this).append(dropped);
+			}else if(ui.draggable.hasClass('ui-draggable-dragging')){
+				console.log("移動中"+ui.draggable.attr('class'));
+			}else if(ui.draggable.hasClass('inList')){
+				console.log("リストからドロップ");
+				console.log(ui.draggable.attr('class'));
+				var workspaceOffset = $("#workspace").offset();
+				var dropped = ui.draggable.clone();
+				annexDraggable(dropped);
+				dropped.css('position', 'absolute');
+				dropped.removeClass('inList');
+				dropped.css('left', (ui.position.left-workspaceOffset.left+'px'));
+				dropped.css('top', (ui.position.top-workspaceOffset.top+'px'));
+				console.log("dropped:"+ui.position.left+"\n"+ui.position.top);
+				console.log("dropped:"+workspaceOffset.left+"\n"+workspaceOffset.top);				
+				annexController(dropped);
+				blockGenerated(dropped);
+				$(this).append(dropped);
+			}
+			//onsole.log($(".ui-draggable-dragging").parent());
+		}
+	})
+
+	$("#dustbin").droppable({
+		accept: "#workspace .block, #workspace .sub",
+		greedy: true,
+		drop: function(event, ui){
+			console.log(ui.draggable.attr('class'));
+			if(ui.draggable.hasClass('inList'))
+				return;
+			else if(ui.draggable.attr('id')=="kadaiRoutine")
+				return;
+			blockDeleted(ui.draggable);
+			ui.draggable.remove()
+		}
+	});
+
+	if(programmingMode=="kadai")
+		initializeKadaiMode();
+}
+
 
 //ブロックリストの初期化メソッド
 function initializeBlockList () {

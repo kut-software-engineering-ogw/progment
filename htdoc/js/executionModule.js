@@ -75,7 +75,7 @@ function getWorkspace () {
 	console.log("保存します");
 	console.log($("#workspace").html());
 	temp=$("#workspace").html();
-	temp=temp.replace(/;/g,"上田は32");
+	temp=temp.replace(/;/g,"SEMICOLON");
 	return temp;
 }
 
