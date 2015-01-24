@@ -17,6 +17,7 @@
 <script type="text/javascript" src="javascript/loadWorkData.js"></script>
 <script type="text/javascript" src="javascript/saveWorkData.js"></script>
 <script type="text/javascript" src="javascript/deleteWork.js"></script>
+<script type="text/javascript" src="javascript/newWorkData.js"></script>
 <script type="text/javascript" src="javascript/sweet-alert.min.js"></script>
 <script type="text/javascript" src="javascript/jquery.cookie.js"></script>
 <script type="text/javascript" src="javascript/help.js"></script>
@@ -40,7 +41,7 @@
 				</div><!-- headTopRight -->
 				<div id="headTopLeft">
 				<p>ユーザID : {{userId}}</p>
-				<input type="submit" value="新規作成">
+				<input id="newData" type="submit" value="新規作成">
 				<select id="load">
 				<option value="">読み込み</option>
 				{% for savedData in savedDataList %}

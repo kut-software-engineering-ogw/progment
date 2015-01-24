@@ -24,13 +24,17 @@ jQuery(function() {
     $.ajax({
       url: url,
       type: 'POST',
-      dataType: 'text',
+      dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
           alert("新規保存ok");
-          var id = $('#id', $(data)).text();
+          var id = "fail";
+          // id = $('#id', $(data)).text();
+          alert("test" + $(data).find('#id').text());
+          // alert(id);
           $("#load").append($("<option>").val(id).text(name));
           $("select[id='load']").val(id);
-	  alert(data);
+          //data=data.replace();
+	       alert(data);
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("新規保存fail");
     });
