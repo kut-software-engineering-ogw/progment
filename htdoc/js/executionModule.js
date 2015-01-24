@@ -25,8 +25,10 @@ jQuery(document).ready(function(){
 	$("#exeButton").click(function () {
 		//exeMode=$("#exeMode").val();
 		executionMain();
-		if(exeMode=="trace")
+		if(exeMode=="trace"){
 			$("#next").show();
+			$("#exeButton").hide();
+		}
 		if(((programmingMode=="kadai")&&(exeMode=="nomal"))){
 			result=$("#outputArea").val();
 			answer=$("#answer").val();
@@ -53,6 +55,7 @@ jQuery(document).ready(function(){
 			$("#blockNumber"+i).attr('id', '');
 		}
 		$("#next").hide();
+		$("#exeButton").show();
 	});
 });
 
