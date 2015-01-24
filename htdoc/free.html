@@ -56,15 +56,17 @@
 			</div><!-- infoContents -->
 			<div id="infoRun">
 			<div id="infoRunContents">
-			<select>
-			<option value="">実行モード</option>
-			<option value="">トレースモード</option>
-			<option value="">コード生成モード</option>
+			<select name="exeMode" id="exeMode">
+			<option value="nomal">通常実行</option>
+			<option value="trace">トレース実行</option>
+			<option value="generate">コード生成</option>
 			</select><br>
-			<input type="submit" value="実行" id="exeButton">
+			<input type="button" value="実行" id="exeButton">
+			<input type="button" value="次へ" id="next">
 			</div><!-- infoRunContents -->
 			</div><!-- infoRun -->
 			</div><!-- info -->
+			<input type="hidden" name="programmingMode" id="programmingMode" value="free">
 		</div><!-- head -->
 
 		<!-- ページ左側 -->
