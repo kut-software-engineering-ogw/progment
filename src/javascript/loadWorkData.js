@@ -171,8 +171,9 @@ jQuery(function() {
 	      dataType: 'html',
 	      }).done(function( data, textStatus, jqXHR ) {
 	        // alert("新規保存ok");
-	        $("#load").append($("<option>").val("999").text(name));
-	        $("select[id='load']").val("999");
+          var id = $("#id").text();
+          $("#load").append($("<option>").val(id).text(name));
+          $("select[id='load']").val(id);
 	        swal("新規保存が完了しました!!", "", "success");
 	        workIdStart = $("#load").val();
 	    }).fail(function( jqXHR, textStatus, errorThrown ) {
@@ -183,9 +184,10 @@ jQuery(function() {
   //上書きメソッド
   function save(){
     var work = getWorkspace();
+    var name = $("#programName").val();
     var comment = $("#comment").val();
     var cookie  = $.cookie('user_id');
-    var url = 'freeProg/prgUpdate?prgId='+workIdStart+'&comment='+comment+'&workSpaceData='+work;
+    var url = 'freeProg/prgUpdate?prgID='+workIdSave+'&prgName='+name+'&comment='+comment+'&workSpaceData='+work;
 
     $.ajax({
       url: url,

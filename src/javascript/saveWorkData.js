@@ -24,11 +24,12 @@ jQuery(function() {
     $.ajax({
       url: url,
       type: 'POST',
-      dataType: 'html',
+      dataType: 'text',
       }).done(function( data, textStatus, jqXHR ) {
           alert("新規保存ok");
-          $("#load").append($("<option>").val("999").text(name));
-          $("select[id='load']").val("999");
+          var id = $("#id").text();
+          $("#load").append($("<option>").val(id).text(name));
+          $("select[id='load']").val(id);
 	  alert(data);
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("新規保存fail");
@@ -37,10 +38,11 @@ jQuery(function() {
   //上書きメソッド
   function save(){
     var workIdSave = $("#load").val();
+    var name = $("#programName").val();
     var comment = $("#comment").val();
     var cookie  = $.cookie('user_id');
-    var work = getWorkSpace();
-    var url = 'freeProg/prgUpdate?prgID='+workIdSave+'&comment='+comment+'&workSpaceData='+work;
+    var work = getWorkspace();
+    var url = 'freeProg/prgUpdate?prgID='+workIdSave+'&prgName='+name+'&comment='+comment+'&workSpaceData='+work;
     alert(comment);
     $.ajax({
       url: url,
