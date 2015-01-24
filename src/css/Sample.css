@@ -20,6 +20,7 @@
 
 #workspace{
 	/*float: left;*/
+	position: relative;
 	margin-left: 250px;
 	background-color: #0FF;
 	min-width: 100px;
@@ -62,6 +63,7 @@
 	min-height: 100px;
 	width: 200px;
 }
+
 .sub {
 	display: inline-block;
 	padding: 4px 0px 4px 0px;
@@ -122,6 +124,7 @@
 
 .dataArea{
 	display: inline-block;
+	position: relative;
 	min-width: 50px;
 	min-height: 50px;
 	background-color: blue;
