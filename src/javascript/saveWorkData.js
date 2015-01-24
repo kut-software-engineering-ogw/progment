@@ -27,6 +27,7 @@ jQuery(function() {
       dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
           alert("新規保存ok");
+          $("#load").append($("<option>").val("999").text(name));
 	  alert(data);
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("新規保存fail");

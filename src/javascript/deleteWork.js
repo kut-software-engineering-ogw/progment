@@ -1,4 +1,5 @@
 jQuery(function() {
+  var dataStart = getWorkspace();
   $("#delete").on("click", function() {
     //削除をするかどうかを問うアラートの表示
     swal({
@@ -36,8 +37,11 @@ jQuery(function() {
       }).done(function( data, textStatus, jqXHR ) {
           alert("ok");
           alert(data);
-          $("select[id='load']").val("");
+          $("select[id='load']").val("start");
           $("#load option[value='"+workId+"']").remove();
+          $("#workspace").html(dataStart);
+          $("#comment").html("");
+          $("#programName").val("");
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("fail");
     });
