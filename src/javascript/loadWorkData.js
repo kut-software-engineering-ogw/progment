@@ -2,7 +2,7 @@ jQuery(function() {
 	var dataStart = getWorkspace();
 	// $("#load option[value='']").val("start");
 
-	$("#load").change(function() {
+	$("#load").on('change', function() {
 		//alert($("#workspace").html());
 		//workspaceが変更されているか判別
 		if(dataStart != getWorkspace()){
@@ -18,8 +18,8 @@ jQuery(function() {
 				  type: "warning",
 				  showCancelButton: true,
 				  confirmButtonColor: "#DD6B55",
-				  confirmButtonText: "Yes, delete it!",
-				  cancelButtonText: "No, cancel plx!",
+				  confirmButtonText: "はい",
+				  cancelButtonText: "いいえ",
 				  closeOnConfirm: false,
 				  closeOnCancel: false
 				},
@@ -37,8 +37,8 @@ jQuery(function() {
 						type: "warning",
 						showCancelButton: true,
 						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "Yes, delete it!",
-						cancelButtonText: "No, cancel plx!",
+						confirmButtonText: "はい",
+						cancelButtonText: "いいえ",
 						closeOnConfirm: false,
 						closeOnCancel: false
 						},
@@ -67,8 +67,8 @@ jQuery(function() {
 				  type: "warning",
 				  showCancelButton: true,
 				  confirmButtonColor: "#DD6B55",
-				  confirmButtonText: "Yes, delete it!",
-				  cancelButtonText: "No, cancel plx!",
+				  confirmButtonText: "はい",
+				  cancelButtonText: "いいえ",
 				  closeOnConfirm: false,
 				  closeOnCancel: false
 				},
@@ -86,8 +86,8 @@ jQuery(function() {
 						type: "warning",
 						showCancelButton: true,
 						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "Yes, delete it!",
-						cancelButtonText: "No, cancel plx!",
+						confirmButtonText: "はい",
+						cancelButtonText: "いいえ",
 						closeOnConfirm: false,
 						closeOnCancel: false
 						},
@@ -129,13 +129,21 @@ jQuery(function() {
 	     //       work_id: workIdLoad
 	    	// },
 	    	dataType: 'html',
-	    	}).done(function( data, textStatus, jqXHR ) {
+	    	}).done(function( work, textStatus, jqXHR ) {
 	        	alert("load ok");
 	        	// alert(data);
 	        	// $("#wrap").html(data);
+	        	alert(work);
+	        	var data = work.replace(/上田は32/g, ";");
 	        	$("#workspace").html($('#workspace', $(data)).html());
 	        	$("#comment").html($('#comment', $(data)).html());
 	        	$("#programName").val($('#programName', $(data)).val());
+	        	// $.getScript("javascript/blockControllerModule.js");
+	        	// $.getScript("javascript/executionModule.js");
+	        	// $.getScript("javascript/programmingInitializeModule.js");
+	        	// $.getScript("https://code.jquery.com/jquery-1.11.1.min.js");
+	        	// $.getScript("https://code.jquery.com/ui/1.11.2/jquery-ui.min.js");
+	        	// $.getScript("http://code.jquery.com/jquery-migrate-1.2.1.min.js");
 	        	alert($("#workspace", $(data)).html());
 			}).fail(function( jqXHR, textStatus, errorThrown ) {
 	        	alert("load fail");
@@ -156,6 +164,7 @@ jQuery(function() {
       }).done(function( data, textStatus, jqXHR ) {
           alert("新規保存ok");
           $("#load").append($("<option>").val("999").text(name));
+          $("select[id='load']").val("999");
     }).fail(function( jqXHR, textStatus, errorThrown ) {
           alert("新規保存fail");
     });
