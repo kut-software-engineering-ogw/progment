@@ -145,6 +145,7 @@ jQuery(function() {
 	        	// $.getScript("https://code.jquery.com/ui/1.11.2/jquery-ui.min.js");
 	        	// $.getScript("http://code.jquery.com/jquery-migrate-1.2.1.min.js");
 	        	alert($("#workspace", $(data)).html());
+	        	reInitialize();
 			}).fail(function( jqXHR, textStatus, errorThrown ) {
 	        	alert("load fail");
 		});
