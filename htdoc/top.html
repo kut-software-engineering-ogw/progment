@@ -19,19 +19,25 @@
 <!-- CSSロード終 -->
 </head>
 <body>
+
+<div id="contents">
+<div id="sticky">
 <div id="topContents">
-<img src="img/progment.jpg" alt="logo" id="logo" width="700" height="250"/>
+<img src="img/progment.png" alt="logo" id="logo" width="700" height="250"/>
 <form id="formContainer">
 	<div class="formTitleId formContents">
 	<p>ID</p>
 	</div><!-- formTitle -->
-	<input class="formField formContents" type="text" name="firstname" />
+	<input class="formField formContents" id="idBox" type="text" name="firstname" />
 	<div class="formTitlePass formContents">
-	<p>Password</p>
+	<p>パスワード<p>
 	</div><!-- formTitle -->
-	<input class="formField formContents" type="text" name="email" />
-	<input class="submitButton formContents" type="submit" value="Submit" />
+	<input class="formField formContents" id="passwdBox" type="text" name="email" />
+	<input class="submitButton formContents" type="submit" value="ログイン" />
 </form>
 </div><!-- topContents -->
+</div><!-- sticky -->
+</div>
+
 </body>
 </html>

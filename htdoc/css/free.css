@@ -411,7 +411,6 @@ a:hover{
 	min-height: 50px;
 	padding: 0 0 1px 0;
 	position:relative;
-	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
 	background-color:#fff;
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
@@ -558,8 +557,9 @@ a:hover{
 
 /*ワークスペース*/
 #workspace{
+	background:url("../img/col1.jpg");
 	margin-left: 210px;
-	background-color: #e6faff;
+/*	background-color: #e6faff;*/
 	min-width: 100px;
 	height: 692px;
 	border:4px solid #00a0e9;
@@ -732,6 +732,7 @@ a:hover{
 		overflow:auto;
 	overflow-x:hidden;
 }
+
 
 /*
 #help dt{
