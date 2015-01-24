@@ -29,7 +29,7 @@ def exp_update_handler(environ, start_response):
 
         ret = expUpdate(exp_id, exp_data, comment, help_menu, result, limit_blocks)
 
-        output = '<div id="result">{}</div>'.format(ret)
+        output = '{}'.format(ret)
 
         status = '200 OK'
         response_headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]

@@ -26,7 +26,7 @@ def prg_update_handler(environ, start_response):
 
         result = prgUpdate(prgId, workSpaceData, comment)
 
-        output = '<div id="result">{}</div>'.format(result)
+        output = '{}'.format(result)
 
         status = '200 OK'
         response_headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]

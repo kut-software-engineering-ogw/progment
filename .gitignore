@@ -10,3 +10,11 @@ src/python/__pycache__/expInsert.cpython-34.pyc
 src/python/__pycache__/expNameGet.cpython-34.pyc
 *.pyc
 TEST/Vagrantfile
+.idea/.name
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/progment.iml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/workspace.xml

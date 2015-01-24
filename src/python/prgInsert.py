@@ -27,7 +27,7 @@ def prg_insert_handler(environ, start_response):
         prgId = prgInsert(usrId, prgName, prgData, comment)
         result = '1'
 
-        output = '<div id="id">{}</div><div id="result">{}</div>'.format(prgId, result)
+        output = '{},{}'.format(result, prgId)
 
         status = '200 OK'
         response_headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
