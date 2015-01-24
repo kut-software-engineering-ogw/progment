@@ -27,7 +27,7 @@ jQuery(function() {
       dataType: 'text',
       }).done(function( data, textStatus, jqXHR ) {
           alert("新規保存ok");
-          var id = $("#id").text();
+          var id = $('#id', $(data)).text();
           $("#load").append($("<option>").val(id).text(name));
           $("select[id='load']").val(id);
 	  alert(data);
