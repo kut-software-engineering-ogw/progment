@@ -39,7 +39,7 @@ jQuery(function() {
     var workIdSave = $("#load").val();
     var comment = $("#comment").val();
     var cookie  = $.cookie('user_id');
-    var work =$("#workspace").html();
+    var work = getWorkSpace();
     var url = 'freeProg/prgUpdate?prgID='+workIdSave+'&comment='+comment+'&workSpaceData='+work;
     alert(comment);
     $.ajax({
