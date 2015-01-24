@@ -1,0 +1,12 @@
+src/python/__pycache__/expDataGet.cpython-34.pyc
+src/python/__pycache__/expDelete.cpython-34.pyc
+src/python/__pycache__/expInsert.cpython-34.pyc
+.vagrant/machines/default/virtualbox/index_uuid
+.vagrant/machines/default/virtualbox/action_provision
+.vagrant/machines/default/virtualbox/action_set_name
+.vagrant/machines/default/virtualbox/id
+.vagrant/machines/default/virtualbox/private_key
+.vagrant/machines/default/virtualbox/synced_folders
+src/python/__pycache__/expNameGet.cpython-34.pyc
+*.pyc
+TEST/Vagrantfile
