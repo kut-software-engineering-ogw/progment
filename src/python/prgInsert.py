@@ -25,10 +25,9 @@ def prg_insert_handler(environ, start_response):
         prgData = form.getfirst('workSpaceData')
         comment = form.getfirst('comment')
         prgId = prgInsert(usrId, prgName, prgData, comment)
+        result = '1'
 
-        output = '<return result="0">'
-        if prgId is not None:
-            output = '<return prgId="{prgId}" result="1">'.format(prgId=prgId)
+        output = '<div id="id">{}</div><div id="result">{}</div>'.format(prgId, result)
 
         status = '200 OK'
         response_headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]

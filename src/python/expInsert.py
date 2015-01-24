@@ -29,11 +29,8 @@ def exp_insert_handler(environ, start_response):
         limit_blocks = form.getfirst('limitedBlocks')
 
         expId = expInsert(master_user_id, exp_name, exp_data, comment, help_menu, result, limit_blocks)
-
-        output = '<return result="0">'
-        if expId is not None:
-            output = '<return prgId="{expId}" result="1">'.format(expId=expId)
-
+        result = "1"
+        output = '<div id="result">{}</div><div id="id">{}</div>'.format(result, expId)
         status = '200 OK'
         response_headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
         start_response(status, response_headers)
