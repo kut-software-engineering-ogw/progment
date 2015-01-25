@@ -924,11 +924,26 @@ a:hover{
 .while .whileRede {
 	margin:0px 5px;
 }
+.intBlock .constBlock {
+	margin:10px 0px 0px 0px;
+}
 
+.intConstant {
+	margin:15px 0px 0px 0px;
+}
+.charConstant {
+	margin:15px 0px 0px 0px;
+}
+.boolConstant {
+	margin:15px 0px 0px 0px;
+}
 .subroutine {
 	background-color: #ffcf70;
 }
 
+/*.varBlock input {
+	margin-bottom:10px;
+}*/
 .dropAccept {
 	background-image: url(../img/tnm-red.png);
 	background-size: 35px 35px;
