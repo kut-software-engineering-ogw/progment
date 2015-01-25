@@ -50,11 +50,11 @@
 				<select id="load">
 				<option value="">読み込み</option>
 				{% for savedDataList in savedDataLists %}
-					{% if savedDataList.expId is selectedId %}
+					<!--{% if savedDataList.expId is selectedId %}
 					<option value = "{{ savedDataList.expId }}" selected>{{ savedDataList.expName }}</option>
-					{% else %}
+					{% else %}-->
 					<option value = "{{ savedDataList.expId }}">{{ savedDataList.expName }}</option>
-					{% endif %}
+					<!--{% endif %}-->
 				{% endfor %}
 				</select>
 <!-- 				<input type="submit" value="読み込み"> -->
