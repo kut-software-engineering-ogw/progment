@@ -101,7 +101,7 @@ def freeProgHTML(prgId, userId):
     if prgId is None:
         prgData = (
             '<div id="main">'
-			'<div class="noteTop">メイン<div class="noteRing"></div></div>'
+			'<div class="noteTop"><div class="noteText">メイン</div><div class="noteRing"></div></div>'
 			'<ul id="mainList">'
 			'</ul><!-- mainList -->'
 		    '</div><!-- main -->'
