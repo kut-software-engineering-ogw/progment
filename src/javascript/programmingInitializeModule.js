@@ -5,7 +5,8 @@ jQuery(function() {
 	//アコーディオン
 	$("#blockListArea").accordion({
 		active:false,
-		collapsible:true
+		collapsible:true,
+		heightStyle:"content"
 	});
 
 	//ソート属性
@@ -44,6 +45,7 @@ jQuery(function() {
 	//workspaceのドロップ属性
 	$("#workspace").droppable({
 		accept: ".block, .sub",
+		tolerance: "fit",
 		greedy:true,
 		// tolerance:"intersect",
 		drop: function(event, ui){
@@ -141,6 +143,7 @@ function reInitialize () {
 	//workspaceのドロップ属性
 	$("#workspace").droppable({
 		accept: ".block, .sub",
+		tolerance: "fit",
 		greedy:true,
 		// tolerance:"intersect",
 		drop: function(event, ui){
@@ -217,7 +220,7 @@ function initializeBlockList () {
 		containment:"#workspace",
 		helper:"clone",
 		revert:false,
-		cancel:".nestArea"
+		cancel:".nestArea,input"
 	});
 	//データ処理ブロック
 	$(".inList.mathBlock").draggable({
@@ -226,7 +229,7 @@ function initializeBlockList () {
 		helper:"clone",
 		zIndex:50,
 		cancel:"",
-		revert:false 
+		revert:false
 	});
 	$(".inList.strBlock").draggable({
 		//connectToSortable:"#mainList, .subList, nestArea",
