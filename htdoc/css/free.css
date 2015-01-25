@@ -838,6 +838,7 @@ a:hover{
 	background-color: #b1f9b1;
 	position: relative;
 }
+
 .logicOpSelect {
 	float:left;
 /*	display:inline-block;*/
@@ -847,17 +848,21 @@ a:hover{
 	width:45px;
 /*	height:20px;*/
 	font-size:14px;
-	margin:10px 5px 0px 0px;
+	margin:10px 0px 0px 2px;
 }
+/*.logicOpSelect select {
+	font-size:12px;
+	width:85px;
+}*/
 
 .logicOp > .op1 {
 	float:left;
-	margin:0px 5px;
+	margin:0px 0px 0px 5px;
 
 }
 .logicOp > .op2 {
 	float:left;
-	margin:0px 5px 0px 0px;
+	margin:0px 0px 0px 2px;
 }
 .if {
 	background-color: #ffdee5;
@@ -894,9 +899,30 @@ a:hover{
 .for {
 	background-color: #c7a5fa;
 }
-
+.for input{
+	float:left;
+	margin:0px 5px;
+}
+.for .forRede {
+	float:left;
+	margin:0px 5px 0px 0px;
+}
+.for .nestArea{
+	clear:both;
+	margin:0px 5px;
+}
 .while {
 	background-color: #c7a5fa;
+}
+.while .boolArea {
+	margin:5px 5px 0px 5px;	
+}
+.while .nestArea {
+	margin:0px 5px;
+}
+
+.while .whileRede {
+	margin:0px 5px;
 }
 
 .subroutine {
