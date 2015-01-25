@@ -189,6 +189,7 @@ function reInitialize () {
 	$("#dustbin").droppable({
 		accept: "#workspace .block, #workspace .sub",
 		greedy: true,
+		tolerance: "pointer",
 		drop: function(event, ui){
 			console.log(ui.draggable.attr('class'));
 			if(ui.draggable.hasClass('inList'))
