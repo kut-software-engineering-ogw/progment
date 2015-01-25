@@ -1,8 +1,3 @@
-var	dataStart = 0;
-var	nameStart = 0;
-var	commentStart = 0;
-var	workIdStart = 0;
-
 jQuery(function() {
 	$("#load").on('change', function() {
 		loadKadaiWork();
@@ -23,14 +18,11 @@ jQuery(function() {
 	        	$("#workspace").html($('#workspace', $(data)).html());
 	        	$("#comment").val($('#comment', $(data)).val());
 	        	$("#programName").val($('#programName', $(data)).val());
+	        	$("#limitList").val($('#limitList', $(data)).val());
+	        	$("#answer").val($('#answer', $(data)).val());
 	        	$("#outputArea").val("");
 	        	swal("読み込みが完了しました!!", "", "success");
 	        	reInitialize();
-	        	dataStart = getWorkspace();
-	        	nameStart = $("#programName").val();
-				commentStart = $("#comment").val();
-				workIdStart = $("#load").val();
-
 			}).fail(function( jqXHR, textStatus, errorThrown ) {
 				swal("読み込みに失敗しました", "", "error");
 	        	// alert("load fail");

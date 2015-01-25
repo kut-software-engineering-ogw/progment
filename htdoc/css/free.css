@@ -900,17 +900,14 @@ a:hover{
 	background-color: #c7a5fa;
 }
 .for input{
-	float:left;
-	margin:0px 5px;
+	margin:5px 5px 0px 5px;
 }
-.for .forRede {
-	float:left;
-	margin:0px 5px 0px 0px;
-}
-.for .nestArea{
+
+.for .nestArea {
 	clear:both;
-	margin:0px 5px;
+	margin:5px 5px 0px 5px;
 }
+
 .while {
 	background-color: #c7a5fa;
 }
