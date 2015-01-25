@@ -344,7 +344,7 @@ function annexDraggable (obj) {
 				connectToSortable:"#mainList, .subList, .nestArea",
 				containment:"#workspace",
 				revert:false,
-				cancel:".nestArea"
+				cancel:".nestArea,input"
 			});
 			break;
 		case "fourOp":
