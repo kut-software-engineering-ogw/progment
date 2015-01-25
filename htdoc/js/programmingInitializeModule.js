@@ -441,13 +441,14 @@ function blockDeleted (obj) {
 }
 
 function initializeKadaiMode () {
-	console.log("初期化START------------------------------------");
+	console.log("課題初期化START------------------------------------");
+	limitList = new Object();
 	blockGenerateControl();
 	console.log("ブロックリスト初期化終わり")
 	// console.log("kore:"+$("#main").children('').hasClass('ui-sortable'));
 	// $("#main").children(".ui-sortable").sortable( 'disable' );
 	forbiddenDraggingWorkspace($("#main"));
-	console.log("初期化END--------------------------------------");
+	console.log("課題初期化END--------------------------------------");
 }
 
 function forbiddenDraggingWorkspace (obj) {
