@@ -863,8 +863,32 @@ a:hover{
 	background-color: #ffdee5;
 }
 
+.ifRede1 {
+	margin:0px 5px;
+}
+.ifRede2 {
+	margin:0px 5px;
+}
+.if .boolArea {
+	margin:0px 5px;	
+}
+.if .nestArea {
+	margin:0px 5px;
+}
 .ifelse {
 	background-color: #ffdee5;
+}
+.ifelseRede1 {
+	margin:0px 5px;
+}
+.ifelseRede2 {
+	margin:0px 5px;
+}
+.ifelse .boolArea {
+	margin:5px 5px 0px 5px;	
+}
+.ifelse .nestArea {
+	margin:0px 5px;
 }
 
 .for {
