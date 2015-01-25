@@ -41,10 +41,10 @@ function addLinks() {
     for (var i=0, l=links.length; i<l; i++) {
 	link = document.createElement('a'),
 	hover = document.createElement('span');
-	if(i == 0) link.href = "http://google.com";
-	if(i == 1) link.href = "http://yahoo.co.jp";
-	if(i == 2) link.href = "http://supersonico.jp/";
-	if(i == 3) link.href = "http://www.kawasaki-motors.com/mc/";
+	if(i == 0) link.href = "http://192.168.192.130/freeProg";
+	if(i == 1) link.href = "http://192.168.192.130/exeProg";
+	if(i == 2) link.href = "#";
+	if(i == 3) link.href = "#";
 	link.dataset.color = links[i].bg;
 	link.style.display = 'inline-block';
 	link.style.textDecoration = 'none';
