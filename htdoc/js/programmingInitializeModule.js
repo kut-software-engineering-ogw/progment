@@ -220,7 +220,7 @@ function initializeBlockList () {
 		containment:"#workspace",
 		helper:"clone",
 		revert:false,
-		cancel:".nestArea"
+		cancel:".nestArea,input"
 	});
 	//データ処理ブロック
 	$(".inList.mathBlock").draggable({
@@ -229,7 +229,7 @@ function initializeBlockList () {
 		helper:"clone",
 		zIndex:50,
 		cancel:"",
-		revert:false 
+		revert:false
 	});
 	$(".inList.strBlock").draggable({
 		//connectToSortable:"#mainList, .subList, nestArea",

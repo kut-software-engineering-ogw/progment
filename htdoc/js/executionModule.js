@@ -16,7 +16,10 @@ generator=[];
 result=undefined;
 OutText="";
 
+
 jQuery(document).ready(function(){
+	console.log($(".inList.for").draggable('option',"cancel"));
+
 	$("#saveButton").click(function () {
 		result=getWorkspace();
 	});
@@ -252,7 +255,7 @@ function interpret (obj) {
 			return optionBefore+subroutineCodeGenerate(obj)+optionAfter;
 			break;
 		default:
-			alert("default:"+blockType);
+			console.log("default:"+blockType);
 			return "";
 			break;
 	}
@@ -279,7 +282,7 @@ function intBlockInterpret (obj) {
 		if(obj.hasClass('varBlock'))
 			intStr=getVarName(obj);
 		else
-			intStr=String(obj.children('intConstant').children('.constData').val());
+			intStr=String(obj.children('.intConstant').children('.constData').val());
 	}else if(obj.hasClass('fourOp')){
 		op1=intBlockInterpret(obj.children('.op1').children('.block'));
 		op2=intBlockInterpret(obj.children('.op2').children('.block'));
@@ -300,7 +303,7 @@ function charBlockInterpret (obj) {
 		if(obj.hasClass('varBlock'))
 			charStr=getVarName(obj);
 		else
-			charStr="\""+obj.children('charConstant').children('.constData').val()+"\"";
+			charStr="\""+obj.children('.charConstant').children('.constData').val()+"\"";
 	}else if(obj.hasClass('intBlock')||obj.hasClass('mathBlock')){
 		charStr="("+intBlockInterpret(obj)+")";
 	}else if(obj.hasClass('concatOp')){
@@ -321,7 +324,7 @@ function boolBlockInterpret (obj) {
 		if(obj.hasClass('varBlock'))
 			boolStr=getVarName(obj);
 		else
-			boolStr=obj.children('boolConstant').children('.constData').val();
+			boolStr=obj.children('.boolConstant').children('.constData').val();
 	}else if(obj.hasClass('compOp')){
 		op1=dataBlockInterpret(obj.children('.op1').children('.block'));
 		op2=dataBlockInterpret(obj.children('.op2').children('.block'));
