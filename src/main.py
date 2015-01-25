@@ -6,6 +6,7 @@ sys.path.append('/var/www/cgi-bin')
 sys.path.append('/var/www/cgi-bin/python')
 from link_response import javascript, css, img, html
 from login import login_handler
+from menu import menu_handler
 from freeProgHTML import freeProgHTML_handler, expProgHTML_handler, editProgHTML_handler
 from prgInsert import prg_insert_handler
 from prgDelete import prg_delete_handler
@@ -43,7 +44,7 @@ def application(environ, start_response):
 
     elif path == "/menu":
         """ HTMLレスポンスモジュール呼び出し """
-        return html(environ, start_response, '/html/menu.html')
+        return menu_handler(environ, start_response)
 
     elif path == "/freeProg":
         """ フリープログラミング画面生成モジュール呼び出し """
