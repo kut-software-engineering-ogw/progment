@@ -5,7 +5,8 @@ jQuery(function() {
 	//アコーディオン
 	$("#blockListArea").accordion({
 		active:false,
-		collapsible:true
+		collapsible:true,
+		heightStyle:"content"
 	});
 
 	//ソート属性
