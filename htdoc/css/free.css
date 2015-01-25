@@ -213,16 +213,17 @@ a:hover{
 
 /*ブロック*/
 #blockListArea{
+	font-family:"メイリオ";
 	float: left;
 	background-color: #00a0e9;
 	width: 200px;
 	height: 700px;
-	border-right:10px solid #fff;	
+	border-right:10px solid #fff;
 	border-bottom:2px solid #fff;
-/*	overflow:scroll;*//*スクロールは今だけ*/
 }
 
 #blockListArea p{
+
 	font-weight:bold;
 	color:#fff;
 	font-size:16px;
@@ -242,7 +243,7 @@ a:hover{
 }
 
 
-.nestBlock{
+/*.nestBlock{
 	background-color: green;
 	min-height: 50px;
 	width: 120px;
@@ -321,15 +322,16 @@ a:hover{
 	background-color: green;
 	width: 50px;
 	height: 50px;
-}
+}*/
 
 /*付箋のデータ挿入部のデザイン*/
 .paste{
 	display: inline-block;
 	min-width: 50px;
-	min-height: 50px;
+	height: 50px;
 	background-color: #fff;
-	border:1px dotted #000;
+	border:1px solid #000;
+	border-radius:5px;
 }
 
 /*貼り付けるモノのデザイン*/
@@ -341,6 +343,7 @@ a:hover{
 	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
 	border-top: 1px solid white;
 	border-right: 1px solid #ccc;
+	border-radius:5px;
 	position: relative;
 }
 
@@ -407,8 +410,8 @@ a:hover{
 
 /*全体の付箋のデザイン*/
 .sticky {
-	width: 200px;
-	min-height: 50px;
+	min-width: 200px;
+	height: 50px;
 	padding: 0 0 1px 0;
 	position:relative;
 	background-color:#fff;
@@ -458,12 +461,11 @@ a:hover{
 /*大きな付箋のデザイン*/
 /*大*/
 .largeSticky {
-	width: 200px;
+	min-width: 200px;
 	min-height: 50px;
 	padding: 0 0 1px 0;
 	position:relative;
 	background-color:#fff;
-	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
 	border-bottom-right-radius: 30px 30px;
@@ -490,12 +492,11 @@ a:hover{
 }
 /*中*/
 .mediumSticky {
-	width: 200px;
+	min-width: 200px;
 	min-height: 50px;
 	padding: 0 0 1px 0;
 	position:relative;
 	background-color:#fff;
-	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
 	border-bottom-right-radius: 30px 30px;
@@ -523,13 +524,13 @@ a:hover{
 
 /*小*/
 
+
 .smallSticky {
-	width: 200px;
+	min-width: 200px;
 	min-height: 50px;
 	padding: 0 0 1px 0;
 	position:relative;
 	background-color:#fff;
-	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
 	border-bottom-right-radius: 30px 30px;
@@ -629,6 +630,7 @@ a:hover{
 	/*border-radius:4px;*/
 	min-height: 100px;
 	width: 200px;
+	font-family:"メイリオ";
 }
 
 
@@ -733,19 +735,153 @@ a:hover{
 	overflow-x:hidden;
 }
 
-
-/*
-#help dt{
-	font-size:17px;
-	border-bottom:1px solid #fff;
-}*/
-
-
-/*#help p{
-	background-color: #faebd7;
-	color:#000;
+.print {
+	background-color: #ffcf70;
+/*	display:inline-block;*/
+}
+.printRede {
+	float:left;
 	font-size:16px;
-	padding:10px;
-	width:410px;
-	height:130px;
-}*/
+	margin:16px 5px 0px 5px;
+}
+.assign {
+	background-color: #ffcf70;
+}
+.assignRede1{
+	float:left;
+	font-size:16px;
+	margin:16px 5px 0px 5px;
+}
+.assignRede2{
+	float:left;
+	font-size:22px;
+	margin:11px 5px 0px 5px;
+}
+.assign > .varArea {
+	float:left;
+}
+.assign > .dataArea {
+	float:left;
+}
+.fourOp {
+	background-color: #b1f9b1;
+}
+
+.fourOpSelect{
+/*	width:45px;
+	height:20px;*/
+	float:left;
+	font-size:22px;
+	margin:11px 10px 0px 10px;
+}
+.fourOp > .op1 {
+	float:left;
+	margin:0px 0px 0px 5px;
+
+}
+.fourOp > .op2 {
+	float:left;
+	margin:0px 0px 0px 0px;
+}
+.brackets {
+	background-color: #b1f9b1;
+	font-size:38px;
+}
+.bracketsRede1 {
+	float:left;
+	margin:0px 15px 0px 40px;
+}
+.bracketsRede2 {
+	float:left;
+	margin:0px 10px 0px 15px;
+}
+.brackets > .intArea {
+	float:left;
+}
+.concatOp {
+	background-color: #b1f9b1;
+}
+.concatOpRede {
+	float:left;
+	font-size:22px;
+	margin:10px 10px 0px 10px;
+}
+.concatOp > .op1{
+	float:left;
+	margin:0px 10px 0px 5px;
+}
+.concatOp > .op2{
+	float:left;
+	margin:0px 10px 0px 10px;
+}
+.compOp {
+	background-color: #b1f9b1;
+	position:relative;
+}
+.compOpSelect{
+	float:left;
+	font-size:22px;
+	margin:11px 10px 0px 10px;
+}
+.compOp > .op1 {
+	float:left;
+	margin:0px 0px 0px 5px;
+
+}
+.compOp > .op2 {
+	float: left;
+	margin:0px 0px 0px 0px;
+}
+
+
+.logicOp {
+	background-color: #b1f9b1;
+	position: relative;
+}
+.logicOpSelect {
+	float:left;
+/*	display:inline-block;*/
+	/*position:absolute;
+	top:15px;
+	left:100px;*/
+	width:45px;
+/*	height:20px;*/
+	font-size:14px;
+	margin:10px 5px 0px 0px;
+}
+
+.logicOp > .op1 {
+	float:left;
+	margin:0px 5px;
+
+}
+.logicOp > .op2 {
+	float:left;
+	margin:0px 5px 0px 0px;
+}
+.if {
+	background-color: #ffdee5;
+}
+
+.ifelse {
+	background-color: #ffdee5;
+}
+
+.for {
+	background-color: #c7a5fa;
+}
+
+.while {
+	background-color: #c7a5fa;
+}
+
+.subroutine {
+	background-color: #ffcf70;
+}
+
+.dropAccept {
+	background-image: url(../img/tnm-red.png);
+	background-size: 35px 35px;
+	background-repeat: no-repeat;
+	background-position: 18px 16px;
+}
