@@ -58,6 +58,7 @@
 			//イベント伝播への対処
 			greedy: true,
 			tolerance: "pointer",
+			activeClass: "dropAccept",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)
@@ -96,6 +97,7 @@
 			//イベント伝播への対処
 			greedy: true,
 			tolerance: "pointer",
+			activeClass: "dropAccept",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)
@@ -134,6 +136,7 @@
 			//イベント伝播への対処
 			greedy: true,
 			tolerance: "pointer",
+			activeClass: "dropAccept",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)
@@ -171,6 +174,7 @@
 			//イベント伝播への対処
 			greedy: true,
 			tolerance: "pointer",
+			activeClass: "dropAccept",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)
@@ -210,6 +214,7 @@
 			//イベント伝播への対処
 			greedy: true,
 			tolerance: "pointer",
+			activeClass: "dropAccept",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)

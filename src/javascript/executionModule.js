@@ -36,9 +36,9 @@ jQuery(document).ready(function(){
 			result=$("#outputArea").val();
 			answer=$("#answer").val();
 			if(result==answer)
-				outputTextArea("正解!!");
+				swal("正解！！", "", "success");
 			else
-				outputTextArea("不正解¡¡")
+				swal("不正解！！","正解の出力\n"+answer, "error");
 		}
 	});
 
