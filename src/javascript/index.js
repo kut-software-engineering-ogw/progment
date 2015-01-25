@@ -42,7 +42,7 @@ function addLinks() {
 	link = document.createElement('a'),
 	hover = document.createElement('span');
 	if(i == 0) link.href = "http://192.168.192.130/freeProg";
-	if(i == 1) link.href = "http://192.168.192.130/exeProg";
+	if(i == 1) link.href = "http://192.168.192.130/expProg";
 	if(i == 2) link.href = "#";
 	if(i == 3) link.href = "#";
 	link.dataset.color = links[i].bg;
