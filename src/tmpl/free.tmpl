@@ -36,12 +36,12 @@
 			<div id="headTop">
 				<div id="headTopRight">
 				<div id="headTopRightContents">
-				<a href="/logout" ><input type="submit" value="ログアウト"></a>
+				<a href="/logout"><input type="submit" value="ログアウト"></a>
 				</div><!-- headTopRightContents -->
 				</div><!-- headTopRight -->
 				<div id="headTopLeft">
 				<p>ユーザID : {{userId}}</p>
-				<input id="newData" type="submit" value="新規作成">
+				<input type="submit" value="新規作成">
 				<select id="load">
 				<option value="">読み込み</option>
 				{% for savedData in savedDataList %}
@@ -50,7 +50,7 @@
 				</select>
 <!-- 				<input type="submit" value="読み込み"> -->
 				<input type="submit" value="保存" id="save">
-				<input id="delete"type="submit" value="削除">
+				<input type="submit" value="削除" id="delete">
 				</div><!-- headTopLeft -->
 			</div><!-- headTop -->
 			<div id="info">
@@ -66,7 +66,7 @@
 			</div><!-- infoContents -->
 			<div id="infoRun">
 			<div id="infoRunContents">
-			<select name="exeMode" id="exeMode">
+			<select id="exeMode" name="exeMOde">
 			<option value="nomal">通常実行</option>
 			<option value="trace">トレース実行</option>
 			<option value="generate">コード生成</option>
@@ -82,6 +82,167 @@
 		<!-- ページ左側 -->
 		<div id="blockListArea">
 			<!-- ブロックリスト -->
+			<p>処理</p>
+			<ul class="blockList">
+			<!-- printブロック -->
+			<div class="sticky inList block processBlock print">
+				<div class="printRede">表示</div>
+				<div class="paste dataArea"></div>
+			</div>
+			<!-- 代入ブロック -->
+			<div class="sticky inList block processBlock assign">
+				<div class="assignRede1">代入</div>
+				<div class="paste varArea"></div>
+				<div class="assignRede2">=</div>
+				<div class="paste dataArea"></div>
+			</div>
+			</ul>
+			<p>計算</p>
+			<ul class="blockList">
+			<!-- 四則演算ブロック -->
+			<div class="sticky inList block mathBlock fourOp">
+				<div class="paste intArea op1"></div>
+				<div class="fourOpSelect">
+				<select name="fourOperations" class="op">
+					<option value="+">＋</option>
+					<option value="-">－</option>
+					<option value="*">×</option>
+					<option value="/">÷</option>
+				</select>
+				</div>
+				<div class="paste intArea op2"></div>
+			</div>
+				<!-- かっこブロック -->
+				<div class="sticky inList block mathBlock brackets">
+				<div class="bracketsRede1">(</div>
+				<div class="paste intArea"></div>
+				<div class="bracketsRede2">)</div>
+				</div>
+				<!-- 文字列連結ブロック -->
+				<div class="sticky inList block strBlock concatOp">
+					<div class="paste dataArea op1"></div>
+					<div class="concatOpRede">+</div>
+					<div class="paste dataArea op2"></div>
+				</div>
+				<!-- 比較ブロック -->
+				<div class="sticky inList block logicBlock compOp">
+					<div class="paste dataArea op1"></div>
+					<div class="compOpSelect">
+					<select name="compOperations" class="op">
+						<option value="===">＝</option>
+						<option value="!=">≠</option>
+						<option value="<=">≦</option>
+						<option value="<">＜</option>
+						<option value=">=">≧</option>
+						<option value="<">＞</option>
+					</select>
+					</div>
+					<div class="paste dataArea op2"></div>
+				</div>
+				<!-- 論理演算ブロック -->
+				<div class="sticky inList block logicBlock logicOp">
+					<div class="paste boolArea op1"></div>
+					<div class="paste boolArea op2"></div>
+					<div class="logicOpSelect">
+					<select name="logicOperations" class="op">
+						<option value="and">全て</option>
+						<option value="or">どれか</option>
+						<!-- <option value="not">￢</option> -->
+						<option value="xor">片方だけ</option>
+					</select>
+					<div class="logicRede">正しい</div>
+					</div>
+				</div>
+			</ul>
+			<p>場合分け</p>
+			<div class="blockList">
+				<!-- if -->
+				<div class="mediumSticky inList block nestBlock if">
+					<div class="ifRede1">もし</div>
+					<div class="paste boolArea">
+					</div>
+					<div class="ifRede2">なら</div>
+					<ul class="paste nestArea">
+					</ul>
+				</div>
+				<!-- ifelse -->
+				<div class="largeSticky inList block nestBlock ifelse">
+					<div class="paste boolArea"></div>
+					<div class="ifelseRede1">なら</div>
+					<ul class="paste nestArea iftrue">
+					</ul>
+					<div class="ifelseRede2">でなければ</div>
+					<ul class="paste nestArea iffalse">
+						
+					</ul>
+				</div>
+			</div>
+			<p>繰り返し</p>
+			<div class="blockList">
+				<!-- 回数指定ループ -->
+				<div class="smallSticky inList block nestBlock for">
+					<input type="number" class="times" max="99" min="1" value="1" style="width:30px;"/>
+					<div class="forRede">回繰り返す</div>
+					<ul class="paste nestArea">
+					</ul>
+				</div>
+				<!-- 条件指定ループ -->
+				<div class="mediumSticky inList block nestBlock while">
+					<div class="paste boolArea"></div>
+					<div class="whileRede">が成り立つ間繰り返す</div>
+					<ul class="paste nestArea">
+					</ul>
+				</div>
+			</div>
+			<p>定数</p>
+			<ul class="blockList">
+<!-- 定数ブロック -->
+				<div class="poster inList block intBlock constBlock">
+				<div class="intConstant">
+					<input type="number" class="constData" value="0" style="width:45px;"/>
+				</div>
+				</div>
+<!-- 				<div class="ribbon"></div> -->
+<!-- 				文字列ブロック -->
+				<div class="poster inList block charBlock constBlock">
+				<div class="charConstant">
+					<input type="text" class="constData" size=5 value="" style="width:45px;"/>
+				</div>
+<!-- 					<div class="ribbon"></div>
+ -->				</div>
+<!-- 				ブーリアンブロック -->
+				<div class="poster inList block boolBlock constBlock">
+				<div class="boolConstant">
+					<select name="booldata" class="constData">
+						<option value="true">true</option>
+						<option value="false">false</option>
+					</select>
+				</div>
+<!-- 				<div class="ribbon"></div>
+ -->				</div>
+			</ul>
+			<p>変数</p>
+			<ul class="blockList">
+				<!-- 変数ブロック -->
+				<div class="poster inList block charBlock varBlock">
+					文字列<BR>変数
+					<BR>
+					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+<!-- 					<div class="ribbon"></div>
+ -->				</div>
+				<div class="poster inList block intBlock varBlock">
+					整数型<BR>変数
+					<BR>
+					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+<!-- 					<div class="ribbon"></div>
+ -->				</div>
+				<div class="poster inList block boolBlock varBlock">
+					論理型<BR>変数
+					<BR>
+					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
+<!-- 					<div class="ribbon"></div>
+ -->				</div>
+			</ul>
 			<p>サブルーチン</p>
 			<ul class="blockList">
 				<div class="inList sub">
@@ -99,150 +260,6 @@
 					サブルーチン<br>
 					<input type="text" maxlength="5" class="functionName" name="functionName" size="10" value="" style="width:100px;height: 10px;"/>
 				</li>
-			</ul>
-			<p>演算</p>
-			<ul class="blockList">
-				<!-- printブロック -->
-				<div class="sticky inList block processBlock print">
-					print
-					<div class="paste dataArea"></div>
-				</div>
-				<!-- 四則演算ブロック -->
-				<div class="sticky inList block mathBlock fourOp">
-					<div class="paste intArea op1"></div>
-					<select name="fourOperations" class="op">
-						<option value="+">＋</option>
-						<option value="-">－</option>
-						<option value="*">×</option>
-						<option value="/">÷</option>
-					</select>
-					<div class="paste intArea op2"></div>
-				</div>
-				<!-- かっこブロック -->
-				<div class="sticky inList block mathBlock brackets">
-					(<div class="paste intArea"></div>)
-				</div>
-				<!-- 文字列連結ブロック -->
-				<div class="sticky inList block strBlock concatOp">
-					<div class="paste dataArea op1"></div>
-					+
-					<div class="paste dataArea op2"></div>
-				</div>
-				<!-- 比較ブロック -->
-				<div class="sticky inList block logicBlock compOp">
-					<div class="paste dataArea op1"></div>
-					<select name="compOperations" class="op">
-						<option value="===">＝</option>
-						<option value="!=">≠</option>
-						<option value="<=">≦</option>
-						<option value="<">＜</option>
-						<option value=">=">≧</option>
-						<option value="<">＞</option>
-					</select>
-					<div class="paste dataArea op2"></div>
-				</div>
-				<!-- 論理演算ブロック -->
-				<div class="sticky inList block logicBlock logicOp">
-					<div class="paste boolArea op1"></div>
-					<select name="logicOperations" class="op">
-						<option value="and">∧</option>
-						<option value="or">∨</option>
-						<option value="not">￢</option>
-						<option value="xor">xor</option>
-					</select>
-					<div class="paste boolArea op2"></div>
-				</div>
-			</ul>
-			<p>条件文</p>
-			<div class="blockList">
-				<!-- if -->
-				<div class="mediumSticky inList block nestBlock if">
-					<div class="paste boolArea">
-						
-					</div>が成り立つならば<BR>
-					<ul class="paste nestArea">
-						
-					</ul>
-				</div>
-				<!-- ifelse -->
-				<div class="largeSticky inList block nestBlock ifelse">
-					<div class="paste boolArea">
-						
-					</div>が成り立つならば<BR>
-					<ul class="paste nestArea iftrue">
-						
-					</ul>
-					成り立たなければ<BR>
-					<ul class="paste nestArea iffalse">
-						
-					</ul>
-				</div>
-			</div>
-			<p>繰り返し</p>
-			<div class="blockList">
-				<!-- 回数指定ループ -->
-				<div class="smallSticky inList block nestBlock for">
-					<input type="number" class="times" max="99" min="1" value="1" style="width:30px;"/>回繰り返す<BR>
-					<ul class="paste nestArea">
-						
-					</ul>
-				</div>
-				<!-- 条件指定ループ -->
-				<div class="mediumSticky inList block nestBlock while">
-					<div class="paste boolArea">
-						
-					</div>が成り立つ間繰り返す<BR>
-					<ul class="paste nestArea">
-						
-					</ul>
-				</div>
-			</div>
-			<p>変数</p>
-			<ul class="blockList">
-				<!-- 定数ブロック -->
-				<div class="poster inList block intBlock constBlock">
-					<input type="number" class="constData" value="0" style="width:45px;"/>
-				<div class="ribbon"></div>
-				</div>
-<!-- 				文字列ブロック -->
-				<div class="poster inList block charBlock constBlock">
-					<input type="text" class="constData" size=5 value="" style="width:45px;"/>
-					<div class="ribbon"></div>
-				</div>
-<!-- 				ブーリアンブロック -->
-				<div class="poster inList block boolBlock constBlock">
-					<select name="booldata" class="constData">
-						<option value="true">true</option>
-						<option value="false">false</option>
-						<div class="ribbon"></div>
-					</select>
-				</div>
-				<!-- 変数ブロック -->
-				<div class="poster inList block charBlock varBlock">
-					文字列<BR>変数
-					<BR>
-					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
-					<div class="ribbon"></div>
-				</div>
-				<div class="poster inList block intBlock varBlock">
-					整数型<BR>変数
-					<BR>
-					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
-					<div class="ribbon"></div>
-				</div>
-				<div class="poster inList block boolBlock varBlock">
-					論理型<BR>変数
-					<BR>
-					<input type="text" class="varName" name="varName" size=5 value="" maxlengt=8 style="width:45px;height: 10px;"/>
-					<div class="ribbon"></div>
-				</div>
-				<!-- 代入ブロック -->
-				<div class="sticky inList block processBlock assign">
-					<div class="paste varArea"></div>
-					=
-					<div class="paste dataArea"></div>
-				</div>
-
 			</ul>
 		</div>
 		<!-- ワークスペース -->
@@ -273,4 +290,3 @@
 	</div>
 </body>
 </html>
-
