@@ -283,7 +283,7 @@ function intBlockInterpret (obj) {
 	}else if(obj.hasClass('fourOp')){
 		op1=intBlockInterpret(obj.children('.op1').children('.block'));
 		op2=intBlockInterpret(obj.children('.op2').children('.block'));
-		intStr=op1+obj.children('.op').val()+op2;
+		intStr=op1+obj.children('.fourOpSelect').children('.op').val()+op2;
 	}else if(obj.hasClass('brackets')){
 		intStr="("+intBlockInterpret(obj.children('.intArea').children('.block'))+")";
 	}else{
@@ -325,11 +325,11 @@ function boolBlockInterpret (obj) {
 	}else if(obj.hasClass('compOp')){
 		op1=dataBlockInterpret(obj.children('.op1').children('.block'));
 		op2=dataBlockInterpret(obj.children('.op2').children('.block'));
-		boolStr=op1+obj.children('.op').val()+op2;
+		boolStr=op1+obj.children('.compOpSelect').children('.op').val()+op2;
 	}else if(obj.hasClass('logicOp')){
 		op1=boolBlockInterpret(obj.children('.op1').children('.block'));
 		op2=boolBlockInterpret(obj.children('.op2').children('.block'));
-		switch (obj.children('.op').val()){
+		switch (obj.children('.logicOpSelect').children('.op').val()){
 			case "and":
 				boolStr="("+op1+")&&("+op2+")";
 				break;
