@@ -1,0 +1,67 @@
+@import url(http://fonts.googleapis.com/css?family=Economica:400,700);
+
+
+
+body {
+  background: #D0F1F4;/*#ffffff;*/
+  font-family: 'Economica', sans-serif;
+  font-size:20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  -webkit-backface-visibility: hidden;
+}
+
+/*delete outline on click picture */
+/*a {outline:none;}*/
+
+div {
+    font-size:70px;
+}
+
+#wrapper {
+    position:relative;
+}
+
+/* ウインドウに合わせるやり方が分からないなりー */
+
+#defaultText {
+    position: absolute;
+    top: 1200px;
+    left: px;
+
+}
+
+#freeText {
+    position: relative;
+    top: 900px;
+    left: 100px;
+}
+
+#workText{
+    position:relative;
+    top:500px;
+    left:20px;
+}
+
+#accountText{
+    position:relative;
+    top:500px;
+    left:20px;
+}
+
+#editText{
+    position:relative;
+    top:500px;
+    left:20px;
+}
+
+
+
+#circle {
+  width: 400px;
+  height: 2px;
+  border-radius: 200px;
+  border: 2px solid #fff;
+  position: absolute;
+  left: -250px;
+}
