@@ -21,63 +21,101 @@ address,pre,strong,em,iframe,img{
 
 
 
-#wrap{
-		width:940px;
-		margin:30px auto;
-		background-color:#ccc;
-}
+ 
 
 #header{
-		background-color:#FFCCCC;
-		width:100%
-		float:left;
+	height: 40px;          /* 縦幅の指定100px */
+	width: 100%;           /* 横の幅970px */
+	margin: auto;           /* 中央揃え */
 }
 
-#menu{
-		background-color:#00C4AB;
-		width:100%;
-		float:right
-		margin-bottom:30px;
-		padding-bottom:0.1px;
-		border-bottom:#ccc 1px dotted;
-		clear:both
-	}
-#menu ul{
-		width:940px;
-		margin:0 auto;
-		border-right:#fff 1px solid;
-		overflow:hidden;
-}
-#menu li{
-		float:left;
-		width:156px;
-		border-left:#fff 1px solid;
-}
-#menu li.menu1{
-	width:154px;
-}
-#menu a{
-	display:block;
-	padding:4px 2;
-	text-align:center;
-	text-decoration:none;
+div#headerLeft{
+	width:612px;
+	height:18px;
+	margin-right: -612px;
+	background-color: #808080;
+	float:left;
 	color:#fff;
 }
 
-#menu a:hover{
-	background:#cce739;
+#headerLeft p{
+	color:#fff;
+	display:block;
+	width:117px;
+	height:18px;
+	text-align:center;
+	float:left;
+	margin-right:5px;
+	background-color: #808080;
+	border-style:none;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+}
+div#headerRight{
+
+	height:18px;
+	background-color: #808080;
+	float:right;
+	border-bottom:5px  solid #fff;
 }
 
-#menu  a.selected{
-	background:#fff;
-	color:#00c4ab;
-	font-weight:bold;
+div#headerRightContents{
+	margin-left:90%;
+	background-color: #808080;
 }
 
-#cont1{
-	background-color:#6600FF;
-	clear:both;
-	
+#headerRightContents input{
+	color:#fff;
+	display:block;
+	width:117px;
+	height:18px;
+	text-align:center;
+	float:right;
+	margin-right:5px;
+	background-color: #808080;
+	border-style:none;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+}
+#headerRightContents input:hover{
+	color:#fff;
+	background-color: #a9a9a9;
+	border-bottom:2px solid #000;
+}
+div#header-bk{
+	background-color: #808080;   /* 背景色(黒)は444 */
+	width:100%;               /* 横の幅を100% */
+	height: 18px;            /* 縦の幅を120px */
+	position: fixed;       /* 絶対位置指定することを定義 */
+	top: 0px;              /* 絶対位置指定(左0px,下0px) */
+	padding: 0 10px;          /* 上下に余白を取る */
+}
+
+
+div#cont1-bk{
+	padding:18px 0 160px 0;	
+}
+
+div#cont{
+	width:960px;
+	margin:auto;
+}
+/* フッターの背景 */
+div#footer-bk
+{
+	background-color: #6699FF;   /* 背景色(黒) */
+	width:100%;               /* 横の幅を100% */
+	height: 105px;            /* 縦の幅を120px */
+	position: fixed;       /* 絶対位置指定することを定義 */
+	bottom: 0px;              /* 絶対位置指定(左0px,下0px) */
+	padding: 10px 0;          /* 上下に余白を取る */
+}
+/* フッターの表示領域 */
+div#footer{
+	//border: 5px solid #fff; /* 表示領域を白枠で囲う */
+	height: 100px;          /* 縦幅の指定100px */
+	width: 970px;           /* 横の幅970px */
+	margin: auto;           /* 中央揃え */
 }
 
 	.sample_04{
@@ -97,6 +135,17 @@ address,pre,strong,em,iframe,img{
 		border-left: 5px solid #ff6633; 
 		border-top: 1px solid #fff;
 	}
+	
+	.xmin{
+		width: 100px;
+		padding: 6px;
+		text-align: left;
+		vertical-align: top;
+		color: #fff;
+		background-color: #555;
+		border-left: 5px solid #ff6633; 
+		border-top: 1px solid #fff;
+	}
 	.account{
 		width: 302px;
 		padding:6px;
@@ -107,14 +156,31 @@ address,pre,strong,em,iframe,img{
 		border-left: 5px solid #ff6633; 
 		border-top: 1px solid #fff;
 	}
-	.td-x{
+	
+	.d_year{
 		width: 150px;
 		padding: 6px;
 		background-color: #fff;
 		border-bottom: 1px solid #999;
 		border-left: 1px solid #999;
 	}
-	.td-account{
+	
+	.d_class{
+		width: 150px;
+		padding: 6px;
+		background-color: #fff;
+		border-bottom: 1px solid #999;
+		border-left: 1px solid #999;
+	}
+	
+	.d_number{
+		width: 150px;
+		padding: 6px;
+		background-color: #fff;
+		border-bottom: 1px solid #999;
+		border-left: 1px solid #999;
+	}
+	.d_account{
 		
 		width: 302px;
 		padding: 6px;
@@ -122,4 +188,72 @@ address,pre,strong,em,iframe,img{
 		border-bottom: 1px solid #999;
 		border-left: 1px solid #999;
 	}
+	.d_dbutton{
+		width: 100px;
+		padding: 6px;
+		background-color: #fff;
+		border-bottom: 1px solid #999;
+		border-left: 1px solid #999;
+	}
+
+	.hidden{
+		width: 150px;
+		padding: 6px;
+		background-color: #fff;
+		border-bottom: 1px solid #999;
+		border-left: 1px solid #999;
+	}
+	#button-br{
+	text-align:center;
+	font:14px;
+	
+	}
+	
+	#button-br nav{
+		width:656px;
+		margin:0 auto;
+		overflow:hidden;
+		
+	}
+	#button-br a:hover {
+		filter:alpha(opacity=50);
+		-moz-opacity:0.5;
+		opacity:0.5;
+	}   
+	#button-br a {
+	
+	text-align: center;
+	white-space: nowrap;
+	
+	
+	display:inline-block;
+	 text-decoration:none;
+    color:	#fff;
+    text-shadow:1px 1px 1px #bdc3c7,
+    			-1px 1px 1px #bdc3c7,
+    			1px -1px 1px #bdc3c7,
+    			-1px -1px 1px #bdc3c7;
+    
+    //float:left;
+    list-style:none;
+    width:100px;
+    height:100px;
+    line-height:100px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+ 	-webkit-border-radius:50%;
+    margin:0px 82px 0px 15px;
+	}
+	
+	#button-br a:nth-child(1) {
+    background: #FF9933;
+	}
+ 
+	#button-br a:nth-child(2) {
+    background: #58BE89;
+	}
+}
+
+
+
 }
