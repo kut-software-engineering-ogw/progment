@@ -44,6 +44,7 @@ jQuery(function() {
 	//workspaceのドロップ属性
 	$("#workspace").droppable({
 		accept: ".block, .sub",
+		tolerance: "fit",
 		greedy:true,
 		// tolerance:"intersect",
 		drop: function(event, ui){
@@ -141,6 +142,7 @@ function reInitialize () {
 	//workspaceのドロップ属性
 	$("#workspace").droppable({
 		accept: ".block, .sub",
+		tolerance: "fit",
 		greedy:true,
 		// tolerance:"intersect",
 		drop: function(event, ui){

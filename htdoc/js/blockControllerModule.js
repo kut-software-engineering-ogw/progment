@@ -57,6 +57,7 @@
 			accept: ".intBlock, .mathBlock",
 			//イベント伝播への対処
 			greedy: true,
+			tolerance: "pointer",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)
@@ -94,6 +95,7 @@
 			accept: ".charBlock, .strBlock",
 			//イベント伝播への対処
 			greedy: true,
+			tolerance: "pointer",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)
@@ -131,6 +133,7 @@
 			accept: ".boolBlock, .logicBlock",
 			//イベント伝播への対処
 			greedy: true,
+			tolerance: "pointer",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)
@@ -167,6 +170,7 @@
 			accept: ".varBlock",
 			//イベント伝播への対処
 			greedy: true,
+			tolerance: "pointer",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)
@@ -205,6 +209,7 @@
 			accept: ".intBlock, .mathBlock, .charBlock, .strBlock, .boolBlock, .logicBlock, .varBlock",
 			//イベント伝播への対処
 			greedy: true,
+			tolerance: "pointer",
 			drop: function  (event,ui) {
 				//既にブロックが入っている場合は格納処理を行わない
 				if($(this).children().length > 0)
