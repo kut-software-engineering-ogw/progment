@@ -40,7 +40,8 @@
 			<div id="headTop">
 				<div id="headTopRight">
 				<div id="headTopRightContents">
-				<input type="submit" value="ログアウト">
+				<a href="/logout"><input type="submit" value="ログアウト"></a>
+				<a href="/menu"><input type="submit" value="メニュー画面"></a>
 				</div><!-- headTopRightContents -->
 				</div><!-- headTopRight -->
 				<div id="headTopLeft">
@@ -57,7 +58,7 @@
 				{% endfor %}
 				</select>
 <!-- 				<input type="submit" value="読み込み"> -->
-				<input type="submit" value="保存" id="save">
+				<input type="submit" value="保存">
 				<input type="submit" value="削除">
 				</div><!-- headTopLeft -->
 			</div><!-- headTop -->
@@ -65,7 +66,7 @@
 			<div id="infoContents">
 			<div id="infoName">
 			<p>プログラム名</p>
-			<input type="text" size="20" value="" maxlength="20">
+			<input type="text" size="20" value="{{prgName}}" maxlength="20" id="programName">
 			</div><!-- infoName -->
 			<div id="infoComment">
 			<p>コメント</p>
