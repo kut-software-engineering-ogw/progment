@@ -631,6 +631,9 @@ a:hover{
 	min-height: 100px;
 	width: 200px;
 	font-family:"メイリオ";
+	position:absolute;
+	top:0px;
+	left:210px;
 }
 
 
@@ -904,7 +907,6 @@ a:hover{
 }
 
 .for .nestArea {
-	clear:both;
 	margin:5px 5px 0px 5px;
 }
 
@@ -937,6 +939,33 @@ a:hover{
 	background-color: #ffcf70;
 }
 
+.charBlock.varBlock {
+	text-align: center;
+}
+.blockList > .charBlock.varBlock{
+	margin-left:75px;
+}
+.intBlock.varBlock {
+	text-align: center;
+}
+.blockList > .intBlock.varBlock{
+	margin-left:75px;
+}
+.boolBlock.varBlock {
+	text-align: center;
+}
+.blockList > .boolBlock.varBlock{
+	margin-left:75px;
+}
+.blockList > .intBlock.constBlock{
+	margin-left:75px;
+}
+.blockList > .charBlock.constBlock{
+	margin-left:75px;
+}
+.blockList > .boolBlock.constBlock{
+	margin-left:75px;
+}
 /*.varBlock input {
 	margin-bottom:10px;
 }*/

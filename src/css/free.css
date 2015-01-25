@@ -631,6 +631,9 @@ a:hover{
 	min-height: 100px;
 	width: 200px;
 	font-family:"メイリオ";
+	position:absolute;
+	top:0px;
+	left:210px;
 }
 
 
@@ -900,17 +903,13 @@ a:hover{
 	background-color: #c7a5fa;
 }
 .for input{
-	float:left;
-	margin:0px 5px;
+	margin:5px 5px 0px 5px;
 }
-.for .forRede {
-	float:left;
-	margin:0px 5px 0px 0px;
+
+.for .nestArea {
+	margin:5px 5px 0px 5px;
 }
-.for .nestArea{
-	clear:both;
-	margin:0px 5px;
-}
+
 .while {
 	background-color: #c7a5fa;
 }
@@ -927,7 +926,6 @@ a:hover{
 .intBlock .constBlock {
 	margin:10px 0px 0px 0px;
 }
-
 .intConstant {
 	margin:15px 0px 0px 0px;
 }
@@ -941,6 +939,33 @@ a:hover{
 	background-color: #ffcf70;
 }
 
+.charBlock.varBlock {
+	text-align: center;
+}
+.blockList > .charBlock.varBlock{
+	margin-left:75px;
+}
+.intBlock.varBlock {
+	text-align: center;
+}
+.blockList > .intBlock.varBlock{
+	margin-left:75px;
+}
+.boolBlock.varBlock {
+	text-align: center;
+}
+.blockList > .boolBlock.varBlock{
+	margin-left:75px;
+}
+.blockList > .intBlock.constBlock{
+	margin-left:75px;
+}
+.blockList > .charBlock.constBlock{
+	margin-left:75px;
+}
+.blockList > .boolBlock.constBlock{
+	margin-left:75px;
+}
 /*.varBlock input {
 	margin-bottom:10px;
 }*/
