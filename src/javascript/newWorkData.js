@@ -1,7 +1,5 @@
 jQuery(function() {
-	var dataStart = getWorkspace();
-	var nameStart = $("#programName").val();
-    var commentStart = $("#comment").val();
+	var work = getWorkspace();
   	$("#newData").on("click", function() {
 		swal({
 	      title: "新規作成を行いますか?",
@@ -31,7 +29,8 @@ jQuery(function() {
 		$("select[id='load']").val("");
 		$("#comment").val("");
 	    $("#programName").val("");
-	  	$("#workspace").html(dataStart);
+	  	$("#workspace").html(work);
+	  	$("#outputArea").val("");
 	  	reInitialize();
 	}
 });
