@@ -1,15 +1,24 @@
+var	dataStart = 0;
+var	nameStart = 0;
+var	commentStart = 0;
+var	workIdStart = 0;
+
 jQuery(function() {
-	var dataStart = getWorkspace();
+	dataStart = getWorkspace();
+	nameStart = $("#programName").val();
+	commentStart = $("#comment").val();
+	var workIdStartAboid = 0;
 	// $("#load option[value='']").val("start");
-	var workIdStart = $("#load").val();
+	workIdStart = $("#load").val();
 	$("#load").on('change', function() {
+		workIdStartAboid = workIdStart;
 		//alert($("#workspace").html());
 		//workspaceが変更されているか判別
-		if(dataStart != getWorkspace()){
+		if(dataStart != getWorkspace() || nameStart != $("#programName").val() || commentStart != $("#comment").val()){
 //********************保存シークエンス開始*****************
 			// alert("workspace判別");
-			var workId = $("#load").val();			
-			if(workId == workIdStart){
+			// var workId = $("#load").val();			
+			if(workIdStart == ""){
 //********************************************* 新規保存
 			//新規保存をするかどうかを問うアラート
 		    swal({
@@ -76,8 +85,6 @@ jQuery(function() {
 				},
 				function(isConfirm){
 					if (isConfirm) {
-						// alert(isConfirm);
-						// swal("上書き保存と読み込みが完了しました!!", "", "success");
 						save();
 						loadWork();
 						return false;
@@ -144,14 +151,19 @@ jQuery(function() {
 	        	// alert(data);
 	        	// $("#wrap").html(data);
 	        	// alert(work);
-	        	var data = work.replace(/上田は32/g, ";");
+	        	var data = work.replace(/SEMICOLON/g, ";");
 	        	$("#workspace").html($('#workspace', $(data)).html());
 	        	$("#comment").val($('#comment', $(data)).val());
 	        	$("#programName").val($('#programName', $(data)).val());
+	        	$("#outputArea").val("");
 	        	// alert($("#workspace", $(data)).html());
 	        	swal("読み込みが完了しました!!", "", "success");
 	        	reInitialize();
 	        	dataStart = getWorkspace();
+	        	nameStart = $("#programName").val();
+				commentStart = $("#comment").val();
+				workIdStart = $("#load").val();
+
 			}).fail(function( jqXHR, textStatus, errorThrown ) {
 				swal("読み込みに失敗しました", "", "error");
 	        	// alert("load fail");
@@ -171,11 +183,10 @@ jQuery(function() {
 	      dataType: 'html',
 	      }).done(function( data, textStatus, jqXHR ) {
 	        // alert("新規保存ok");
-          var id = $('#id', $(data)).text();
-          $("#load").append($("<option>").val(id).text(name));
-          $("select[id='load']").val(id);
+          var id = data.split(",");
+          $("#load").append($("<option>").val(id[1]).text(name));
+          $("select[id='load']").val(id[1]);
 	        swal("新規保存が完了しました!!", "", "success");
-	        workIdStart = $("#load").val();
 	    }).fail(function( jqXHR, textStatus, errorThrown ) {
 	    	swal("新規保存に失敗しました", "", "error");
 	        // alert("新規保存fail");
@@ -187,15 +198,13 @@ jQuery(function() {
     var name = $("#programName").val();
     var comment = $("#comment").val();
     var cookie  = $.cookie('user_id');
-    var url = 'freeProg/prgUpdate?prgID='+workIdSave+'&prgName='+name+'&comment='+comment+'&workSpaceData='+work;
-
+    var url = 'freeProg/prgUpdate?prgID='+workIdStartAboid+'&prgName='+name+'&comment='+comment+'&workSpaceData='+work;
     $.ajax({
       url: url,
       type: 'POST',
-		dataType: 'html',
+	  dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
       	swal("上書き保存が完了しました!!", "", "success");
-      	workIdStart = $("#load").val();
         // alert("上書き保存ok");
     }).fail(function( jqXHR, textStatus, errorThrown ) {
     	swal("上書き保存に失敗しました", "", "error");

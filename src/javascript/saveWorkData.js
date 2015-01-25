@@ -1,16 +1,15 @@
 jQuery(function() {
+  // dataStart = getWorkspace();
+  // nameStart = $("#programName").val();
+  // commentStart = $("#comment").val();
   $("#save").on("click", function() {
     var workId = $("#load").val();
-    alert(workId);
     if(workId == ''){
       // 新規保存
-      swal("新規保存が完了しました!!", "", "success");
       newSave();
     }else{
        //　上書き保存
-      swal("上書き保存が完了しました!!", "", "success");
       save();
-      alert("neet");
     }
   });
   //新規保存メソッド
@@ -26,17 +25,19 @@ jQuery(function() {
       type: 'POST',
       dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
-          alert("新規保存ok");
-          var id = "fail";
-          // id = $('#id', $(data)).text();
-          alert("test" + $(data).find('#id').text());
-          // alert(id);
-          $("#load").append($("<option>").val(id).text(name));
-          $("select[id='load']").val(id);
-          //data=data.replace();
-	       alert(data);
+          swal("新規保存が完了しました!!", "", "success");
+          // alert("新規保存ok");
+          var id = data.split(",");
+          $("#load").append($("<option>").val(id[1]).text(name));
+          $("select[id='load']").val(id[1]);
+          workIdStart = $("#load").val();
+          nameStart = $("#programName").val();
+          commentStart = $("#comment").val();
+          dataStart = getWorkspace();
+	       // alert(data);
     }).fail(function( jqXHR, textStatus, errorThrown ) {
-          alert("新規保存fail");
+          swal("新規保存に失敗しました", "", "error");
+          // alert("新規保存fail");
     });
   }
   //上書きメソッド
@@ -47,7 +48,6 @@ jQuery(function() {
     var cookie  = $.cookie('user_id');
     var work = getWorkspace();
     var url = 'freeProg/prgUpdate?prgID='+workIdSave+'&prgName='+name+'&comment='+comment+'&workSpaceData='+work;
-    alert(comment);
     $.ajax({
       url: url,
       type: 'POST',
@@ -58,9 +58,14 @@ jQuery(function() {
 		// },
       dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
-          alert("上書き保存ok");
+          swal("上書き保存が完了しました!!", "", "success");
+          dataStart = getWorkspace();
+          nameStart = $("#programName").val();
+          commentStart = $("#comment").val();
+          // alert("上書き保存ok");
     }).fail(function( jqXHR, textStatus, errorThrown ) {
-          alert("上書き保存fail");
+          swal("上書き保存に失敗しました", "", "error");
+          // alert("上書き保存fail");
     });
   }
 });
