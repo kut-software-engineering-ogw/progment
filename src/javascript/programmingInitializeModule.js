@@ -344,7 +344,7 @@ function annexDraggable (obj) {
 				connectToSortable:"#mainList, .subList, .nestArea",
 				containment:"#workspace",
 				revert:false,
-				cancel:".nestArea"
+				cancel:".nestArea,input"
 			});
 			break;
 		case "fourOp":
@@ -415,10 +415,12 @@ function blockGenerated (obj) {
 			blockType=".boolBlock"+blockType;
 	}
 	var target=$(".inList"+blockType);
-	if(limitList[blockType]==1)
+	if(limitList[blockType]==1){
 		$(".inList"+blockType).draggable({ disabled: true });
+		$(".inList"+blockType).hide();
+	}
 	limitList[blockType]--;
-	console.log("Type:"+blockType+"\n"+target.html()+limitList[blockType]);
+	//console.log("Type:"+blockType+"\n"+target.html()+limitList[blockType]);
 }
 
 function blockDeleted (obj) {
@@ -435,19 +437,22 @@ function blockDeleted (obj) {
 	else if(obj.hasClass('boolBlock'))
 		blockType=".boolBlock"+blockType;
 	console.log(blockType)
-	if(limitList[blockType]==0)
+	if(limitList[blockType]==0){
 		$(".inList"+blockType).draggable({ disabled: false });
+		$(".inList"+blockType).show();
+	}
 	limitList[blockType]++;
 }
 
 function initializeKadaiMode () {
-	console.log("初期化START------------------------------------");
+	console.log("課題初期化START------------------------------------");
+	limitList = new Object();
 	blockGenerateControl();
 	console.log("ブロックリスト初期化終わり")
 	// console.log("kore:"+$("#main").children('').hasClass('ui-sortable'));
 	// $("#main").children(".ui-sortable").sortable( 'disable' );
 	forbiddenDraggingWorkspace($("#main"));
-	console.log("初期化END--------------------------------------");
+	console.log("課題初期化END--------------------------------------");
 }
 
 function forbiddenDraggingWorkspace (obj) {

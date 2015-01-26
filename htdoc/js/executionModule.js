@@ -224,9 +224,9 @@ function interpret (obj) {
 	var optionAfter="";
 	if(exeMode=="trace"){
 		obj.attr("id","blockNumber"+blockNum);
-		optionBefore="$(\"#blockNumber"+blockNum+"\").addClass('exeBlock',1000, 'easeOutBounce');"
+		optionBefore="$(\"#blockNumber"+blockNum+"\").addClass('exeBlock',500, 'linear');"
 		//optionBefore="$(\"#blockNumber"+blockNum+"\").delay("+delayTime+").effect(\"highlight\",{ color: \"#ff5c5c\"},2500);";
-		optionAfter+="$(\"#blockNumber"+blockNum+"\").removeClass('exeBlock',1000, 'easeOutBounce');";
+		optionAfter+="$(\"#blockNumber"+blockNum+"\").removeClass('exeBlock',500, 'linear');";
 		blockNum++;
 		//delayTime+=2500;
 	}

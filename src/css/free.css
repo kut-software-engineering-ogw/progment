@@ -975,3 +975,7 @@ a:hover{
 	background-repeat: no-repeat;
 	background-position: 18px 16px;
 }
+
+.exeBlock {
+	border:3px solid #C71585;
+}

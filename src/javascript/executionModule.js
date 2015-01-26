@@ -224,9 +224,9 @@ function interpret (obj) {
 	var optionAfter="";
 	if(exeMode=="trace"){
 		obj.attr("id","blockNumber"+blockNum);
-		optionBefore="$(\"#blockNumber"+blockNum+"\").addClass('exeBlock',1000, 'easeOutBounce');"
+		optionBefore="$(\"#blockNumber"+blockNum+"\").addClass('exeBlock',500, 'linear');"
 		//optionBefore="$(\"#blockNumber"+blockNum+"\").delay("+delayTime+").effect(\"highlight\",{ color: \"#ff5c5c\"},2500);";
-		optionAfter+="$(\"#blockNumber"+blockNum+"\").removeClass('exeBlock',1000, 'easeOutBounce');";
+		optionAfter+="$(\"#blockNumber"+blockNum+"\").removeClass('exeBlock',500, 'linear');";
 		blockNum++;
 		//delayTime+=2500;
 	}
@@ -408,7 +408,7 @@ function whileCodeGenerate (obj) {
 	var whileCode="";
 	whileCode+="while("+loopCondition+"){";
 	obj.children('.nestArea').children('.block').each(function () {
-		interpret($(this));
+		whileCode+=interpret($(this));
 	});
 	whileCode+="}";
 	return whileCode;
@@ -434,7 +434,7 @@ function ifelseCodeGenerate (obj) {
 	});
 	ifelseCode+="}else{";
 	obj.children('.iffalse').children('.block').each(function () {
-		ifelseCode=interpret($(this));
+		ifelseCode+=interpret($(this));
 	});
 	ifelseCode+="}";
 	return ifelseCode;
