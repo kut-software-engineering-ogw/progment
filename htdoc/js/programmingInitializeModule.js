@@ -415,10 +415,12 @@ function blockGenerated (obj) {
 			blockType=".boolBlock"+blockType;
 	}
 	var target=$(".inList"+blockType);
-	if(limitList[blockType]==1)
+	if(limitList[blockType]==1){
 		$(".inList"+blockType).draggable({ disabled: true });
+		$(".inList"+blockType).hide();
+	}
 	limitList[blockType]--;
-	console.log("Type:"+blockType+"\n"+target.html()+limitList[blockType]);
+	//console.log("Type:"+blockType+"\n"+target.html()+limitList[blockType]);
 }
 
 function blockDeleted (obj) {
@@ -435,8 +437,10 @@ function blockDeleted (obj) {
 	else if(obj.hasClass('boolBlock'))
 		blockType=".boolBlock"+blockType;
 	console.log(blockType)
-	if(limitList[blockType]==0)
+	if(limitList[blockType]==0){
 		$(".inList"+blockType).draggable({ disabled: false });
+		$(".inList"+blockType).show();
+	}
 	limitList[blockType]++;
 }
 
