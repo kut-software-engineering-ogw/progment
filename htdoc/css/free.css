@@ -940,18 +940,25 @@ a:hover{
 }
 
 .charBlock.varBlock {
+	width:50px;
+	height:48px;
+/*	font-size: 10px;*/
 	text-align: center;
 }
 .blockList > .charBlock.varBlock{
 	margin-left:75px;
 }
 .intBlock.varBlock {
+	width:50px;
+	height:48px;
 	text-align: center;
 }
 .blockList > .intBlock.varBlock{
 	margin-left:75px;
 }
 .boolBlock.varBlock {
+	width:50px;
+	height:48px;
 	text-align: center;
 }
 .blockList > .boolBlock.varBlock{
