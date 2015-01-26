@@ -1,30 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Progment Menu</title>
-    <link rel="stylesheet" href="../css/style.css" media="screen" type="text/css" />
-  </head>
+<head>
 
-  <body>
-    <div id="wrapper">
-      <script src="../javascript/index.js"></script>
-      <div id="defaultText">
-	<!-- <span>左真ん中に置きたいなり<br>この部分でも反応するのどうにかしてくれ....</span> -->
-      </div>
-      <div id="freeText" style="visibility:hidden;">
-	<!-- <span>mouseOver時に表示したいなり（別々にできん..）</span> -->
-      </div>
-      <div id="kadaiText" style="visibility:hidden;">
-	<span>kadai</span>
-      </div>
-      <div id="accountText" style="visibility:hidden;">
-	<span>account</span>
-      </div>
-      <div id="editText" style="visibility:hidden;">
-	<span>edit</span>
-      </div>
-    </div>
-  </body>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>プログメント-メニュー画面-</title>
+<!-- CDNのロード始 -->
+<!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css"> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!-- CDNのロード終 -->
+<!-- javascriptロード始 -->
+<script type="text/javascript" src="js/programmingInitializeModule.js"></script>
+<script type="text/javascript" src="js/blockControllerModule.js"></script>
+<script type="text/javascript" src="js/executionModule.js"></script>
+<script type="text/javascript" src="js/help.js"></script>
+<script type="text/javascript" src="js/loadWorkData.js"></script>
+<script type="text/javascript" src="js/saveWorkData.js"></script>
+<script type="text/javascript" src="js/deleteWork.js"></script>
+<script type="text/javascript" src="js/newWorkData.js"></script>
+<script type="text/javascript" src="js/sweet-alert.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<!-- javascriptロード終 -->
+<!-- CSSロード始 -->
+<!-- <link rel="stylesheet" type="text/css" href="css/free.css"> -->
+<link rel="stylesheet" type="text/css" href="css/sweet-alert.css">
+<link rel="stylesheet" type="text/css" href="css/menu.css">
+<!-- CSSロード終 -->
+</head>
 
+<body>
+	<!-- 全体 -->
+	<div id="wrap">
+		<!-- ヘッダ -->
+		<div id="head">
+			<div id="headTop">
+				<div id="headTopRight">
+				<div id="headTopRightContents">
+				<input type="submit" value="ログアウト">
+				</div><!-- headTopRightContents -->
+				</div><!-- headTopRight -->
+				<div id="headTopLeft">
+<!-- 				<p>ユーザ情報の表示</p> -->
+				</div><!-- headTopLeft -->
+			</div><!-- headTop -->
+		</div><!-- head -->
+	<div id="contents">
+	<div id="sticky1" class="sticky"><a href="#"><img src="img/free.png" width="400" height="150"></a></div>
+	<div id="sticky2" class="sticky"><a href="#"><img src="img/edit.png" width="400" height="150"></a></div>
+	<div id="sticky3" class="sticky"><a href="#"><img src="img/kadai.png" width="400" height="150"></a></div>
+	<div id="sticky4" class="sticky"><a href="#"><img src="img/accountManege.png" width="400" height="150"></a></div>
+	</div><!-- contents -->
+	</div><!-- wrap -->
+
+</body>
 </html>
