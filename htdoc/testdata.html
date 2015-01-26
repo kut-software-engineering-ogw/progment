@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>フリープログラミング</title>
+<title>課題プログラミング</title>
 <!-- CDNのロード始 -->
 <!-- <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css"> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -34,6 +34,9 @@
 	<div id="wrap">
 		<!-- ヘッダ -->
 		<div id="head">
+			<input type="hidden" name="programmingMode" id="programmingMode" value="kadai">
+			<input type="hidden" name="limitList" id="limitList" value="">
+			<input type="hidden" name="Answer" id="answer" value="">
 			<div id="headTop">
 				<div id="headTopRight">
 				<div id="headTopRightContents">
@@ -43,13 +46,10 @@
 				</div><!-- headTopRight -->
 				<div id="headTopLeft">
 				<p>ユーザ情報の表示</p>
-				<input type="submit" value="新規作成">
 				<select id="load">
 				<option value="">読み込み</option>
 				</select>
 <!-- 				<input type="submit" value="読み込み"> -->
-				<input type="submit" value="保存" id="save">
-				<input type="submit" value="削除">
 				</div><!-- headTopLeft -->
 			</div><!-- headTop -->
 			<div id="info">
@@ -66,16 +66,15 @@
 			<div id="infoRun">
 			<div id="infoRunContents">
 			<select id="exeMode">
-			<option value="nomal">実行モード</option>
-			<option value="trace">トレースモード</option>
-			<option value="generate">コード生成モード</option>
+			<option value="nomal">通常実行</option>
+			<option value="trace">トレース実行</option>
+			<option value="generate">コード生成</option>
 			</select><br>
 			<input type="button" value="実行" id="exeButton">
 			<input type="button" value="次へ" id="next">
 			</div><!-- infoRunContents -->
 			</div><!-- infoRun -->
 			</div><!-- info -->
-			<input type="hidden" name="programmingMode" id="programmingMode" value="free">
 		</div><!-- head -->
 
 		<!-- ページ左側 -->
@@ -128,7 +127,7 @@
 					<div class="paste dataArea op1"></div>
 					<div class="compOpSelect">
 					<select name="compOperations" class="op">
-						<option value="==">＝</option>
+						<option value="===">＝</option>
 						<option value="!=">≠</option>
 						<option value="<=">≦</option>
 						<option value="<">＜</option>
@@ -180,8 +179,8 @@
 			<div class="blockList">
 				<!-- 回数指定ループ -->
 				<div class="smallSticky inList block nestBlock for">
-					<input type="number" class="times" max="99" min="1" value="1" style="width:40px;"/>
-					回繰り返す<br>
+					<input type="number" class="times" max="99" min="1" value="1" style="width:30px;"/>
+					<div class="forRede">回繰り返す</div>
 					<ul class="paste nestArea">
 					</ul>
 				</div>
