@@ -21,9 +21,14 @@ jQuery(function() {
     var url = 'freeProg/prgInsert?prgName='+name+'&comment='+comment+'&workSpaceData='+work;
     
     $.ajax({
-      url: url,
+      url: "freeProg/prgInsert",
       type: 'POST',
       dataType: 'html',
+      data: {
+                "prgName": name,
+                "comment": comment,
+                "workSpaceData": work
+            },
       }).done(function( data, textStatus, jqXHR ) {
           swal("新規保存が完了しました!!", "", "success");
           // alert("新規保存ok");
