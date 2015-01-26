@@ -35,6 +35,16 @@ a:hover{
    color:#b8860b;
 }
 
+a img{
+   opacity:1;
+   filter: alpha(opacity=100);
+}
+
+a:hover img{
+   opacity:0.7;
+   filter: alpha(opacity=75);
+}
+
 /*ヘッダー部分(左固定＋右可変)*/
 #head{
    border-top:2px solid #000;
@@ -132,7 +142,7 @@ a:hover{
 }
 
 #contents {
-   width: 700px;
+   width: 900px;
    height:400px;
    margin:0 auto;
    margin-top: 70px;
@@ -140,7 +150,7 @@ a:hover{
 }
 
 #sticky1 {
-   width:325px;
+   width:400px;
    height:150px;
    background-color: #ffcf70;
    position:absolute;
@@ -148,7 +158,7 @@ a:hover{
    left:0px;
 }
 #sticky2 {
-   width:325px;
+   width:400px;
    height:150px;
    background-color: #b1f9b1;
    position:absolute;
@@ -156,20 +166,20 @@ a:hover{
    left:0px;
 }
 #sticky3 {
-   width:325px;
+   width:400px;
    height:150px;
    background-color: #87cefa;
    position:absolute;
    top:0px;
-   left:380px;
+   left:450px;
 }
 #sticky4 {
-   width:325px;
+   width:400px;
    height:150px;
    background-color: #ffdee5;
    position:absolute;
    top:200px;
-   left:380px;
+   left:450px;
 }
 
 .sticky{
