@@ -134,11 +134,11 @@ function reInitialize () {
 		cancel:"#kadaiList",
 		containment:"#workspace"
 	});
-	// $("#workspace .sub").draggable({
-	// 	cancel:".subList, .functionName",
-	// 	containment:"#workspace",
-	// 	zIndex:40,
-	// });
+	$("#workspace .sub").draggable({
+		cancel:".subList, .functionName",
+		containment:"#workspace",
+		zIndex:40,
+	});
 	//workspaceの初期化
 	initializeWorkspace();
 	//workspaceのドロップ属性

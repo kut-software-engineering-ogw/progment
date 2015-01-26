@@ -33,11 +33,11 @@ jQuery(function() {
 		cancel:"#kadaiList",
 		containment:"#workspace"
 	});
-	// $("#workspace .sub").draggable({
-	// 	cancel:".subList, .functionName",
-	// 	containment:"#workspace",
-	// 	zIndex:40,
-	// });
+	$("#workspace .sub").draggable({
+		cancel:".subList, .functionName",
+		containment:"#workspace",
+		zIndex:40,
+	});
 	//ブロックリストの初期化
 	initializeBlockList();
 	//workspaceの初期化
