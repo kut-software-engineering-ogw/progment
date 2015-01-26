@@ -434,7 +434,7 @@ function ifelseCodeGenerate (obj) {
 	});
 	ifelseCode+="}else{";
 	obj.children('.iffalse').children('.block').each(function () {
-		ifelseCode=interpret($(this));
+		ifelseCode+=interpret($(this));
 	});
 	ifelseCode+="}";
 	return ifelseCode;
