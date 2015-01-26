@@ -54,13 +54,14 @@ jQuery(function() {
     var work = getWorkspace();
     var url = 'freeProg/prgUpdate?prgID='+workIdSave+'&prgName='+name+'&comment='+comment+'&workSpaceData='+work;
     $.ajax({
-      url: url,
+      url: "freeProg/prgUpdate",
       type: 'POST',
-		// data: {
-		//  workSpaceData: work,
-		//   comment: comment,
-		//  prgId: workIdSave,
-		// },
+      data: {
+                "prgID" : workIdSave,
+                "prgName": name,
+                "comment": comment,
+                "workSpaceData": work
+            },
       dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
           swal("上書き保存が完了しました!!", "", "success");
