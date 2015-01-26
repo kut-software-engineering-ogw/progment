@@ -649,6 +649,9 @@ a:hover{
 .sub input{
 	width:100px;
 	height: 10px;
+}
+
+.subroutineDistination > .functionName {
 	position: absolute;
 	top:37px;
 	left:88px;
@@ -942,7 +945,6 @@ a:hover{
 .charBlock.varBlock {
 	width:50px;
 	height:48px;
-/*	font-size: 10px;*/
 	text-align: center;
 }
 .blockList > .charBlock.varBlock{
