@@ -21,9 +21,14 @@ jQuery(function() {
     var url = 'freeProg/prgInsert?prgName='+name+'&comment='+comment+'&workSpaceData='+work;
     
     $.ajax({
-      url: url,
+      url: "freeProg/prgInsert",
       type: 'POST',
       dataType: 'html',
+      data: {
+                "prgName": name,
+                "comment": comment,
+                "workSpaceData": work
+            },
       }).done(function( data, textStatus, jqXHR ) {
           swal("新規保存が完了しました!!", "", "success");
           // alert("新規保存ok");
@@ -49,13 +54,14 @@ jQuery(function() {
     var work = getWorkspace();
     var url = 'freeProg/prgUpdate?prgID='+workIdSave+'&prgName='+name+'&comment='+comment+'&workSpaceData='+work;
     $.ajax({
-      url: url,
+      url: "freeProg/prgUpdate",
       type: 'POST',
-		// data: {
-		//  workSpaceData: work,
-		//   comment: comment,
-		//  prgId: workIdSave,
-		// },
+      data: {
+                "prgID" : workIdSave,
+                "prgName": name,
+                "comment": comment,
+                "workSpaceData": work
+            },
       dataType: 'html',
       }).done(function( data, textStatus, jqXHR ) {
           swal("上書き保存が完了しました!!", "", "success");
