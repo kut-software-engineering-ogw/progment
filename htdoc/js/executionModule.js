@@ -408,7 +408,7 @@ function whileCodeGenerate (obj) {
 	var whileCode="";
 	whileCode+="while("+loopCondition+"){";
 	obj.children('.nestArea').children('.block').each(function () {
-		interpret($(this));
+		whileCode+=interpret($(this));
 	});
 	whileCode+="}";
 	return whileCode;
