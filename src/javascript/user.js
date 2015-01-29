@@ -78,7 +78,7 @@ function del(e){
   	
   	
  jQuery(document).ready(function(){
-  	$("#addButton").click(function(){$("#infoTable").append("<tbody id='infoTable'><tr><td class='d_year'><input type='text' name='usrYear' value=''></td><td class='d_class'><input type='text' name='usrClass' value=''></td><td class='d_number'><input type='text' name='usrNumber' value=''></td><td class='d_account'><input type='text' size='47' name='usrAccount' value=''></td><td class='d_dbutton'><button type='button' name='user_id' value='2'>削除</button></td><td><input class='d_action' type='hidden' name='action' 'value='1'></td></tr></tbody>");}
+  	$("#addButton").live("click", function(){$("#infoTable").append("<tbody id='infoTable'><tr><td class='d_year'><input type='text' name='usrYear' value=''></td><td class='d_class'><input type='text' name='usrClass' value=''></td><td class='d_number'><input type='text' name='usrNumber' value=''></td><td class='d_account'><input type='text' size='47' name='usrAccount' value=''></td><td class='d_dbutton'><button type='button' name='user_id' value='2'>削除</button></td><td><input class='d_action' type='hidden' name='action' 'value='1'></td></tr></tbody>");}
 	)});
 	
 	
