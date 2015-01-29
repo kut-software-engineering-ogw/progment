@@ -3,8 +3,9 @@
 ログインモジュール
 ユーザがログイン情報をサーバに送信し、セッションを確立するための処理を行う
 Author:     kouhei oosaki
-Version:    0.0.1
+Version:    0.0.2
 Since:      2015/01/23
+LastUpdate: 2015/01/29
 """
 import sys
 import cgi
