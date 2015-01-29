@@ -9,7 +9,7 @@ functionNameTable={hoge:"foo"};
 exeMode="nomal";
 hogeNum=0;
 blockNum=1;
-delayTime=0;
+// delayTime=0;
 funlib="";//"output=(function (str){oldtxt=$(\"#outputArea\").val();output=oldtxt+str+\"\\n\";$(\"#outputArea\").val(output);});";
 stackNum=0;
 generator=[];
