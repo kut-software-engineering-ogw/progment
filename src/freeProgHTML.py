@@ -229,7 +229,7 @@ def editProgHTML(prgId, userId):
 # ユーザ管理画面を生成する関数。
 def userApp(mstUsrId):
 
-    tpl = env.get_template('')
+    tpl = env.get_template('tmpl/users_tmpl.html')
     
     userList = usrDataGet(mstUsrId)
 
