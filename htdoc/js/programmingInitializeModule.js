@@ -1,3 +1,20 @@
+//グローバル変数
+codeStr="";
+preamble="";
+subroutine="";
+varNum=0;
+varNameTable={hoge:"foo"};
+funNum=0;
+functionNameTable={hoge:"foo"};
+exeMode="nomal";
+hogeNum=0;
+blockNum=1;
+delayTime=0;
+funlib="";//"output=(function (str){oldtxt=$(\"#outputArea\").val();output=oldtxt+str+\"\\n\";$(\"#outputArea\").val(output);});";
+stackNum=0;
+generator=[];
+result=undefined;
+OutText="";
 limitList = new Object();
 programmingMode=$("#programmingMode").val();
 
@@ -9,7 +26,7 @@ jQuery(function() {
 		heightStyle:"content"
 	});
 
-	//ソート属性
+	//メインメソッドのソート属性
 	$("#mainList").sortable({
 		connectWith:"ul",
 		revert:true,
@@ -50,7 +67,7 @@ jQuery(function() {
 		// tolerance:"intersect",
 		drop: function(event, ui){
 			//console.log(event.relatedTarget);
-			//dropArea|nestArea→workspace
+			//dropArea|nestArea→workspaceの処理
 			if(!(ui.draggable.parent().attr('id')=="workspace")&&!(ui.draggable.hasClass('inList'))){
 				console.log("workspace外")
 				var workspaceOffset = $("#workspace").offset();
@@ -69,6 +86,7 @@ jQuery(function() {
 			}else if(ui.draggable.hasClass('ui-draggable-dragging')){
 				console.log("移動中"+ui.draggable.attr('class'));
 			}else if(ui.draggable.hasClass('inList')){
+				//リストからのドロップ時の処理
 				console.log("リストからドロップ");
 				console.log(ui.draggable.attr('class'));
 				var workspaceOffset = $("#workspace").offset();
@@ -87,7 +105,8 @@ jQuery(function() {
 			//onsole.log($(".ui-draggable-dragging").parent());
 		}
 	})
-
+	
+	//ゴミ箱の処理
 	$("#dustbin").droppable({
 		accept: "#workspace .block, #workspace .sub",
 		greedy: true,
@@ -103,12 +122,15 @@ jQuery(function() {
 		}
 	});
 
+	// トレース実行時に使用するボタンの非表示
 	$("#next").hide();
 
+	// 課題モード時の初期化処理
 	if(programmingMode=="kadai")
 		initializeKadaiMode();
 });
 
+//プログラムをサーバから読み込んだ際の再初期化処理用メソッド
 function reInitialize () {
 	//ソート属性
 	$("#mainList").sortable({
@@ -263,6 +285,7 @@ function initializeBlockList () {
 	});
 }
 
+//ブロックの種類を取得するメソッド
 function getBlockType (obj) {
 	var classList=obj.get(0).className.split(" ");
 	var classNum=classList.length-1;
@@ -306,6 +329,7 @@ function getBlockType (obj) {
 	return "unknown";
 }
 
+//workspaceの初期化処理
 function initializeWorkspace () {
 	$("#workspace .block").each(function  () {
 		console.log($(this).attr("class"));
@@ -314,7 +338,7 @@ function initializeWorkspace () {
 	});
 }
 
-
+//ドラッグ属性を付与する関数
 function annexDraggable (obj) {
 	// var classList=obj.get(0).className.split(" ");
 	// var classNum=classList.length;
@@ -372,24 +396,58 @@ function annexDraggable (obj) {
 	}
 }
 
+//課題モード時の初期化モジュール
+function initializeKadaiMode () {
+	console.log("課題初期化START------------------------------------");
+	limitList = new Object();
+	blockGenerateControl();
+	console.log("ブロックリスト初期化終わり")
+	// console.log("kore:"+$("#main").children('').hasClass('ui-sortable'));
+	// $("#main").children(".ui-sortable").sortable( 'disable' );
+	forbiddenDraggingWorkspace($("#main"));
+	console.log("課題初期化END--------------------------------------");
+}
+
+//課題モードでworkspace中の課題ルーチン以外のドラッグ禁止処理メソッド
+function forbiddenDraggingWorkspace (obj) {
+	obj.children('').children('.block').each(function  () {
+		forbiddenDraggingWorkspace($(this));
+	});
+	obj.draggable({ disabled: true });
+	if(obj.children('').hasClass('ui-sortable')){
+		obj.children(".ui-sortable").sortable( 'disable' );
+		console.log("disableSortable:"+obj.attr('class'));
+	}
+	console.log(obj.attr('class'));
+}
+
+//ブロックリスト管理モジュールの処理
+//制限情報の適応メソッド
 function blockGenerateControl () {
+	//サブルーチン
 	$(".inList.sub").draggable("disable");
+	$(".inList.sub").hide();
 	//ネスト構造のブロック
 	$(".inList.nestBlock").draggable("disable");
+	$(".inList.nestBlock").hide();
 	//データ処理ブロック
 	$(".inList.mathBlock").draggable("disable");
+	$(".inList.mathBlock").hide();
 	$(".inList.strBlock").draggable("disable");
+	$(".inList.strBlock").hide();
 	$(".inList.logicBlock").draggable("disable");
+	$(".inList.logicBlock").hide();
 	//データブロック
 	$(".inList.constBlock,.inList.varBlock").draggable("disable");
+	$(".inList.constBlock,.inList.varBlock").hide();
 	//処理ブロック
 	$(".inList.processBlock").draggable("disable");
+	$(".inList.processBlock").hide();
+	//ブロック制限情報の取得
 	var limitStr=$("#limitList").val();
-	// console.log(limitStr);
+	//ブロック単位の分割
 	var temp=limitStr.split(",");
-	// for(var key in temp)
-	// 	console.log("key="+key+"\\"+temp[key]);
-	// console.log("ここまで");
+	//ブロック情報と個数情報の分割
 	for(var key in temp){
 		var temp2=temp[key].split(":");
 		// for(var k in temp2)
@@ -399,9 +457,11 @@ function blockGenerateControl () {
 	for(var key in limitList){
 		console.log(key+"→"+limitList[key]);
 		$(".inList"+key).draggable("enable");
+		$(".inList"+key).show();
 	}
 }
 
+//ブロック生成時の個数制御メソッド
 function blockGenerated (obj) {
 	if(!($("#programmingMode").val()=="kadai"))
 		return;
@@ -423,6 +483,7 @@ function blockGenerated (obj) {
 	//console.log("Type:"+blockType+"\n"+target.html()+limitList[blockType]);
 }
 
+//ブロック削除時の個数制御メソッド
 function blockDeleted (obj) {
 	if(!($("#programmingMode").val()=="kadai"))
 		return;
@@ -442,27 +503,4 @@ function blockDeleted (obj) {
 		$(".inList"+blockType).show();
 	}
 	limitList[blockType]++;
-}
-
-function initializeKadaiMode () {
-	console.log("課題初期化START------------------------------------");
-	limitList = new Object();
-	blockGenerateControl();
-	console.log("ブロックリスト初期化終わり")
-	// console.log("kore:"+$("#main").children('').hasClass('ui-sortable'));
-	// $("#main").children(".ui-sortable").sortable( 'disable' );
-	forbiddenDraggingWorkspace($("#main"));
-	console.log("課題初期化END--------------------------------------");
-}
-
-function forbiddenDraggingWorkspace (obj) {
-	obj.children('').children('.block').each(function  () {
-		forbiddenDraggingWorkspace($(this));
-	});
-	obj.draggable({ disabled: true });
-	if(obj.children('').hasClass('ui-sortable')){
-		obj.children(".ui-sortable").sortable( 'disable' );
-		console.log("disableSortable:"+obj.attr('class'));
-	}
-	console.log(obj.attr('class'));
 }
