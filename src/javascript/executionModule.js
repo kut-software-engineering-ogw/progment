@@ -1,25 +1,6 @@
-//グローバル変数
-codeStr="";
-preamble="";
-subroutine="";
-varNum=0;
-varNameTable={hoge:"foo"};
-funNum=0;
-functionNameTable={hoge:"foo"};
-exeMode="nomal";
-hogeNum=0;
-blockNum=1;
-delayTime=0;
-funlib="";//"output=(function (str){oldtxt=$(\"#outputArea\").val();output=oldtxt+str+\"\\n\";$(\"#outputArea\").val(output);});";
-stackNum=0;
-generator=[];
-result=undefined;
-OutText="";
-
 
 jQuery(document).ready(function(){
-	console.log($(".inList.for").draggable('option',"cancel"));
-
+	//getWorkSpaceの確認
 	$("#saveButton").click(function () {
 		result=getWorkspace();
 	});
@@ -62,37 +43,15 @@ jQuery(document).ready(function(){
 	});
 });
 
-function getWorkspace () {
-	$("#workspace input").each(function  () {
-		//console.log("kore"+$(this).parent().html());
-		var temp=$(this).parent().html();
-		//temp="aaaa value konnichiwa";
-		console.log(temp);
-		// var start=temp.indexOf("value\"");
-		// var end=temp.indexOf("\"",start+6);
-		var re = new RegExp("value=\"(.*?)\"");
-		temp=temp.replace(re,"value=\""+$(this).val()+"\"");
-		console.log(temp);
-		$(this).parent().html(temp);
-	})
-	console.log("保存します");
-	console.log($("#workspace").html());
-	temp=$("#workspace").html();
-	temp=temp.replace(/;/g,"SEMICOLON");
-	return temp;
-}
 
-function getResult () {
-	executionMain();
-	return $("#outputArea").val();
-}
-
+//標準出力用関数
 function outputTextArea(Str){
 	oldtxt=$("#outputArea").val();
 	output=oldtxt+Str+"\n";
 	$("#outputArea").val(output);
 }
 
+//トレース実行時の出力関数
 var traceOutputTextArea = function* () {
 	oldtxt=$("#outputArea").val();
 	output=oldtxt+Sarg+"\n";
@@ -101,6 +60,7 @@ var traceOutputTextArea = function* () {
 	yield "『"+Sarg+"』を出力しました";
 }
 
+//実行処理のメイン関数
 function executionMain () {
 	//初期化
 	$("#outputArea").val("");
@@ -120,7 +80,7 @@ function executionMain () {
 	functionInterpret();
 	//課題ルーチン解析
 	if(programmingMode=="kadai")
-		kadaiInterpret();
+		kadaiFunInterpret();
 	//初期化終わり
 	$("#mainList").children('.block').each(function () {
 		codeStr+=interpret($(this));
@@ -197,7 +157,7 @@ function functionInterpret () {
 }
 
 //課題ルーチン解析メソッド
-function kadaiInterpret () {
+function kadaiFunInterpret () {
 		functionNameTable[funName]=1;
 		var funStr="";
 		$("#kadaiRoutine").children('.subList').children('.block').each(function (){
@@ -260,7 +220,9 @@ function interpret (obj) {
 			break;
 	}
 }
+
 //データブロックレベルの解析メソッド群
+//データブロック
 function dataBlockInterpret (obj) {
 	var dataStr="";
 	if(obj.hasClass('intBlock')||obj.hasClass('mathBlock'))
@@ -274,6 +236,7 @@ function dataBlockInterpret (obj) {
 	return dataStr;
 }
 
+//数値ブロック
 function intBlockInterpret (obj) {
 	var intStr="";
 	var op1="";
@@ -295,6 +258,7 @@ function intBlockInterpret (obj) {
 	return intStr;
 }
 
+//文字列ブロック
 function charBlockInterpret (obj) {
 	var charStr="";
 	var op1="";
@@ -316,6 +280,7 @@ function charBlockInterpret (obj) {
 	return charStr;
 }
 
+//論理ブロック
 function boolBlockInterpret (obj) {
 	var boolStr="";
 	var op1="";
@@ -356,6 +321,7 @@ function boolBlockInterpret (obj) {
 }
 
 //処理ブロックごとの解析メソッド群
+//プリント
 function printCodeGenerate (obj) {
 	var opstr=dataBlockInterpret(obj.children('.dataArea').children('.block'));
 	var printCode="";
@@ -373,6 +339,7 @@ function printCodeGenerate (obj) {
 	return printCode;
 }
 
+//代入
 function assignCodeGenerate (obj) {
 	var varName="";
 	var op1="";
@@ -392,6 +359,7 @@ function assignCodeGenerate (obj) {
 	return assignCode;
 }
 
+//回数指定ループ
 function forCodeGenerate (obj) {
 	var loopTimes=obj.children('.times').val();
 	var forCode="";
@@ -403,6 +371,7 @@ function forCodeGenerate (obj) {
 	return forCode;
 }
 
+//条件指定ループ
 function whileCodeGenerate (obj) {
 	var loopCondition=boolBlockInterpret(obj.children('.boolArea').children('.block'));
 	var whileCode="";
@@ -414,6 +383,7 @@ function whileCodeGenerate (obj) {
 	return whileCode;
 }
 
+//ifブロック
 function ifCodeGenerate (obj) {
 	var ifCondition=boolBlockInterpret(obj.children('.boolArea').children('.block'));
 	ifCode="";
@@ -425,6 +395,7 @@ function ifCodeGenerate (obj) {
 	return ifCode;
 }
 
+//else付きのifブロック
 function ifelseCodeGenerate (obj) {
 	var ifCondition=boolBlockInterpret(obj.children('.boolArea').children('.block'));
 	ifelseCode="";
@@ -440,6 +411,7 @@ function ifelseCodeGenerate (obj) {
 	return ifelseCode;
 }
 
+//サブルーチン呼び出し
 function subroutineCodeGenerate (obj) {
 	var funName=obj.children('.functionName').val();
 	var funStr="";
@@ -484,4 +456,31 @@ function getVarName (obj) {
 		varNameTable[varName]=1;
 	}
 	return varName;
+}
+
+//workspace情報の置換及び取得
+function getWorkspace () {
+	$("#workspace input").each(function  () {
+		//console.log("kore"+$(this).parent().html());
+		var temp=$(this).parent().html();
+		//temp="aaaa value konnichiwa";
+		console.log(temp);
+		// var start=temp.indexOf("value\"");
+		// var end=temp.indexOf("\"",start+6);
+		var re = new RegExp("value=\"(.*?)\"");
+		temp=temp.replace(re,"value=\""+$(this).val()+"\"");
+		console.log(temp);
+		$(this).parent().html(temp);
+	})
+	console.log("保存します");
+	console.log($("#workspace").html());
+	temp=$("#workspace").html();
+	temp=temp.replace(/;/g,"SEMICOLON");
+	return temp;
+}
+
+//課題解析モジュールのメソッド
+function getResult () {
+	executionMain();
+	return $("#outputArea").val();
 }

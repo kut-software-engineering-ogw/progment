@@ -19,7 +19,7 @@ from http_ridirection import found
 
 def login_handler(environ, start_response):
     """
-    ログインハンドラモジュール
+    ログインハンドラメソッド
     /loginへリクエストを受けた際に呼び出される。
     Sessionの有無やGETかPOSTかを判断して、HTML生成か認証を行うかを判断する
     :param envrion:
