@@ -77,13 +77,10 @@ def application(environ, start_response):
 
     elif path == "/users":
         """ ユーザ画面 """
-        return html(environ, start_response, '/html/user.html')
+        return html(environ, start_response, '/html/users.html')
 
     elif path == "/logout":
         return logout_handler(environ, start_response)
-
-    elif path == "/post_test":
-        return post_test(environ, start_response)
 
     elif path == "/":
         print ("[redirect]: /login path=", path)
@@ -96,41 +93,3 @@ def application(environ, start_response):
         print ("[error-404]:", path)
         start_response('404 NOT FOUND', [('Content-Type', 'text/plain')])
         return ['Not Found'.encode()]
-
-def test_app(environ, start_response, app_name):
-    output = """
-        <form action="/menu" method="POST">
-        <a href="../freeProg">フリープログラミング</a><br>
-        </form>
-    """
-    status = "200 OK"
-    #header = [('Content-Type', 'text/plain')]
-    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
-    #start_response(status, header)
-    start_response(status, headers)
-    return [output.encode()]
-
-def test_login_app(envrion, start_response):
-    output = """
-        <form action="/collation" method="POST">
-        ログインID<input type="text" name="cId">
-        パスワード<input type="text" name="cPassword">
-        <input type="submit">
-        </form>
-    """
-    status = '200 OK'
-    headers = [('Content-type', 'text/html'), ('Content-Length', str(len(output)))]
-    start_response(status, headers)
-    return [output.encode()]
-
-def post_test(environ, start_response):
-    output = '''
-        <form action="/expEdit/expDelete" method="POST">
-            課題ID<input type="text" name="expId" >
-            <input type="submit" >
-        </form>
-    '''
-    status = '200 OK'
-    headers = [('Content-type', 'text/html')]
-    start_response(status, headers)
-    return [output.encode()]

@@ -70,7 +70,7 @@ def editProgHTML_handler(environ, start_response):
         start_response(status, headers)
         return [output]
 
-def userApp_handler(environ, start_response):
+def users_handler(environ, start_response):
     cookie = get_cookie(environ)
     if cookie is None:
         """ セッションを確立していない場合 """
