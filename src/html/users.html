@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>アカウント管理画面</title>
+<link rel="stylesheet" href="style1.css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script  type="text/javascript" src="javascript/user.js"></script>
+</head>
+<script>
+$(document).ready(function() {
+  $("button").click(function(e){
+  	del(e);
+  	}) 
+});
+</script>
+<body>
+	<div id = "header-bk">
+		<div id="header">
+			<div id="headerLeft">
+				<p>ID=0000</p>
+			</div>
+			<div id="headerRight">
+				<div id="headerRightContents">
+					<input type="submit" value="ログアウト"></input>
+				</div>
+			</div>
+		</div>
+	</div>
+  
+ 	<div id="cont1-bk">
+ 		<div id="cont1">
+  			<table class="sample_04" id="infoTable">
+				<tbody>
+				<tr>
+					<th class="x">学年</th>
+					<th class="x">クラス</th>
+					<th class="x">番号</th>
+					<th class="account">アカウント情報</th>
+					<th class="xmin">(Del)</th>
+				</tr>
+				<script>
+				tablecleate();
+				</script>
+			</tbody>
+		</table>
+		</div>
+  	</div>
+	<div id = "footer-bk">
+		<div id = "footer">
+		<div id = "button-br">
+			<nav>
+		<a href="#" onclick="" id="addButton">Add</a>
+		<a href="#">Update</a>
+			</nav>
+		</div>
+		</div>		
+	</div>
+</body>
+</html>

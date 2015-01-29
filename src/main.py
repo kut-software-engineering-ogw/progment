@@ -75,14 +75,9 @@ def application(environ, start_response):
         """ 課題エディットデータ追加モジュール """
         return exp_insert_handler(environ, start_response)
 
-    elif path == "/expEdit/expDelete":    # 課題エディットデータ削除モジュール
-        return exp_delete_handler(environ, start_response)
-
-    elif path == "/expEdit/expUpdate":    # 課題エディット編集モジュール
-        return exp_update_handler(environ, start_response)
-
-    elif path == "/users":   # ユーザ管理画面生成モジュール
-        return test_app(environ, start_response, "users")
+    elif path == "/users":
+        """ ユーザ画面 """
+        return html(environ, start_response, '/html/user.html')
 
     elif path == "/logout":
         return logout_handler(environ, start_response)
