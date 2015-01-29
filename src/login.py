@@ -38,26 +38,8 @@ def login_handler(environ, start_response):
             return html(environ, start_response, '/html/login.html')
         elif method == 'POST':
             """ リクエストがPOSTメソッドである場合 """
-            # POSTされた情報を取得
-            form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
-            cId = form.getfirst('cId', "")
-            cPassword = form.getfirst('cPassword', "")
-            r_value = collation(cId, cPassword)
-            if r_value is True:
-                """ ログイン成功時の処理 """
-                print ("login success")
-                status = '302 Found'
-                cookie = create_cookie(cId)
-                response_headers = [('Location', '/menu'),
-                                    ('Set-Cookie', cookie["session"].OutputString()),
-                                    ('Set-Cookie', cookie["user_id"].OutputString())]
-                start_response(status, response_headers)
-                return []
-            else:
-                """ ログイン失敗時の処理 """
-                # ログイン失敗画面HTML生成
-                print ("login error")
-                return html(environ, start_response, '/html/login_error.html')
+            # ログイン処理
+            return login(environ, start_response)
         else:
             """ GETでもPOSTでもない場合 """
             # 400 Bad Request
@@ -66,3 +48,30 @@ def login_handler(environ, start_response):
         """ すでにセッションを確立している場合 """
         # 302 Found
         return found('/menu', environ, start_response)
+
+def login(environ, start_response):
+    """
+    ログインメソッド
+    :param environ:
+    :param start_response:
+    :return:
+    """
+    # POSTされた情報を取得
+    form = cgi.FieldStorage(environ=environ, fp=environ['wsgi.input'])
+    cId = form.getfirst('cId', "")
+    cPassword = form.getfirst('cPassword', "")
+    r_value = collation(cId, cPassword)
+    if r_value is True:
+        """ ログイン成功時の処理 """
+        status = '302 Found'
+        cookie = create_cookie(cId)
+        response_headers = [('Location', '/menu'),
+                            ('Set-Cookie', cookie["session"].OutputString()),
+                            ('Set-Cookie', cookie["user_id"].OutputString())]
+        start_response(status, response_headers)
+        return []
+    else:
+        """ ログイン失敗時の処理 """
+        # ログイン失敗画面HTML生成
+        print ("login error")
+        return html(environ, start_response, '/html/login_error.html')
